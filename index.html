@@ -127,7 +127,6 @@
       background:linear-gradient(#111,#222);
       cursor:pointer;
     }
-
     body.light .thumb{background:#ececec}
 
     .actions{
@@ -159,6 +158,19 @@
     }
     .thumb-row img.selected{border-color:var(--accent)}
     body.light .thumb-row img.selected{border-color:#d00000}
+
+    /* Skeleton */
+    .skeleton{
+      background:linear-gradient(90deg,#222,#333,#222);
+      animation:shimmer 1.5s infinite;
+      border-radius:12px;
+      height:150px;
+      width:100%;
+    }
+    @keyframes shimmer{
+      0%{background-position:-200% 0}
+      100%{background-position:200% 0}
+    }
 
     /* Lightbox */
     #lightbox{
@@ -205,177 +217,142 @@
     }
   </style>
 </head>
-
 <body>
 
-  <header>
-    <h1>AriDeltaO</h1>
-    <div style="display:flex;align-items:center;gap:1rem">
-      <nav>
-        <a href="#about">About</a>
-        <a href="#projects">Projects</a>
-        <a href="#contact">Contact</a>
-      </nav>
-      <button id="themeToggle">🌙</button>
+<header>
+  <h1>AriDeltaO</h1>
+  <div style="display:flex;align-items:center;gap:1rem">
+    <nav>
+      <a href="#about">About</a>
+      <a href="#projects">Projects</a>
+      <a href="#contact">Contact</a>
+    </nav>
+    <button id="themeToggle">🌙</button>
+  </div>
+</header>
+
+<section class="hero">
+  <h2>Hello, I'm AriDeltaO</h2>
+  <p>A developer & 3D artist — I build clean, modern visual experiences.</p>
+</section>
+
+<section id="about" class="section">
+  <h2>About Me</h2>
+  <p style="max-width:780px">
+    My name is AriDeltaO. I am a 19-year-old male 3D artist and hobbyist developer.
+    I mainly work on hard-surface models and abstract/stylized fan-art.  
+    I am currently learning soft-surface modelling.
+  </p>
+</section>
+
+<section id="projects" class="section">
+  <div class="projects-header">
+    <h2 style="margin:0 0.5rem 0 0">Projects</h2>
+    <div class="search" style="max-width:420px;">
+      <input id="projectSearch" placeholder="Search projects or descriptions..." />
     </div>
-  </header>
-
-  <section class="hero">
-    <h2>Hello, I'm AriDeltaO</h2>
-    <p>A developer &amp; 3D artist — I build clean, modern visual experiences.</p>
-  </section>
-
-  <section id="about" class="section">
-    <h2>About Me</h2>
-    <p style="max-width:780px">
-      My name is AriDeltaO. I am a 19-year-old male 3D artist and hobbyist developer.
-      I mainly work on hard-surface models and abstract/stylized fan-art.  
-      I am currently learning soft-surface modelling.
-    </p>
-  </section>
-
-  <!-- PROJECTS -->
-  <section id="projects" class="section">
-
-    <div class="projects-header">
-      <h2 style="margin:0 0.5rem 0 0">Projects</h2>
-      <div class="search" style="max-width:420px;">
-        <input id="projectSearch" placeholder="Search projects or descriptions..." />
-      </div>
-      <div class="filters" style="margin-left:auto">
-        <button id="filterAll" class="active">All</button>
-        <button id="filterWIP">WIP</button>
-        <button id="sortAlpha">Sort A→Z</button>
-      </div>
-    </div>
-
-    <div id="projectsContainer" class="projects"></div>
-
-  </section>
-
-  <section id="contact" class="section">
-    <h2>Contact</h2>
-
-    <div class="contact-row">
-
-      <div class="icon-link">
-        <svg class="icon-sprite" viewBox="0 0 24 24">
-          <path d="M12 2C6.48 2 2 6.48 2 
-          12s4.48 10 10 10 10-4.48 10-10S17.52
-          2 12 2zm1 17.93c-2.83.48-5.44-.3-7.47-1.93-.39-.31-.48-.88-.21-1.3.27-.41.79-.54 1.22-.31 
-          1.74 1 3.81 1.39 5.88.99 2.07-.4 3.9-1.62 
-          5.12-3.39.26-.39.77-.53 1.2-.34.43.19.67.66.57 
-          1.12-1.02 2.84-3.57 5.04-6.86 
-          5.16v-.01z"/>
-        </svg>
-        <a href="#" style="text-decoration:none;color:inherit;font-weight:600">
-          Discord: ari_69001
-        </a>
-      </div>
-
-      <div class="icon-link">
-        <svg class="icon-sprite" viewBox="0 0 24 24">
-          <path d="M10 15l5.19-3L10 9v6zm12-3c0 
-          5.52-4.48 10-10 
-          10S2 17.52 2 12 6.48 2 
-          12 2s10 4.48 10 10z"/>
-        </svg>
-        <a href="https://www.youtube.com/@AriDeltaO"
-           target="_blank"
-           style="text-decoration:none;color:inherit;font-weight:600">
-          YouTube
-        </a>
-      </div>
-
-      <div class="icon-link">
-        <svg class="icon-sprite" viewBox="0 0 24 24">
-          <path d="M22.46 6c-.77.35-1.6.58-2.46.69a4.3 4.3 0 
-          001.88-2.37 8.59 8.59 0 01-2.72 
-          1.04A4.28 4.28 0 0016.11 
-          4c-2.37 0-4.29 1.92-4.29 
-          4.29 0 .34.04.67.11.98-3.57-.18-6.74-1.89-8.86-4.49a4.28 
-          4.28 0 00-.58 2.16c0 1.49.76 2.8 
-          1.92 3.57a4.23 4.23 0 
-          01-1.94-.54v.05c0 2.08 1.48 
-          3.82 3.44 4.22-.36.1-.74.15-1.13.15-.28 
-          0-.55-.03-.82-.08.55 1.72 
-          2.15 2.97 4.06 3a8.6 8.6 
-          0 01-5.32 1.84c-.35 
-          0-.69-.02-1.03-.06A12.14 12.14 0 008.29 
-          21c7.88 0 12.2-6.53 12.2-12.2l-.01-.56A8.63 
-          8.63 0 0022.46 6z"/>
-        </svg>
-        <a href="https://x.com/AriDeltaO"
-           target="_blank"
-           style="text-decoration:none;color:inherit;font-weight:600">
-          Twitter / X
-        </a>
-      </div>
-
-    </div>
-  </section>
-
-  <footer>
-    © 2025 AriDeltaO — hosted via GitHub Pages
-  </footer>
-
-
-  <!-- LIGHTBOX -->
-  <div id="lightbox" aria-hidden="true">
-    <button id="lbClose" class="lb-btn" style="position:absolute;top:2rem;right:2rem">Close</button>
-    <img id="lightboxImg" src="" alt="Preview" />
-    <div class="controls">
-      <button id="lbPrev" class="lb-btn">Prev</button>
-      <button id="lbNext" class="lb-btn">Next</button>
+    <div class="filters" style="margin-left:auto">
+      <button id="filterAll" class="active">All</button>
+      <button id="filterWIP">WIP</button>
+      <button id="sortAlpha">Sort A→Z</button>
     </div>
   </div>
+  <div id="skeletons" class="projects">
+    <!-- 5 skeleton cards while loading -->
+    <div class="card"><div class="skeleton"></div></div>
+    <div class="card"><div class="skeleton"></div></div>
+    <div class="card"><div class="skeleton"></div></div>
+    <div class="card"><div class="skeleton"></div></div>
+    <div class="card"><div class="skeleton"></div></div>
+  </div>
+  <div id="projectsContainer" class="projects" style="display:none"></div>
+</section>
 
+<section id="contact" class="section">
+  <h2>Contact</h2>
+  <div class="contact-row">
+    <div class="icon-link">
+      <svg class="icon-sprite" viewBox="0 0 24 24">
+        <path d="M12 2C6.48 2 2 6.48 2 
+        12s4.48 10 10 10 10-4.48 10-10S17.52
+        2 12 2zm1 17.93c-2.83.48-5.44-.3-7.47-1.93-.39-.31-.48-.88-.21-1.3.27-.41.79-.54 1.22-.31 
+        1.74 1 3.81 1.39 5.88.99 2.07-.4 3.9-1.62 
+        5.12-3.39.26-.39.77-.53 1.2-.34.43.19.67.66.57 
+        1.12-1.02 2.84-3.57 5.04-6.86 
+        5.16v-.01z"/>
+      </svg>
+      <a href="#" style="text-decoration:none;color:inherit;font-weight:600">
+        Discord: ari_69001
+      </a>
+    </div>
+
+    <div class="icon-link">
+      <svg class="icon-sprite" viewBox="0 0 24 24">
+        <path d="M10 15l5.19-3L10 9v6zm12-3c0 
+        5.52-4.48 10-10 
+        10S2 17.52 2 12 6.48 2 
+        12 2s10 4.48 10 10z"/>
+      </svg>
+      <a href="https://www.youtube.com/@AriDeltaO"
+         target="_blank"
+         style="text-decoration:none;color:inherit;font-weight:600">
+        YouTube
+      </a>
+    </div>
+
+    <div class="icon-link">
+      <svg class="icon-sprite" viewBox="0 0 24 24">
+        <path d="M22.46 6c-.77.35-1.6.58-2.46.69a4.3 4.3 0 
+        001.88-2.37 8.59 8.59 0 01-2.72 
+        1.04A4.28 4.28 0 0016.11 
+        4c-2.37 0-4.29 1.92-4.29 
+        4.29 0 .34.04.67.11.98-3.57-.18-6.74-1.89-8.86-4.49a4.28 
+        4.28 0 00-.58 2.16c0 1.49.76 2.8 
+        1.92 3.57a4.23 4.23 0 
+        01-1.94-.54v.05c0 2.08 1.48 
+        3.82 3.44 4.22-.36.1-.74.15-1.13.15-.28 
+        0-.55-.03-.82-.08.55 1.72 
+        2.15 2.97 4.06 3a8.6 8.6 
+        0 01-5.32 1.84c-.35 
+        0-.69-.02-1.03-.06A12.14 12.14 0 008.29 
+        21c7.88 0 12.2-6.53 12.2-12.2l-.01-.56A8.63 
+        8.63 0 0022.46 6z"/>
+      </svg>
+      <a href="https://x.com/AriDeltaO"
+         target="_blank"
+         style="text-decoration:none;color:inherit;font-weight:600">
+        Twitter / X
+      </a>
+    </div>
+  </div>
+</section>
+
+<footer>
+  © 2025 AriDeltaO — hosted via GitHub Pages
+</footer>
+
+<!-- LIGHTBOX -->
+<div id="lightbox" aria-hidden="true">
+  <button id="lbClose" class="lb-btn" style="position:absolute;top:2rem;right:2rem">Close</button>
+  <img id="lightboxImg" src="" alt="Preview" />
+  <div class="controls">
+    <button id="lbPrev" class="lb-btn">Prev</button>
+    <button id="lbNext" class="lb-btn">Next</button>
+  </div>
+</div>
 
 <script>
-/* FALLBACK PROJECT LIST */
-const FALLBACK_PROJECTS = [
-  "WIP","Project_1","Project_2","Project_3","Project_4","Project_5"
-];
-
-const DETAILS_VARIANTS = ["Details.txt","Detail.txt","Detals.txt"];
-const IMAGE_GUESSES = [
-  "Final.png","Render.png","Clay.png","Leg.png",
-  "1.png","2.png","3.png",
-  "blender-01.png","blender-02.png","blender-03.png","blender-04.png","blender-05.png"
-];
-
-const container = document.getElementById('projectsContainer');
-
-/* THEME */
 const themeToggle = document.getElementById('themeToggle');
-(function(){
-  if(localStorage.getItem('theme')==="light"){
-    document.body.classList.add("light");
-    themeToggle.textContent="☀️";
-  }
-})();
+if(localStorage.getItem('theme')==="light"){
+  document.body.classList.add("light");
+  themeToggle.textContent="☀️";
+}
 themeToggle.addEventListener('click',()=>{
   document.body.classList.toggle("light");
   const isLight = document.body.classList.contains("light");
   themeToggle.textContent = isLight ? "☀️" : "🌙";
   localStorage.setItem("theme", isLight ? "light" : "dark");
 });
-
-/* HELPERS */
-async function fetchTextIfExists(p){
-  try{
-    const r = await fetch(p);
-    if(!r.ok) return null;
-    return await r.text();
-  }catch{return null;}
-}
-
-async function exists(p){
-  try{
-    const r = await fetch(p,{method:"HEAD"});
-    return r.ok;
-  }catch{return false;}
-}
 
 function escapeHtml(str){
   return str.replace(/&/g,"&amp;")
@@ -390,46 +367,10 @@ function sanitizeTitle(id){
   return id.replace(/_/g," ").replace(/\b\w/g,m=>m.toUpperCase());
 }
 
-/* LOAD PROJECT LIST */
-async function getProjectList(){
-  const manifest = await fetchTextIfExists("Media/manifest.json");
-  if(manifest){
-    try{
-      const arr = JSON.parse(manifest);
-      return arr.map(p=>({
-        id:p.id||p,
-        title:p.title||sanitizeTitle(p),
-        tags:p.tags||[]
-      }));
-    }catch{}
-  }
-  return FALLBACK_PROJECTS.map(id=>({
-    id,
-    title:sanitizeTitle(id),
-    tags:id.toLowerCase().includes("wip")?["wip"]:[]
-  }));
-}
+const container = document.getElementById('projectsContainer');
+const skeletons = document.getElementById('skeletons');
 
-/* LOAD DETAILS + IMAGES */
-async function loadDetails(id){
-  for(const name of DETAILS_VARIANTS){
-    const path = `Media/${id}/${name}`;
-    const text = await fetchTextIfExists(path);
-    if(text) return text.trim();
-  }
-  return "No details available.";
-}
-
-async function loadImages(id){
-  const base = `Media/${id}/PNGs/`;
-  const found=[];
-  for(const img of IMAGE_GUESSES){
-    if(await exists(base+img)) found.push(base+img);
-  }
-  return found;
-}
-
-/* BUILD CARD */
+/* Build card */
 function buildCard(project){
   const card = document.createElement("article");
   card.className="card";
@@ -438,6 +379,7 @@ function buildCard(project){
   thumb.className="thumb";
   thumb.src = project.images[0] || "";
   thumb.alt = project.title + " thumbnail";
+  thumb.loading="lazy";
 
   const title = document.createElement("h3");
   title.textContent = project.title;
@@ -448,7 +390,7 @@ function buildCard(project){
 
   const summary = document.createElement("div");
   summary.className="summary";
-  summary.textContent = project.details.split("\n")[0];
+  summary.textContent = "Loading details...";
 
   const actions = document.createElement("div");
   actions.className="actions";
@@ -468,7 +410,7 @@ function buildCard(project){
 
   const text = document.createElement("div");
   text.className="text";
-  text.innerHTML = escapeHtml(project.details);
+  text.textContent = "Loading details...";
 
   const strip = document.createElement("div");
   strip.className="thumb-row";
@@ -477,6 +419,7 @@ function buildCard(project){
     const t = document.createElement("img");
     t.src=src;
     t.alt=project.title+" image "+(i+1);
+    t.loading="lazy";
     t.addEventListener("click",()=>openLightbox(project.images,i));
     if(i===0) t.classList.add("selected");
     strip.appendChild(t);
@@ -484,38 +427,42 @@ function buildCard(project){
 
   details.append(text,strip);
 
-  /* BEHAVIOR */
-  openBtn.addEventListener("click",()=>{
-    details.classList.toggle("open");
-  });
-
-  thumb.addEventListener("click",()=>{
-    if(project.images.length>0) openLightbox(project.images,0);
-  });
-
+  openBtn.addEventListener("click",()=>details.classList.toggle("open"));
+  thumb.addEventListener("click",()=>project.images.length>0 && openLightbox(project.images,0));
   imgBtn.addEventListener("click",()=>{
-    if(project.images.length===0){
-      alert("No images found.");
-      return;
-    }
-    // Open first image
+    if(project.images.length===0){ alert("No images found."); return; }
     openLightbox(project.images,0);
-
-    // Trigger download of zip
-    const zipLink = document.createElement("a");
-    zipLink.href = project.images[0];
-    zipLink.download = project.title + ".png";
-    zipLink.click();
   });
 
   card.append(thumb,title,meta,summary,actions,details);
+
+  // Fetch details text
+  fetch(project.details).then(r=>r.text()).then(txt=>{
+    summary.textContent = txt.split("\n")[0];
+    text.innerHTML = escapeHtml(txt);
+  }).catch(()=>{summary.textContent="No details available."; text.textContent="No details available.";});
+
   return card;
 }
 
-/* RENDER */
-async function renderProjects(list){
+/* Fetch manifest and generate projects */
+let PROJECTS=[];
+async function generateProjects(){
+  const resp = await fetch("Media/manifest.json");
+  const manifest = await resp.json();
+
+  // WIP first
+  manifest.sort((a,b)=> a.id==="WIP"? -1 : b.id==="WIP"? 1 : 0);
+
+  PROJECTS = manifest;
+  renderProjects(PROJECTS);
+}
+
+function renderProjects(list){
+  skeletons.style.display="none";
+  container.style.display="grid";
   container.innerHTML="";
-  const frag=document.createDocumentFragment();
+  const frag = document.createDocumentFragment();
   list.forEach(p=>frag.appendChild(buildCard(p)));
   container.appendChild(frag);
 }
@@ -532,11 +479,7 @@ function applyFilters(){
   let list = PROJECTS.slice();
 
   if(q){
-    list = list.filter(p=>
-      (p.title + p.details + (p.tags||[]).join(" "))
-        .toLowerCase()
-        .includes(q)
-    );
+    list = list.filter(p=> (p.title + (p.details||"") + (p.tags||[]).join(" ")).toLowerCase().includes(q));
   }
 
   if(wip){
@@ -569,32 +512,6 @@ sortAlphaBtn.addEventListener("click",()=>{
 
 searchInput.addEventListener("input",applyFilters);
 
-/* MAIN LOAD */
-let PROJECTS=[];
-async function generateProjects(){
-  const list = await getProjectList();
-  const loaded=[];
-
-  for(const p of list){
-    const [details,images] = await Promise.all([
-      loadDetails(p.id),
-      loadImages(p.id)
-    ]);
-
-    loaded.push({
-      id:p.id,
-      title:p.title,
-      tags:p.tags||[],
-      details,
-      images
-    });
-  }
-
-  PROJECTS=loaded;
-  applyFilters();
-}
-generateProjects();
-
 /* LIGHTBOX */
 const lightbox = document.getElementById("lightbox");
 const lbImg = document.getElementById("lightboxImg");
@@ -611,22 +528,21 @@ function openLightbox(list,index){
 function closeLightbox(){ lightbox.style.display="none"; }
 
 lbClose.addEventListener("click",closeLightbox);
-lightbox.addEventListener("click",(e)=>{
-  if(e.target===lightbox) closeLightbox();
-});
+lightbox.addEventListener("click",(e)=>{ if(e.target===lightbox) closeLightbox(); });
 
 lbPrev.addEventListener("click",e=>{
   e.stopPropagation();
   CURRENT.index=(CURRENT.index-1+CURRENT.list.length)%CURRENT.list.length;
   lbImg.src=CURRENT.list[CURRENT.index];
 });
-
 lbNext.addEventListener("click",e=>{
   e.stopPropagation();
   CURRENT.index=(CURRENT.index+1)%CURRENT.list.length;
   lbImg.src=CURRENT.list[CURRENT.index];
 });
-</script>
 
+/* INIT */
+generateProjects();
+</script>
 </body>
 </html>
