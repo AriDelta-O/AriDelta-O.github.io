@@ -1,0 +1,632 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <title>AriDeltaO — Portfolio</title>
+
+  <!-- Inter font -->
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;700&display=swap" rel="stylesheet">
+
+  <style>
+    :root{
+      --bg:#0d0d0f;
+      --card:#1a1a1d;
+      --muted:#9aa0a6;
+      --accent:#ff4d4d;
+      --radius:12px;
+    }
+    *{box-sizing:border-box}
+    body{
+      margin:0;
+      font-family:'Inter',system-ui;
+      background:var(--bg);
+      color:#eee;
+      line-height:1.6;
+      font-size:16px;
+    }
+
+    /* HEADER */
+    header{
+      display:flex;
+      align-items:center;
+      justify-content:space-between;
+      padding:1.4rem 2.2rem;
+      background:#141416;
+      position:sticky;
+      top:0;
+      z-index:50;
+      box-shadow:0 2px 8px rgba(0,0,0,0.6);
+    }
+    header h1{margin:0;font-size:1.35rem;color:var(--accent);font-weight:700}
+    nav a{color:#ddd;text-decoration:none;margin-left:1.2rem;font-weight:600}
+    nav a:hover{color:#ff7777}
+
+    #themeToggle{
+      padding:.5rem .75rem;border-radius:10px;border:none;background:var(--accent);
+      color:white;font-weight:700;cursor:pointer;font-size:.9rem;
+    }
+
+    /* HERO */
+    .hero{
+      padding:5.5rem 1.25rem;
+      text-align:center;
+      background:linear-gradient(135deg,#ff4d4d,#b30000);
+      color:white;
+    }
+    .hero h2{font-size:2.7rem;margin:0 0 .6rem;font-weight:700}
+    .hero p{font-size:1.1rem;margin:0;opacity:0.95}
+
+    /* SECTIONS */
+    .section{max-width:980px;margin:0 auto;padding:3rem 1.25rem}
+    .section h2{font-size:1.55rem;margin-top:0;color:#eee}
+    body.light .section h2{color:#111}
+
+    /* PROJECTS HEADER */
+    .projects-header{display:flex;gap:1rem;flex-wrap:wrap;align-items:center;margin-bottom:1.3rem}
+    .search{flex:1;min-width:260px}
+    .search input{
+      width:100%;padding:.6rem .9rem;border-radius:10px;
+      border:1px solid rgba(255,255,255,0.08);background:transparent;color:inherit
+    }
+
+    .filters{display:flex;gap:.55rem}
+    .filters button{
+      padding:.48rem .7rem;border-radius:10px;background:transparent;
+      border:1px solid rgba(255,255,255,0.12);color:inherit;font-weight:600;cursor:pointer;
+      font-size:.88rem;
+    }
+    .filters button.active{background:rgba(255,77,77,0.13);border-color:var(--accent)}
+
+    /* GRID */
+    .projects{
+      display:grid;
+      grid-template-columns:repeat(auto-fit,minmax(260px,1fr));
+      gap:1.15rem;
+    }
+
+    /* COMPACT CARD */
+    .card{
+      background:var(--card);
+      border-radius:var(--radius);
+      padding:0.95rem 1rem;
+      border:1px solid #27272a;
+      display:flex;
+      flex-direction:column;
+      gap:.55rem;
+      transition:.18s ease;
+      box-shadow:0 5px 18px rgba(0,0,0,0.55);
+    }
+    .card:hover{
+      transform:translateY(-5px);
+      box-shadow:0 11px 32px rgba(0,0,0,0.62);
+    }
+
+    /* Titles */
+    .card h3{
+      margin:.1rem 0 .2rem;
+      font-size:1.25rem;
+      font-weight:700;
+      color:#fff;
+      letter-spacing:0.25px;
+    }
+    body.light .card h3{color:#111}
+
+    .meta{font-size:.88rem;color:var(--muted);margin-bottom:0}
+    body.light .meta{color:#555}
+
+    .summary{font-size:.98rem;margin-top:.1rem;color:#e3e3e3}
+    body.light .summary{color:#333}
+
+    /* Thumbnails compact */
+    .thumb{
+      width:100%;
+      height:150px;
+      object-fit:cover;
+      border-radius:8px;
+      background:linear-gradient(#111,#222);
+      cursor:pointer;
+    }
+
+    body.light .thumb{background:#ececec}
+
+    .actions{
+      display:flex;
+      gap:.55rem;
+      margin-top:.25rem;
+    }
+    .btn{
+      padding:.45rem .65rem;border-radius:9px;border:none;background:var(--accent);
+      color:white;font-weight:700;font-size:.88rem;cursor:pointer;
+    }
+    .btn.ghost{
+      background:transparent;border:1px solid rgba(255,255,255,0.12);
+      color:inherit;
+    }
+    body.light .btn.ghost{border:1px solid #ccc;color:#222}
+
+    /* Details drop */
+    .details{display:none;flex-direction:column;gap:.5rem;margin-top:.5rem}
+    .details.open{display:flex}
+
+    .details .text{white-space:pre-wrap;font-size:.95rem;color:#e8e8e8}
+    body.light .details .text{color:#222}
+
+    .thumb-row{display:flex;gap:.45rem;overflow:auto;margin-top:.3rem}
+    .thumb-row img{
+      height:72px;object-fit:cover;border-radius:8px;cursor:pointer;
+      border:2px solid transparent;
+    }
+    .thumb-row img.selected{border-color:var(--accent)}
+    body.light .thumb-row img.selected{border-color:#d00000}
+
+    /* Lightbox */
+    #lightbox{
+      position:fixed;inset:0;display:none;align-items:center;
+      justify-content:center;background:rgba(0,0,0,0.92);z-index:9999;padding:2rem;
+    }
+    #lightbox img{
+      max-width:calc(100% - 160px);max-height:calc(100% - 160px);
+      border-radius:12px;box-shadow:0 12px 40px rgba(0,0,0,0.8)
+    }
+    .lb-btn{
+      padding:.5rem .8rem;border-radius:10px;background:rgba(255,255,255,0.07);
+      border:none;color:white;font-weight:700;cursor:pointer;
+    }
+    #lightbox .controls{
+      position:absolute;bottom:2rem;left:50%;transform:translateX(-50%);
+      display:flex;gap:.7rem;
+    }
+
+    /* CONTACT ICONS */
+    .contact-row{display:flex;flex-direction:column;gap:.65rem}
+    .icon-link{display:flex;align-items:center;gap:.6rem;color:inherit}
+    .icon-sprite{
+      width:22px;height:22px;fill:var(--accent);
+      flex:0 0 22px;
+    }
+
+    /* Footer center */
+    footer{
+      text-align:center;
+      padding:1.4rem 0;
+      opacity:0.75;
+      font-size:.95rem;
+      margin-top:2rem;
+      width:100%;
+    }
+
+    /* LIGHT THEME */
+    body.light{background:#f5f5f7;color:#111}
+    body.light header{background:white;box-shadow:0 2px 8px rgba(0,0,0,0.06)}
+    body.light .card{
+      background:white;color:#111;border:1px solid #e6e6e6;
+      box-shadow:0 4px 16px rgba(0,0,0,0.12)
+    }
+  </style>
+</head>
+
+<body>
+
+  <header>
+    <h1>AriDeltaO</h1>
+    <div style="display:flex;align-items:center;gap:1rem">
+      <nav>
+        <a href="#about">About</a>
+        <a href="#projects">Projects</a>
+        <a href="#contact">Contact</a>
+      </nav>
+      <button id="themeToggle">🌙</button>
+    </div>
+  </header>
+
+  <section class="hero">
+    <h2>Hello, I'm AriDeltaO</h2>
+    <p>A developer &amp; 3D artist — I build clean, modern visual experiences.</p>
+  </section>
+
+  <section id="about" class="section">
+    <h2>About Me</h2>
+    <p style="max-width:780px">
+      My name is AriDeltaO. I am a 19-year-old male 3D artist and hobbyist developer.
+      I mainly work on hard-surface models and abstract/stylized fan-art.  
+      I am currently learning soft-surface modelling.
+    </p>
+  </section>
+
+  <!-- PROJECTS -->
+  <section id="projects" class="section">
+
+    <div class="projects-header">
+      <h2 style="margin:0 0.5rem 0 0">Projects</h2>
+      <div class="search" style="max-width:420px;">
+        <input id="projectSearch" placeholder="Search projects or descriptions..." />
+      </div>
+      <div class="filters" style="margin-left:auto">
+        <button id="filterAll" class="active">All</button>
+        <button id="filterWIP">WIP</button>
+        <button id="sortAlpha">Sort A→Z</button>
+      </div>
+    </div>
+
+    <div id="projectsContainer" class="projects"></div>
+
+  </section>
+
+  <section id="contact" class="section">
+    <h2>Contact</h2>
+
+    <div class="contact-row">
+
+      <div class="icon-link">
+        <svg class="icon-sprite" viewBox="0 0 24 24">
+          <path d="M12 2C6.48 2 2 6.48 2 
+          12s4.48 10 10 10 10-4.48 10-10S17.52
+          2 12 2zm1 17.93c-2.83.48-5.44-.3-7.47-1.93-.39-.31-.48-.88-.21-1.3.27-.41.79-.54 1.22-.31 
+          1.74 1 3.81 1.39 5.88.99 2.07-.4 3.9-1.62 
+          5.12-3.39.26-.39.77-.53 1.2-.34.43.19.67.66.57 
+          1.12-1.02 2.84-3.57 5.04-6.86 
+          5.16v-.01z"/>
+        </svg>
+        <a href="#" style="text-decoration:none;color:inherit;font-weight:600">
+          Discord: ari_69001
+        </a>
+      </div>
+
+      <div class="icon-link">
+        <svg class="icon-sprite" viewBox="0 0 24 24">
+          <path d="M10 15l5.19-3L10 9v6zm12-3c0 
+          5.52-4.48 10-10 
+          10S2 17.52 2 12 6.48 2 
+          12 2s10 4.48 10 10z"/>
+        </svg>
+        <a href="https://www.youtube.com/@AriDeltaO"
+           target="_blank"
+           style="text-decoration:none;color:inherit;font-weight:600">
+          YouTube
+        </a>
+      </div>
+
+      <div class="icon-link">
+        <svg class="icon-sprite" viewBox="0 0 24 24">
+          <path d="M22.46 6c-.77.35-1.6.58-2.46.69a4.3 4.3 0 
+          001.88-2.37 8.59 8.59 0 01-2.72 
+          1.04A4.28 4.28 0 0016.11 
+          4c-2.37 0-4.29 1.92-4.29 
+          4.29 0 .34.04.67.11.98-3.57-.18-6.74-1.89-8.86-4.49a4.28 
+          4.28 0 00-.58 2.16c0 1.49.76 2.8 
+          1.92 3.57a4.23 4.23 0 
+          01-1.94-.54v.05c0 2.08 1.48 
+          3.82 3.44 4.22-.36.1-.74.15-1.13.15-.28 
+          0-.55-.03-.82-.08.55 1.72 
+          2.15 2.97 4.06 3a8.6 8.6 
+          0 01-5.32 1.84c-.35 
+          0-.69-.02-1.03-.06A12.14 12.14 0 008.29 
+          21c7.88 0 12.2-6.53 12.2-12.2l-.01-.56A8.63 
+          8.63 0 0022.46 6z"/>
+        </svg>
+        <a href="https://x.com/AriDeltaO"
+           target="_blank"
+           style="text-decoration:none;color:inherit;font-weight:600">
+          Twitter / X
+        </a>
+      </div>
+
+    </div>
+  </section>
+
+  <footer>
+    © 2025 AriDeltaO — hosted via GitHub Pages
+  </footer>
+
+
+  <!-- LIGHTBOX -->
+  <div id="lightbox" aria-hidden="true">
+    <button id="lbClose" class="lb-btn" style="position:absolute;top:2rem;right:2rem">Close</button>
+    <img id="lightboxImg" src="" alt="Preview" />
+    <div class="controls">
+      <button id="lbPrev" class="lb-btn">Prev</button>
+      <button id="lbNext" class="lb-btn">Next</button>
+    </div>
+  </div>
+
+
+<script>
+/* FALLBACK PROJECT LIST */
+const FALLBACK_PROJECTS = [
+  "WIP","Project_1","Project_2","Project_3","Project_4","Project_5"
+];
+
+const DETAILS_VARIANTS = ["Details.txt","Detail.txt","Detals.txt"];
+const IMAGE_GUESSES = [
+  "Final.png","Render.png","Clay.png","Leg.png",
+  "1.png","2.png","3.png",
+  "blender-01.png","blender-02.png","blender-03.png","blender-04.png","blender-05.png"
+];
+
+const container = document.getElementById('projectsContainer');
+
+/* THEME */
+const themeToggle = document.getElementById('themeToggle');
+(function(){
+  if(localStorage.getItem('theme')==="light"){
+    document.body.classList.add("light");
+    themeToggle.textContent="☀️";
+  }
+})();
+themeToggle.addEventListener('click',()=>{
+  document.body.classList.toggle("light");
+  const isLight = document.body.classList.contains("light");
+  themeToggle.textContent = isLight ? "☀️" : "🌙";
+  localStorage.setItem("theme", isLight ? "light" : "dark");
+});
+
+/* HELPERS */
+async function fetchTextIfExists(p){
+  try{
+    const r = await fetch(p);
+    if(!r.ok) return null;
+    return await r.text();
+  }catch{return null;}
+}
+
+async function exists(p){
+  try{
+    const r = await fetch(p,{method:"HEAD"});
+    return r.ok;
+  }catch{return false;}
+}
+
+function escapeHtml(str){
+  return str.replace(/&/g,"&amp;")
+            .replace(/</g,"&lt;")
+            .replace(/>/g,"&gt;")
+            .replace(/\"/g,"&quot;")
+            .replace(/\'/g,"&#39;")
+            .replace(/\n/g,"<br>");
+}
+
+function sanitizeTitle(id){
+  return id.replace(/_/g," ").replace(/\b\w/g,m=>m.toUpperCase());
+}
+
+/* LOAD PROJECT LIST */
+async function getProjectList(){
+  const manifest = await fetchTextIfExists("Media/manifest.json");
+  if(manifest){
+    try{
+      const arr = JSON.parse(manifest);
+      return arr.map(p=>({
+        id:p.id||p,
+        title:p.title||sanitizeTitle(p),
+        tags:p.tags||[]
+      }));
+    }catch{}
+  }
+  return FALLBACK_PROJECTS.map(id=>({
+    id,
+    title:sanitizeTitle(id),
+    tags:id.toLowerCase().includes("wip")?["wip"]:[]
+  }));
+}
+
+/* LOAD DETAILS + IMAGES */
+async function loadDetails(id){
+  for(const name of DETAILS_VARIANTS){
+    const path = `Media/${id}/${name}`;
+    const text = await fetchTextIfExists(path);
+    if(text) return text.trim();
+  }
+  return "No details available.";
+}
+
+async function loadImages(id){
+  const base = `Media/${id}/PNGs/`;
+  const found=[];
+  for(const img of IMAGE_GUESSES){
+    if(await exists(base+img)) found.push(base+img);
+  }
+  return found;
+}
+
+/* BUILD CARD */
+function buildCard(project){
+  const card = document.createElement("article");
+  card.className="card";
+
+  const thumb = document.createElement("img");
+  thumb.className="thumb";
+  thumb.src = project.images[0] || "";
+  thumb.alt = project.title + " thumbnail";
+
+  const title = document.createElement("h3");
+  title.textContent = project.title;
+
+  const meta = document.createElement("div");
+  meta.className="meta";
+  meta.textContent = project.id;
+
+  const summary = document.createElement("div");
+  summary.className="summary";
+  summary.textContent = project.details.split("\n")[0];
+
+  const actions = document.createElement("div");
+  actions.className="actions";
+
+  const openBtn = document.createElement("button");
+  openBtn.className="btn";
+  openBtn.textContent="Open";
+
+  const imgBtn = document.createElement("button");
+  imgBtn.className="btn ghost";
+  imgBtn.textContent="View / Download Images";
+
+  actions.append(openBtn,imgBtn);
+
+  const details = document.createElement("div");
+  details.className="details";
+
+  const text = document.createElement("div");
+  text.className="text";
+  text.innerHTML = escapeHtml(project.details);
+
+  const strip = document.createElement("div");
+  strip.className="thumb-row";
+
+  project.images.forEach((src,i)=>{
+    const t = document.createElement("img");
+    t.src=src;
+    t.alt=project.title+" image "+(i+1);
+    t.addEventListener("click",()=>openLightbox(project.images,i));
+    if(i===0) t.classList.add("selected");
+    strip.appendChild(t);
+  });
+
+  details.append(text,strip);
+
+  /* BEHAVIOR */
+  openBtn.addEventListener("click",()=>{
+    details.classList.toggle("open");
+  });
+
+  thumb.addEventListener("click",()=>{
+    if(project.images.length>0) openLightbox(project.images,0);
+  });
+
+  imgBtn.addEventListener("click",()=>{
+    if(project.images.length===0){
+      alert("No images found.");
+      return;
+    }
+    // Open first image
+    openLightbox(project.images,0);
+
+    // Trigger download of zip
+    const zipLink = document.createElement("a");
+    zipLink.href = project.images[0];
+    zipLink.download = project.title + ".png";
+    zipLink.click();
+  });
+
+  card.append(thumb,title,meta,summary,actions,details);
+  return card;
+}
+
+/* RENDER */
+async function renderProjects(list){
+  container.innerHTML="";
+  const frag=document.createDocumentFragment();
+  list.forEach(p=>frag.appendChild(buildCard(p)));
+  container.appendChild(frag);
+}
+
+/* FILTERS */
+const searchInput = document.getElementById("projectSearch");
+const filterAllBtn = document.getElementById("filterAll");
+const filterWipBtn = document.getElementById("filterWIP");
+const sortAlphaBtn = document.getElementById("sortAlpha");
+
+function applyFilters(){
+  const q = (searchInput.value||"").toLowerCase();
+  const wip = filterWipBtn.classList.contains("active");
+  let list = PROJECTS.slice();
+
+  if(q){
+    list = list.filter(p=>
+      (p.title + p.details + (p.tags||[]).join(" "))
+        .toLowerCase()
+        .includes(q)
+    );
+  }
+
+  if(wip){
+    list = list.filter(p=>p.id.toLowerCase().includes("wip") || p.tags.includes("wip"));
+  }
+
+  if(sortAlphaBtn.classList.contains("active")){
+    list.sort((a,b)=>a.title.localeCompare(b.title));
+  }
+
+  renderProjects(list);
+}
+
+filterAllBtn.addEventListener("click",()=>{
+  filterAllBtn.classList.add("active");
+  filterWipBtn.classList.remove("active");
+  applyFilters();
+});
+
+filterWipBtn.addEventListener("click",()=>{
+  filterWipBtn.classList.toggle("active");
+  filterAllBtn.classList.toggle("active",!filterWipBtn.classList.contains("active"));
+  applyFilters();
+});
+
+sortAlphaBtn.addEventListener("click",()=>{
+  sortAlphaBtn.classList.toggle("active");
+  applyFilters();
+});
+
+searchInput.addEventListener("input",applyFilters);
+
+/* MAIN LOAD */
+let PROJECTS=[];
+async function generateProjects(){
+  const list = await getProjectList();
+  const loaded=[];
+
+  for(const p of list){
+    const [details,images] = await Promise.all([
+      loadDetails(p.id),
+      loadImages(p.id)
+    ]);
+
+    loaded.push({
+      id:p.id,
+      title:p.title,
+      tags:p.tags||[],
+      details,
+      images
+    });
+  }
+
+  PROJECTS=loaded;
+  applyFilters();
+}
+generateProjects();
+
+/* LIGHTBOX */
+const lightbox = document.getElementById("lightbox");
+const lbImg = document.getElementById("lightboxImg");
+const lbClose = document.getElementById("lbClose");
+const lbPrev = document.getElementById("lbPrev");
+const lbNext = document.getElementById("lbNext");
+let CURRENT = { list:[], index:0 };
+
+function openLightbox(list,index){
+  CURRENT={ list:[...list], index };
+  lbImg.src=list[index];
+  lightbox.style.display="flex";
+}
+function closeLightbox(){ lightbox.style.display="none"; }
+
+lbClose.addEventListener("click",closeLightbox);
+lightbox.addEventListener("click",(e)=>{
+  if(e.target===lightbox) closeLightbox();
+});
+
+lbPrev.addEventListener("click",e=>{
+  e.stopPropagation();
+  CURRENT.index=(CURRENT.index-1+CURRENT.list.length)%CURRENT.list.length;
+  lbImg.src=CURRENT.list[CURRENT.index];
+});
+
+lbNext.addEventListener("click",e=>{
+  e.stopPropagation();
+  CURRENT.index=(CURRENT.index+1)%CURRENT.list.length;
+  lbImg.src=CURRENT.list[CURRENT.index];
+});
+</script>
+
+</body>
+</html>
