@@ -5,9 +5,9 @@
     "tags": ["wip"],
     "details": "Media/WIP/Details.txt",
     "images": [
-      "Media/WIP/PNGs/1.png",
-      "Media/WIP/PNGs/2.png",
-      "Media/WIP/PNGs/3.png"
+      "Media/WIP/PNGs/1.webp",
+      "Media/WIP/PNGs/2.webp",
+      "Media/WIP/PNGs/3.webp"
     ]
   },
   {
@@ -16,9 +16,9 @@
     "tags": [],
     "details": "Media/Project_1/Details.txt",
     "images": [
-      "Media/Project_1/PNGs/Final.png",
-      "Media/Project_1/PNGs/Leg.png",
-      "Media/Project_1/PNGs/Render.png"
+      "Media/Project_1/PNGs/Final.webp",
+      "Media/Project_1/PNGs/Leg.webp",
+      "Media/Project_1/PNGs/Render.webp"
     ]
   },
   {
@@ -27,8 +27,8 @@
     "tags": [],
     "details": "Media/Project_2/Details.txt",
     "images": [
-      "Media/Project_2/PNGs/Final.png",
-      "Media/Project_2/PNGs/Clay.png"
+      "Media/Project_2/PNGs/Final.webp",
+      "Media/Project_2/PNGs/Clay.webp"
     ]
   },
   {
@@ -37,8 +37,8 @@
     "tags": [],
     "details": "Media/Project_3/Details.txt",
     "images": [
-      "Media/Project_3/PNGs/Final.png",
-      "Media/Project_3/PNGs/Clay.png"
+      "Media/Project_3/PNGs/Final.webp",
+      "Media/Project_3/PNGs/Clay.webp"
     ]
   },
   {
@@ -47,11 +47,11 @@
     "tags": [],
     "details": "Media/Project_4/Details.txt",
     "images": [
-      "Media/Project_4/PNGs/blender-01.png",
-      "Media/Project_4/PNGs/blender-02.png",
-      "Media/Project_4/PNGs/blender-03.png",
-      "Media/Project_4/PNGs/blender-04.png",
-      "Media/Project_4/PNGs/blender-05.png"
+      "Media/Project_4/PNGs/blender-01.webp",
+      "Media/Project_4/PNGs/blender-02.webp",
+      "Media/Project_4/PNGs/blender-03.webp",
+      "Media/Project_4/PNGs/blender-04.webp",
+      "Media/Project_4/PNGs/blender-05.webp"
     ]
   },
   {
@@ -60,8 +60,8 @@
     "tags": [],
     "details": "Media/Project_5/Details.txt",
     "images": [
-      "Media/Project_5/PNGs/Render.png",
-      "Media/Project_5/PNGs/Clay.png"
+      "Media/Project_5/PNGs/Render.webp",
+      "Media/Project_5/PNGs/Clay.webp"
     ]
   }
 ]
