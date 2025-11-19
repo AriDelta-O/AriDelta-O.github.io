@@ -108,7 +108,9 @@
       background:var(--card);
       border-radius:var(--radius);
       padding:0.95rem 1rem;
-      border:1px solid #27272a;
+      border:1px solid rgba(255, 77, 77, 0.4); /* Subtle reddish border for edge smoothing */
+      outline: 1px solid transparent; /* Anti-aliasing outline trick */
+      outline-offset: -1px;
       display:flex;
       flex-direction:column;
       gap:.55rem;
