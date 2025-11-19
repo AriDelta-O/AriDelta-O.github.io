@@ -26,6 +26,8 @@
       color:#eee;
       line-height:1.6;
       font-size:16px;
+      -webkit-font-smoothing: antialiased;
+      -moz-osx-font-smoothing: grayscale;
     }
 
     /* HEADER */
@@ -110,11 +112,15 @@
       display:flex;
       flex-direction:column;
       gap:.55rem;
-      transition: box-shadow var(--transition-speed) ease;
+      transition: box-shadow var(--transition-speed) ease, transform 0.5s cubic-bezier(0.25, 1, 0.5, 1);
       box-shadow:0 5px 18px var(--shadow-color);
       will-change: transform, box-shadow;
       transform-style: preserve-3d;
+      backface-visibility: hidden;
+      -webkit-font-smoothing: antialiased;
+      -moz-osx-font-smoothing: grayscale;
       transform: perspective(800px) rotateX(0deg) rotateY(0deg) scale(1);
+      transform: translateZ(0);
     }
     .card:hover{
       box-shadow: 0 15px 30px var(--shadow-color);
@@ -128,6 +134,9 @@
       color:#fff;
       letter-spacing:0.25px;
       transform-style: preserve-3d;
+      backface-visibility: hidden;
+      -webkit-font-smoothing: antialiased;
+      -moz-osx-font-smoothing: grayscale;
     }
     body.light .card h3{color:#111}
 
@@ -147,6 +156,8 @@
       cursor:pointer;
       transition: filter 0.3s ease;
       box-shadow: 0 4px 12px rgba(0,0,0,0.3);
+      -webkit-font-smoothing: antialiased;
+      -moz-osx-font-smoothing: grayscale;
     }
     .thumb:hover {
       filter: brightness(1.15);
@@ -163,6 +174,8 @@
       padding:.45rem .65rem;border-radius:9px;border:none;background:var(--accent);
       color:white;font-weight:700;font-size:.88rem;cursor:pointer;
       transition: background-color 0.3s ease, transform 0.2s ease, box-shadow 0.2s ease;
+      -webkit-font-smoothing: antialiased;
+      -moz-osx-font-smoothing: grayscale;
     }
     .btn:hover {
       background-color:#cc3a3a;
@@ -173,6 +186,8 @@
       background:transparent;border:1px solid rgba(255,255,255,0.12);
       color:inherit;
       transition: border-color 0.3s ease, box-shadow 0.3s ease;
+      -webkit-font-smoothing: antialiased;
+      -moz-osx-font-smoothing: grayscale;
     }
     .btn.ghost:hover{
       border-color:#ff4d4d;
@@ -193,7 +208,7 @@
     }
     .details.open{
       display:flex;
-      max-height: 650px; /* large enough for content */
+      max-height: 650px;
       opacity: 1;
     }
 
@@ -205,6 +220,8 @@
       height:72px;object-fit:cover;border-radius:8px;cursor:pointer;
       border:2px solid transparent;
       transition: border-color 0.3s ease;
+      -webkit-font-smoothing: antialiased;
+      -moz-osx-font-smoothing: grayscale;
     }
     .thumb-row img.selected{border-color:var(--accent)}
     body.light .thumb-row img.selected{border-color:#d00000}
@@ -241,6 +258,8 @@
       padding:.5rem .8rem;border-radius:10px;background:rgba(255,255,255,0.07);
       border:none;color:white;font-weight:700;cursor:pointer;
       transition: background-color 0.3s ease;
+      -webkit-font-smoothing: antialiased;
+      -moz-osx-font-smoothing: grayscale;
     }
     .lb-btn:hover {
       background-color: rgba(255, 77, 77, 0.3);
@@ -444,7 +463,7 @@ function buildCard(project){
     }
   });
 
-  // Subtle, performant 3D tilt with requestAnimationFrame throttling
+  // Subtle, performant 3D tilt with requestAnimationFrame throttling and anti-aliasing hacks
   card.addEventListener("mousemove", (e) => {
     if (card._animationFrame) cancelAnimationFrame(card._animationFrame);
     card._animationFrame = requestAnimationFrame(() => {
@@ -453,20 +472,25 @@ function buildCard(project){
       const y = e.clientY - rect.top;
       const centerX = rect.width / 2;
       const centerY = rect.height / 2;
-      // Reduced tilt max to 5 degrees for subtlety
-      const rotateX = ((y - centerY) / centerY) * 5;
-      const rotateY = ((x - centerX) / centerX) * 5;
-      card.style.transform = `perspective(800px) rotateX(${-rotateX}deg) rotateY(${rotateY}deg) scale(1.03)`;
+      const rotateX = ((y - centerY) / centerY) * 3;
+      const rotateY = ((x - centerX) / centerX) * 3;
+      card.style.transform = `perspective(800px) rotateX(${-rotateX}deg) rotateY(${rotateY}deg) scale(1.03) translateZ(0)`;
       card.style.willChange = "transform";
-      card.style.transition = "transform 0.12s ease-out";
+      card.style.transition = "transform 0.12s cubic-bezier(0.25, 1, 0.5, 1)";
+      card.style.backfaceVisibility = "hidden";
+      card.style.webkitFontSmoothing = "antialiased";
+      card.style.mozOsxFontSmoothing = "grayscale";
     });
   });
 
   card.addEventListener("mouseleave", () => {
     if (card._animationFrame) cancelAnimationFrame(card._animationFrame);
     card._animationFrame = requestAnimationFrame(() => {
-      card.style.transform = "perspective(800px) rotateX(0deg) rotateY(0deg) scale(1)";
+      card.style.transform = "perspective(800px) rotateX(0deg) rotateY(0deg) scale(1) translateZ(0)";
       card.style.transition = "transform 0.5s ease-out";
+      card.style.backfaceVisibility = "hidden";
+      card.style.webkitFontSmoothing = "antialiased";
+      card.style.mozOsxFontSmoothing = "grayscale";
     });
   });
 
