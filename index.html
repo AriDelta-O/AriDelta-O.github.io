@@ -223,7 +223,7 @@
       opacity: 1;
     }
 
-    .details .text{white-space:pre-wrap;font-size:.95rem;color:#e8e8e8}
+    .details .text{white-space:pre-wrap;font-size:.95rem;color:#e3e3e8}
     body.light .details .text{color:#222}
 
     .thumb-row{display:flex;gap:.45rem;overflow:auto;margin-top:.3rem}
@@ -299,14 +299,22 @@
     }
 
     /* LIGHT THEME */
-    body.light{background:#f5f5f7;color:#111}
-    body.light header{background:white;box-shadow:0 2px 8px rgba(0,0,0,0.06)}
+    body.light{
+      background:#f5f5f7;
+      color:#111;
+    }
+    body.light header{
+      background:white;
+      box-shadow:0 2px 8px rgba(0,0,0,0.06);
+    }
     body.light .card{
-      background:white;color:#111;border:1px solid #e6e6e6;
+      background:white;
+      color:#111;
+      border:1px solid #e6e6e6;
       box-shadow:
         0 2px 5px rgba(0,0,0,0.1),
         0 8px 15px rgba(0,0,0,0.06),
-        0 15px 30px rgba(0,0,0,0.04)
+        0 15px 30px rgba(0,0,0,0.04);
     }
   </style>
 </head>
@@ -423,265 +431,171 @@
   © 2025 AriDeltaO — hosted via GitHub Pages
 </footer>
 
-<!-- LIGHTBOX -->
-<div id="lightbox" aria-hidden="true">
-  <button id="lbClose" class="lb-btn" style="position:absolute;top:2rem;right:2rem">Close</button>
-  <img id="lightboxImg" src="" alt="Preview" />
-  <div class="controls">
-    <button id="lbPrev" class="lb-btn">Prev</button>
-    <button id="lbNext" class="lb-btn">Next</button>
-  </div>
-</div>
-
 <script>
-const themeToggle = document.getElementById('themeToggle');
-if(localStorage.getItem('theme')==="light"){
-  document.body.classList.add("light");
-  themeToggle.textContent="☀️";
-}
-themeToggle.addEventListener('click',()=>{
-  document.body.classList.toggle("light");
-  const isLight = document.body.classList.contains("light");
-  themeToggle.textContent = isLight ? "☀️" : "🌙";
-  localStorage.setItem("theme", isLight ? "light" : "dark");
-});
+document.addEventListener("DOMContentLoaded", () => {
+  const themeToggle = document.getElementById('themeToggle');
+  if(localStorage.getItem('theme')==="light"){
+    document.body.classList.add("light");
+    themeToggle.textContent="☀️";
+  }
+  themeToggle.addEventListener('click',()=>{
+    document.body.classList.toggle("light");
+    const isLight = document.body.classList.contains("light");
+    themeToggle.textContent = isLight ? "☀️" : "🌙";
+    localStorage.setItem("theme", isLight ? "light" : "dark");
+  });
 
-function escapeHtml(str){
-  return str.replace(/&/g,"&amp;")
-            .replace(/</g,"&lt;")
-            .replace(/>/g,"&gt;")
-            .replace(/\"/g,"&quot;")
-            .replace(/\'/g,"'")
-            .replace(/\n/g,"<br>");
-}
+  function escapeHtml(str){
+    return str.replace(/&/g,"&amp;")
+              .replace(/</g,"&lt;")
+              .replace(/>/g,"&gt;")
+              .replace(/\"/g,"&quot;")
+              .replace(/\'/g,"'")
+              .replace(/\n/g,"<br>");
+  }
 
-function sanitizeTitle(id){
-  return id.replace(/_/g," ").replace(/\b\w/g,m=>m.toUpperCase());
-}
+  function sanitizeTitle(id){
+    return id.replace(/_/g," ").replace(/\b\w/g,m=>m.toUpperCase());
+  }
 
-const container = document.getElementById('projectsContainer');
-const skeletons = document.getElementById('skeletons');
+  const container = document.getElementById('projectsContainer');
+  const skeletons = document.getElementById('skeletons');
 
-/* Build card */
-function buildCard(project){
-  const card = document.createElement("article");
-  card.className="card";
+  function buildCard(project){
+    const card = document.createElement("article");
+    card.className="card";
 
-  card.addEventListener("mouseenter", () => {
-    if (!card.dataset.preloaded) {
-      project.images.forEach(src => {
-        const img = new Image();
-        img.src = src;
+    card.addEventListener("mouseenter", () => {
+      if (!card.dataset.preloaded) {
+        project.images.forEach(src => {
+          const img = new Image();
+          img.src = src;
+        });
+        card.dataset.preloaded = "true";
+      }
+    });
+
+    card.addEventListener("mousemove", (e) => {
+      if (card._animationFrame) cancelAnimationFrame(card._animationFrame);
+      card._animationFrame = requestAnimationFrame(() => {
+        const rect = card.getBoundingClientRect();
+        const x = e.clientX - rect.left;
+        const y = e.clientY - rect.top;
+        const centerX = rect.width / 2;
+        const centerY = rect.height / 2;
+        const rotateX = ((y - centerY) / centerY) * 3;
+        const rotateY = ((x - centerX) / centerX) * 3;
+        card.style.transform = `perspective(800px) rotateX(${-rotateX}deg) rotateY(${rotateY}deg) scale(1.03) translateZ(0)`;
+        card.style.willChange = "transform";
+        card.style.transition = "transform 0.12s cubic-bezier(0.25, 1, 0.5, 1)";
+        card.style.backfaceVisibility = "hidden";
+        card.style.webkitFontSmoothing = "antialiased";
+        card.style.mozOsxFontSmoothing = "grayscale";
       });
-      card.dataset.preloaded = "true";
+    });
+
+    card.addEventListener("mouseleave", () => {
+      if (card._animationFrame) cancelAnimationFrame(card._animationFrame);
+      card._animationFrame = requestAnimationFrame(() => {
+        card.style.transform = "perspective(800px) rotateX(0deg) rotateY(0deg) scale(1) translateZ(0)";
+        card.style.transition = "transform 0.5s ease-out";
+        card.style.backfaceVisibility = "hidden";
+        card.style.webkitFontSmoothing = "antialiased";
+        card.style.mozOsxFontSmoothing = "grayscale";
+      });
+    });
+
+    const thumb = document.createElement("img");
+    thumb.className="thumb";
+    thumb.src = project.images[0] || "";
+    thumb.alt = project.title + " thumbnail";
+    thumb.loading="lazy";
+
+    const title = document.createElement("h3");
+    title.textContent = project.title;
+
+    const meta = document.createElement("div");
+    meta.className="meta";
+    meta.textContent = project.id;
+
+    const summary = document.createElement("div");
+    summary.className="summary";
+    summary.textContent = project.summary || "No summary available.";
+
+    const actions = document.createElement("div");
+    actions.className="actions";
+
+    const openBtn = document.createElement("button");
+    openBtn.className="btn";
+    openBtn.textContent="Open";
+
+    const imgBtn = document.createElement("button");
+    imgBtn.className="btn ghost";
+    imgBtn.textContent="View / Download Images";
+
+    actions.append(openBtn,imgBtn);
+
+    const details = document.createElement("div");
+    details.className="details";
+
+    const text = document.createElement("div");
+    text.className="text";
+    text.style.display = "none";
+
+    const strip = document.createElement("div");
+    strip.className="thumb-row";
+
+    project.images.forEach((src,i)=>{
+      const t = document.createElement("img");
+      t.src=src;
+      t.alt=project.title+" image "+(i+1);
+      t.loading="lazy";
+      t.addEventListener("click",()=>openLightbox(project.images,i));
+      if(i===0) t.classList.add("selected");
+      strip.appendChild(t);
+    });
+
+    details.append(text,strip);
+
+    openBtn.addEventListener("click",()=>details.classList.toggle("open"));
+    thumb.addEventListener("click",()=>project.images.length>0 && openLightbox(project.images,0));
+    imgBtn.addEventListener("click",()=>{
+      if(project.images.length===0){ alert("No images found."); return; }
+      openLightbox(project.images,0);
+    });
+
+    card.append(thumb,title,meta,summary,actions,details);
+
+    return card;
+  }
+
+  async function generateProjects(){
+    try {
+      const resp = await fetch("Media/manifest.json");
+      if(!resp.ok){
+        console.error("Could not load manifest.json");
+        return;
+      }
+      const manifest = await resp.json();
+      manifest.sort((a,b)=> a.id==="WIP"? -1 : b.id==="WIP"? 1 : 0);
+      window.PROJECTS = manifest;
+      renderProjects(PROJECTS);
+    } catch (e) {
+      console.error("Error fetching projects manifest:", e);
     }
-  });
-
-  // Subtle, performant 3D tilt with requestAnimationFrame throttling and anti-aliasing hacks
-  card.addEventListener("mousemove", (e) => {
-    if (card._animationFrame) cancelAnimationFrame(card._animationFrame);
-    card._animationFrame = requestAnimationFrame(() => {
-      const rect = card.getBoundingClientRect();
-      const x = e.clientX - rect.left;
-      const y = e.clientY - rect.top;
-      const centerX = rect.width / 2;
-      const centerY = rect.height / 2;
-      const rotateX = ((y - centerY) / centerY) * 3;
-      const rotateY = ((x - centerX) / centerX) * 3;
-      card.style.transform = `perspective(800px) rotateX(${-rotateX}deg) rotateY(${rotateY}deg) scale(1.03) translateZ(0)`;
-      card.style.willChange = "transform";
-      card.style.transition = "transform 0.12s cubic-bezier(0.25, 1, 0.5, 1)";
-      card.style.backfaceVisibility = "hidden";
-      card.style.webkitFontSmoothing = "antialiased";
-      card.style.mozOsxFontSmoothing = "grayscale";
-    });
-  });
-
-  card.addEventListener("mouseleave", () => {
-    if (card._animationFrame) cancelAnimationFrame(card._animationFrame);
-    card._animationFrame = requestAnimationFrame(() => {
-      card.style.transform = "perspective(800px) rotateX(0deg) rotateY(0deg) scale(1) translateZ(0)";
-      card.style.transition = "transform 0.5s ease-out";
-      card.style.backfaceVisibility = "hidden";
-      card.style.webkitFontSmoothing = "antialiased";
-      card.style.mozOsxFontSmoothing = "grayscale";
-    });
-  });
-
-  const thumb = document.createElement("img");
-  thumb.className="thumb";
-  thumb.src = project.images[0] || "";
-  thumb.alt = project.title + " thumbnail";
-  thumb.loading="lazy";
-
-  const title = document.createElement("h3");
-  title.textContent = project.title;
-
-  const meta = document.createElement("div");
-  meta.className="meta";
-  meta.textContent = project.id;
-
-  const summary = document.createElement("div");
-  summary.className="summary";
-  summary.textContent = project.summary || "No summary available.";
-
-  const actions = document.createElement("div");
-  actions.className="actions";
-
-  const openBtn = document.createElement("button");
-  openBtn.className="btn";
-  openBtn.textContent="Open";
-
-  const imgBtn = document.createElement("button");
-  imgBtn.className="btn ghost";
-  imgBtn.textContent="View / Download Images";
-
-  actions.append(openBtn,imgBtn);
-
-  const details = document.createElement("div");
-  details.className="details";
-
-  const text = document.createElement("div");
-  text.className="text";
-  text.style.display = "none";  // Hide the summary text when details open
-
-  const strip = document.createElement("div");
-  strip.className="thumb-row";
-
-  project.images.forEach((src,i)=>{
-    const t = document.createElement("img");
-    t.src=src;
-    t.alt=project.title+" image "+(i+1);
-    t.loading="lazy";
-    t.addEventListener("click",()=>openLightbox(project.images,i));
-    if(i===0) t.classList.add("selected");
-    strip.appendChild(t);
-  });
-
-  details.append(text,strip);
-
-  openBtn.addEventListener("click",()=>details.classList.toggle("open"));
-  thumb.addEventListener("click",()=>project.images.length>0 && openLightbox(project.images,0));
-  imgBtn.addEventListener("click",()=>{
-    if(project.images.length===0){ alert("No images found."); return; }
-    openLightbox(project.images,0);
-  });
-
-  card.append(thumb,title,meta,summary,actions,details);
-
-  return card;
-}
-
-/* Fetch manifest and generate projects */
-let PROJECTS=[];
-async function generateProjects(){
-  const resp = await fetch("Media/manifest.json");
-  const manifest = await resp.json();
-
-  // WIP first
-  manifest.sort((a,b)=> a.id==="WIP"? -1 : b.id==="WIP"? 1 : 0);
-
-  PROJECTS = manifest;
-  renderProjects(PROJECTS);
-}
-
-function renderProjects(list){
-  skeletons.style.display="none";
-  container.style.display="grid";
-  container.innerHTML="";
-  const frag = document.createDocumentFragment();
-  list.forEach(p=>frag.appendChild(buildCard(p)));
-  container.appendChild(frag);
-}
-
-/* FILTERS */
-const searchInput = document.getElementById("projectSearch");
-const filterAllBtn = document.getElementById("filterAll");
-const filterWipBtn = document.getElementById("filterWIP");
-const sortAlphaBtn = document.getElementById("sortAlpha");
-
-function applyFilters(){
-  const q = (searchInput.value||"").toLowerCase();
-  const wip = filterWipBtn.classList.contains("active");
-  let list = PROJECTS.slice();
-
-  if(q){
-    list = list.filter(p=> (p.title + (p.summary||"") + (p.tags||[]).join(" ")).toLowerCase().includes(q));
   }
 
-  if(wip){
-    list = list.filter(p=>p.id.toLowerCase().includes("wip") || p.tags.includes("wip"));
+  function renderProjects(list){
+    skeletons.style.display="none";
+    container.style.display="grid";
+    container.innerHTML="";
+    const frag = document.createDocumentFragment();
+    list.forEach(p=>frag.appendChild(buildCard(p)));
+    container.appendChild(frag);
   }
 
-  if(sortAlphaBtn.classList.contains("active")){
-    list.sort((a,b)=>a.title.localeCompare(b.title));
-  }
-
-  renderProjects(list);
-}
-
-filterAllBtn.addEventListener("click",()=>{
-  filterAllBtn.classList.add("active");
-  filterWipBtn.classList.remove("active");
-  applyFilters();
+  generateProjects();
 });
-
-filterWipBtn.addEventListener("click",()=>{
-  filterWipBtn.classList.toggle("active");
-  filterAllBtn.classList.toggle("active",!filterWipBtn.classList.contains("active"));
-  applyFilters();
-});
-
-sortAlphaBtn.addEventListener("click",()=>{
-  sortAlphaBtn.classList.toggle("active");
-  applyFilters();
-});
-
-searchInput.addEventListener("input",applyFilters);
-
-/* LIGHTBOX */
-const lightbox = document.getElementById('lightbox');
-const lbImg = document.getElementById('lightboxImg');
-const lbClose = document.getElementById('lbClose');
-const lbPrev = document.getElementById('lbPrev');
-const lbNext = document.getElementById('lbNext');
-let CURRENT = { list:[], index:0 };
-
-function openLightbox(list,index){
-  CURRENT={ list:[...list], index };
-  lbImg.style.opacity = 0;
-  lbImg.src=list[index];
-  lightbox.classList.add('show');
-  setTimeout(() => { lbImg.style.opacity = 1; }, 50);
-}
-function closeLightbox(){
-  lbImg.style.opacity = 0;
-  setTimeout(() => {
-    lightbox.classList.remove('show');
-    lbImg.src = '';
-  }, 300);
-}
-
-lbClose.addEventListener("click",closeLightbox);
-lightbox.addEventListener("click",(e)=>{ if(e.target===lightbox) closeLightbox(); });
-
-lbPrev.addEventListener("click",e=>{
-  e.stopPropagation();
-  CURRENT.index=(CURRENT.index-1+CURRENT.list.length)%CURRENT.list.length;
-  lbImg.style.opacity = 0;
-  lbImg.src=CURRENT.list[CURRENT.index];
-  setTimeout(() => { lbImg.style.opacity = 1; }, 50);
-});
-lbNext.addEventListener("click",e=>{
-  e.stopPropagation();
-  CURRENT.index=(CURRENT.index+1)%CURRENT.list.length;
-  lbImg.style.opacity = 0;
-  lbImg.src=CURRENT.list[CURRENT.index];
-  setTimeout(() => { lbImg.style.opacity = 1; }, 50);
-});
-
-/* INIT */
-generateProjects();
 </script>
 </body>
 </html>
