@@ -16,7 +16,7 @@
       --accent:#ff4d4d;
       --radius:12px;
       --shadow-color: rgba(255, 77, 77, 0.3);
-      --transition-speed: 0.35s;
+      --transition-speed: 0.45s;
     }
     *{box-sizing:border-box}
     body{
@@ -110,12 +110,13 @@
       display:flex;
       flex-direction:column;
       gap:.55rem;
-      transition: transform 0.35s ease, box-shadow 0.35s ease;
+      transition: box-shadow var(--transition-speed) ease;
       box-shadow:0 5px 18px var(--shadow-color);
       will-change: transform, box-shadow;
+      transform-style: preserve-3d;
+      transform: perspective(800px) rotateX(0deg) rotateY(0deg) scale(1);
     }
     .card:hover{
-      transform: translateY(-10px);
       box-shadow: 0 15px 30px var(--shadow-color);
     }
 
@@ -126,6 +127,7 @@
       font-weight:700;
       color:#fff;
       letter-spacing:0.25px;
+      transform-style: preserve-3d;
     }
     body.light .card h3{color:#111}
 
@@ -187,7 +189,7 @@
       flex-direction: column;
       gap:.5rem;
       margin-top:.5rem;
-      transition: max-height 0.35s ease, opacity 0.35s ease;
+      transition: max-height var(--transition-speed) ease, opacity var(--transition-speed) ease;
     }
     .details.open{
       display:flex;
@@ -225,7 +227,7 @@
       position:fixed;inset:0;display:none;align-items:center;
       justify-content:center;background:rgba(0,0,0,0.92);z-index:9999;padding:2rem;
       opacity: 0;
-      transition: opacity 0.35s ease;
+      transition: opacity var(--transition-speed) ease;
     }
     #lightbox.show {
       display:flex;
@@ -440,6 +442,32 @@ function buildCard(project){
       });
       card.dataset.preloaded = "true";
     }
+  });
+
+  // Subtle, performant 3D tilt with requestAnimationFrame throttling
+  card.addEventListener("mousemove", (e) => {
+    if (card._animationFrame) cancelAnimationFrame(card._animationFrame);
+    card._animationFrame = requestAnimationFrame(() => {
+      const rect = card.getBoundingClientRect();
+      const x = e.clientX - rect.left;
+      const y = e.clientY - rect.top;
+      const centerX = rect.width / 2;
+      const centerY = rect.height / 2;
+      // Reduced tilt max to 5 degrees for subtlety
+      const rotateX = ((y - centerY) / centerY) * 5;
+      const rotateY = ((x - centerX) / centerX) * 5;
+      card.style.transform = `perspective(800px) rotateX(${-rotateX}deg) rotateY(${rotateY}deg) scale(1.03)`;
+      card.style.willChange = "transform";
+      card.style.transition = "transform 0.12s ease-out";
+    });
+  });
+
+  card.addEventListener("mouseleave", () => {
+    if (card._animationFrame) cancelAnimationFrame(card._animationFrame);
+    card._animationFrame = requestAnimationFrame(() => {
+      card.style.transform = "perspective(800px) rotateX(0deg) rotateY(0deg) scale(1)";
+      card.style.transition = "transform 0.5s ease-out";
+    });
   });
 
   const thumb = document.createElement("img");
