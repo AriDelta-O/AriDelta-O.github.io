@@ -431,6 +431,16 @@
   © 2025 AriDeltaO — hosted via GitHub Pages
 </footer>
 
+<!-- LIGHTBOX -->
+<div id="lightbox" aria-hidden="true">
+  <button id="lbClose" class="lb-btn" style="position:absolute;top:2rem;right:2rem">Close</button>
+  <img id="lightboxImg" src="" alt="Preview" />
+  <div class="controls">
+    <button id="lbPrev" class="lb-btn">Prev</button>
+    <button id="lbNext" class="lb-btn">Next</button>
+  </div>
+</div>
+
 <script>
 document.addEventListener("DOMContentLoaded", () => {
   const themeToggle = document.getElementById('themeToggle');
@@ -460,6 +470,46 @@ document.addEventListener("DOMContentLoaded", () => {
 
   const container = document.getElementById('projectsContainer');
   const skeletons = document.getElementById('skeletons');
+  const lightbox = document.getElementById('lightbox');
+  const lbImg = document.getElementById('lightboxImg');
+  const lbClose = document.getElementById('lbClose');
+  const lbPrev = document.getElementById('lbPrev');
+  const lbNext = document.getElementById('lbNext');
+
+  let CURRENT = { list: [], index: 0 };
+
+  function openLightbox(list, index) {
+    CURRENT = { list: [...list], index };
+    lbImg.style.opacity = 0;
+    lbImg.src = list[index];
+    lightbox.classList.add('show');
+    setTimeout(() => { lbImg.style.opacity = 1; }, 50);
+  }
+
+  function closeLightbox() {
+    lbImg.style.opacity = 0;
+    setTimeout(() => {
+      lightbox.classList.remove('show');
+      lbImg.src = '';
+    }, 300);
+  }
+
+  lbClose.addEventListener("click", closeLightbox);
+  lightbox.addEventListener("click", (e) => { if (e.target === lightbox) closeLightbox(); });
+  lbPrev.addEventListener("click", (e) => {
+    e.stopPropagation();
+    CURRENT.index = (CURRENT.index - 1 + CURRENT.list.length) % CURRENT.list.length;
+    lbImg.style.opacity = 0;
+    lbImg.src = CURRENT.list[CURRENT.index];
+    setTimeout(() => { lbImg.style.opacity = 1; }, 50);
+  });
+  lbNext.addEventListener("click", (e) => {
+    e.stopPropagation();
+    CURRENT.index = (CURRENT.index + 1) % CURRENT.list.length;
+    lbImg.style.opacity = 0;
+    lbImg.src = CURRENT.list[CURRENT.index];
+    setTimeout(() => { lbImg.style.opacity = 1; }, 50);
+  });
 
   function buildCard(project){
     const card = document.createElement("article");
@@ -510,6 +560,7 @@ document.addEventListener("DOMContentLoaded", () => {
     thumb.src = project.images[0] || "";
     thumb.alt = project.title + " thumbnail";
     thumb.loading="lazy";
+    thumb.addEventListener("click",()=>project.images.length>0 && openLightbox(project.images,0));
 
     const title = document.createElement("h3");
     title.textContent = project.title;
@@ -532,6 +583,10 @@ document.addEventListener("DOMContentLoaded", () => {
     const imgBtn = document.createElement("button");
     imgBtn.className="btn ghost";
     imgBtn.textContent="View / Download Images";
+    imgBtn.addEventListener("click",()=>{
+      if(project.images.length===0){ alert("No images found."); return; }
+      openLightbox(project.images,0);
+    });
 
     actions.append(openBtn,imgBtn);
 
@@ -547,22 +602,17 @@ document.addEventListener("DOMContentLoaded", () => {
 
     project.images.forEach((src,i)=>{
       const t = document.createElement("img");
-      t.src=src;
-      t.alt=project.title+" image "+(i+1);
-      t.loading="lazy";
-      t.addEventListener("click",()=>openLightbox(project.images,i));
-      if(i===0) t.classList.add("selected");
+      t.src = src;
+      t.alt = project.title+" image "+(i+1);
+      t.loading = "lazy";
+      t.addEventListener("click", ()=> openLightbox(project.images,i));
+      if(i === 0) t.classList.add("selected");
       strip.appendChild(t);
     });
 
     details.append(text,strip);
 
-    openBtn.addEventListener("click",()=>details.classList.toggle("open"));
-    thumb.addEventListener("click",()=>project.images.length>0 && openLightbox(project.images,0));
-    imgBtn.addEventListener("click",()=>{
-      if(project.images.length===0){ alert("No images found."); return; }
-      openLightbox(project.images,0);
-    });
+    openBtn.addEventListener("click", ()=>details.classList.toggle("open"));
 
     card.append(thumb,title,meta,summary,actions,details);
 
