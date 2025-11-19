@@ -419,7 +419,7 @@ function buildCard(project){
 
   const text = document.createElement("div");
   text.className="text";
-  text.textContent = project.summary || "No summary available.";
+  text.style.display = "none";  // Hide the summary text when details open
 
   const strip = document.createElement("div");
   strip.className="thumb-row";
@@ -444,8 +444,6 @@ function buildCard(project){
   });
 
   card.append(thumb,title,meta,summary,actions,details);
-
-  // REMOVED: fetch(project.details) — all text used from summary now.
 
   return card;
 }
