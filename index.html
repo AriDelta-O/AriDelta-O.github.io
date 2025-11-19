@@ -361,7 +361,7 @@
   <div class="projects-header">
     <h2 style="margin:0 0.5rem 0 0">Projects</h2>
     <div class="search" style="max-width:420px;">
-      <input id="projectSearch" placeholder="Search projects or descriptions..." />
+      <input id="projectSearch" placeholder="Search projects or descriptions..." autocomplete="off" />
     </div>
     <div class="filters" style="margin-left:auto">
       <button id="filterAll" class="active">All</button>
@@ -418,6 +418,7 @@
 
 <script>
 document.addEventListener("DOMContentLoaded", () => {
+  // Theme toggle
   const themeToggle = document.getElementById('themeToggle');
   if(localStorage.getItem('theme')==="light"){
     document.body.classList.add("light");
@@ -429,19 +430,6 @@ document.addEventListener("DOMContentLoaded", () => {
     themeToggle.textContent = isLight ? "☀️" : "🌙";
     localStorage.setItem("theme", isLight ? "light" : "dark");
   });
-
-  function escapeHtml(str){
-    return str.replace(/&/g,"&amp;")
-              .replace(/</g,"&lt;")
-              .replace(/>/g,"&gt;")
-              .replace(/\"/g,"&quot;")
-              .replace(/\'/g,"'")
-              .replace(/\n/g,"<br>");
-  }
-
-  function sanitizeTitle(id){
-    return id.replace(/_/g," ").replace(/\b\w/g,m=>m.toUpperCase());
-  }
 
   const container = document.getElementById('projectsContainer');
   const skeletons = document.getElementById('skeletons');
@@ -457,6 +445,7 @@ document.addEventListener("DOMContentLoaded", () => {
   let nextImg = img2;
   let isSliding = false;
 
+  // Lightbox functions
   function showLightbox(list, index) {
     CURRENT = { list: [...list], index };
     activeImg.src = list[index];
@@ -491,21 +480,17 @@ document.addEventListener("DOMContentLoaded", () => {
     nextImg.src = CURRENT.list[newIndex];
     nextImg.style.display = 'block';
 
-    // Prepare positions for sliding
     activeImg.style.transition = 'transform 0.4s ease, opacity 0.4s ease';
     nextImg.style.transition = 'transform 0.4s ease, opacity 0.4s ease';
 
     if (direction > 0) {
-      // Next - nextImg enters from right, activeImg slides left
       nextImg.style.transform = 'translateX(100%) scale(1)';
       nextImg.style.opacity = '1';
-      // force repaint
       void nextImg.offsetWidth;
       activeImg.style.transform = 'translateX(-100%) scale(1)';
       activeImg.style.opacity = '0';
       nextImg.style.transform = 'translateX(0) scale(1)';
     } else {
-      // Prev - nextImg enters from left, activeImg slides right
       nextImg.style.transform = 'translateX(-100%) scale(1)';
       nextImg.style.opacity = '1';
       void nextImg.offsetWidth;
@@ -514,7 +499,6 @@ document.addEventListener("DOMContentLoaded", () => {
       nextImg.style.transform = 'translateX(0) scale(1)';
     }
 
-    // After animation swap images
     setTimeout(() => {
       activeImg.style.transition = '';
       activeImg.style.opacity = '0';
@@ -541,6 +525,7 @@ document.addEventListener("DOMContentLoaded", () => {
     slide(1);
   });
 
+  // Build project card
   function buildCard(project) {
     const card = document.createElement('article');
     card.className = 'card';
@@ -652,22 +637,44 @@ document.addEventListener("DOMContentLoaded", () => {
     return card;
   }
 
-  async function generateProjects() {
-    try {
-      const resp = await fetch('Media/manifest.json');
-      if (!resp.ok) {
-        console.error('Could not load manifest.json');
-        return;
-      }
-      const manifest = await resp.json();
-      manifest.sort((a, b) => a.id === 'WIP' ? -1 : b.id === 'WIP' ? 1 : 0);
-      window.PROJECTS = manifest;
-      renderProjects(window.PROJECTS);
-    } catch (e) {
-      console.error('Error fetching projects manifest:', e);
+  // State variables for filtering and sorting
+  let projectsGlobal = [];
+  let currentFilter = 'all'; // 'all' or 'wip'
+  let searchTerm = '';
+  let sortAlpha = false;
+
+  // Filtering, searching, and sorting projects
+  function filterAndSortProjects() {
+    let filtered = [...projectsGlobal];
+
+    // Filter by tag
+    if (currentFilter === 'wip') {
+      filtered = filtered.filter(p => p.tags.includes('wip'));
     }
+
+    // Search by title, summary, id, tags
+    if (searchTerm.trim() !== '') {
+      const term = searchTerm.toLowerCase();
+      filtered = filtered.filter(p => {
+        return p.title.toLowerCase().includes(term) ||
+               (p.summary && p.summary.toLowerCase().includes(term)) ||
+               p.id.toLowerCase().includes(term) ||
+               (p.tags && p.tags.some(tag => tag.toLowerCase().includes(term)));
+      });
+    }
+
+    // Sort alphabetically by title if enabled
+    if (sortAlpha) {
+      filtered.sort((a, b) => a.title.localeCompare(b.title));
+    } else {
+      // Sort with WIP first, similar to your previous manual sort
+      filtered.sort((a, b) => a.id === 'WIP' ? -1 : b.id === 'WIP' ? 1 : 0);
+    }
+
+    renderProjects(filtered);
   }
 
+  // Render projects in container
   function renderProjects(list) {
     skeletons.style.display = 'none';
     container.style.display = 'grid';
@@ -676,6 +683,54 @@ document.addEventListener("DOMContentLoaded", () => {
     list.forEach(p => frag.appendChild(buildCard(p)));
     container.appendChild(frag);
   }
+
+  // Load manifest and initialize
+  async function generateProjects() {
+    try {
+      const resp = await fetch('Media/manifest.json');
+      if (!resp.ok) {
+        console.error('Could not load manifest.json');
+        return;
+      }
+      const manifest = await resp.json();
+
+      projectsGlobal = manifest;
+      filterAndSortProjects();
+    } catch (e) {
+      console.error('Error fetching projects manifest:', e);
+    }
+  }
+
+  // UI elements for filter and sort
+  const filterAllBtn = document.getElementById('filterAll');
+  const filterWIPBtn = document.getElementById('filterWIP');
+  const sortAlphaBtn = document.getElementById('sortAlpha');
+  const searchInput = document.getElementById('projectSearch');
+
+  filterAllBtn.addEventListener('click', () => {
+    currentFilter = 'all';
+    filterAllBtn.classList.add('active');
+    filterWIPBtn.classList.remove('active');
+    filterAndSortProjects();
+  });
+
+  filterWIPBtn.addEventListener('click', () => {
+    currentFilter = 'wip';
+    filterWIPBtn.classList.add('active');
+    filterAllBtn.classList.remove('active');
+    filterAndSortProjects();
+  });
+
+  sortAlphaBtn.addEventListener('click', () => {
+    sortAlpha = !sortAlpha;
+    sortAlphaBtn.textContent = sortAlpha ? 'Sort Normal' : 'Sort A→Z';
+    filterAndSortProjects();
+  });
+
+  searchInput.addEventListener('input', (e) => {
+    searchTerm = e.target.value;
+    filterAndSortProjects();
+  });
 
   generateProjects();
 
