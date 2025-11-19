@@ -358,7 +358,7 @@ function escapeHtml(str){
             .replace(/</g,"&lt;")
             .replace(/>/g,"&gt;")
             .replace(/\"/g,"&quot;")
-            .replace(/\'/g,"&#39;")
+            .replace(/\'/g,"'")
             .replace(/\n/g,"<br>");
 }
 
@@ -374,7 +374,6 @@ function buildCard(project){
   const card = document.createElement("article");
   card.className="card";
 
-  /* === ADD: HOVER PRELOADING === */
   card.addEventListener("mouseenter", () => {
     if (!card.dataset.preloaded) {
       project.images.forEach(src => {
@@ -384,7 +383,6 @@ function buildCard(project){
       card.dataset.preloaded = "true";
     }
   });
-  /* ============================ */
 
   const thumb = document.createElement("img");
   thumb.className="thumb";
@@ -401,7 +399,7 @@ function buildCard(project){
 
   const summary = document.createElement("div");
   summary.className="summary";
-  summary.textContent = "Loading details...";
+  summary.textContent = project.summary || "No summary available.";
 
   const actions = document.createElement("div");
   actions.className="actions";
@@ -421,7 +419,7 @@ function buildCard(project){
 
   const text = document.createElement("div");
   text.className="text";
-  text.textContent = "Loading details...";
+  text.textContent = project.summary || "No summary available.";
 
   const strip = document.createElement("div");
   strip.className="thumb-row";
@@ -447,11 +445,7 @@ function buildCard(project){
 
   card.append(thumb,title,meta,summary,actions,details);
 
-  // Fetch details text
-  fetch(project.details).then(r=>r.text()).then(txt=>{
-    summary.textContent = txt.split("\n")[0];
-    text.innerHTML = escapeHtml(txt);
-  }).catch(()=>{summary.textContent="No details available."; text.textContent="No details available.";});
+  // REMOVED: fetch(project.details) — all text used from summary now.
 
   return card;
 }
@@ -490,7 +484,7 @@ function applyFilters(){
   let list = PROJECTS.slice();
 
   if(q){
-    list = list.filter(p=> (p.title + (p.details||"") + (p.tags||[]).join(" ")).toLowerCase().includes(q));
+    list = list.filter(p=> (p.title + (p.summary||"") + (p.tags||[]).join(" ")).toLowerCase().includes(q));
   }
 
   if(wip){
@@ -524,11 +518,11 @@ sortAlphaBtn.addEventListener("click",()=>{
 searchInput.addEventListener("input",applyFilters);
 
 /* LIGHTBOX */
-const lightbox = document.getElementById("lightbox");
-const lbImg = document.getElementById("lightboxImg");
-const lbClose = document.getElementById("lbClose");
-const lbPrev = document.getElementById("lbPrev");
-const lbNext = document.getElementById("lbNext");
+const lightbox = document.getElementById('lightbox');
+const lbImg = document.getElementById('lightboxImg');
+const lbClose = document.getElementById('lbClose');
+const lbPrev = document.getElementById('lbPrev');
+const lbNext = document.getElementById('lbNext');
 let CURRENT = { list:[], index:0 };
 
 function openLightbox(list,index){
