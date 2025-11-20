@@ -1,0 +1,227 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <title>Blender Project — Neuro-sama Fan Art</title>
+
+  <style>
+    :root{
+      --bg:#0d0d0f; --surface:#121214; --muted:#9aa0a6;
+      --accent:#ff4d4d; --accent-600:#cc3a3a;
+      --radius:12px; --text:#eaeaea; --container-w:980px;
+    }
+
+    body{
+      margin:0; background:var(--bg); color:var(--text);
+      font-family:Inter,system-ui;
+      line-height:1.6;
+      -webkit-font-smoothing:antialiased;
+    }
+
+    .page{
+      max-width:var(--container-w);
+      margin:40px auto; padding:24px;
+    }
+
+    header{
+      display:flex;
+      justify-content:space-between;
+      align-items:center;
+      margin-bottom:20px;
+    }
+    header h1{
+      margin:0; color:var(--accent); font-size:1.4rem;
+      font-weight:700;
+    }
+    .timestamp{ color:var(--muted); font-size:.92rem; text-align:right; }
+
+    .card{
+      background: linear-gradient(180deg, rgba(255,255,255,0.02), rgba(0,0,0,0.03));
+      border:1px solid rgba(255,77,77,0.08);
+      box-shadow:0 8px 30px rgba(0,0,0,0.55);
+      border-radius:var(--radius);
+      padding:24px;
+    }
+
+    .meta-row{
+      display:flex;
+      justify-content:space-between;
+      align-items:flex-start;
+      flex-wrap:wrap;
+      gap:20px;
+    }
+
+    .meta{ display:flex; gap:.5rem; flex-wrap:wrap; margin-top:12px; }
+    .tag{
+      background:rgba(255,77,77,0.08);
+      border:1px solid rgba(255,77,77,0.28);
+      padding:.25rem .65rem;
+      border-radius:999px;
+      color:var(--accent);
+      font-weight:700; font-size:.82rem;
+    }
+    .status{
+      background:rgba(0,255,150,0.05);
+      padding:.25rem .6rem;
+      border-radius:8px;
+      font-weight:700; color:#c3fadc;
+      font-size:.85rem;
+    }
+
+    .author-block{
+      text-align:right;
+      min-width:140px;
+    }
+    .author-label{ color:var(--muted); font-size:.85rem; }
+    .author-name{ font-weight:700; font-size:1rem; margin-top:2px; }
+
+    h2{ margin-top:10px; color:#fff; font-size:1.35rem; }
+    h3{ margin-top:18px; color:#fff; }
+
+    .grid{
+      display:grid;
+      grid-template-columns: minmax(260px, 360px) 1fr;
+      gap:24px;
+      align-items:start;
+    }
+    .full{ grid-column:1 / -1; }
+
+    .img{
+      width:100%; border-radius:10px;
+      background:#111;
+      padding:6px;
+      border:1px solid rgba(255,255,255,0.04);
+      box-shadow:0 12px 30px rgba(0,0,0,0.55);
+      margin:12px 0;
+    }
+    .caption{ color:var(--muted); font-size:.88rem; margin-bottom:20px; }
+
+    .note{
+      border-left:4px solid var(--accent);
+      background:rgba(255,77,77,0.05);
+      padding:10px 14px;
+      border-radius:8px;
+      margin:14px 0;
+      color:#ffdcdc;
+      font-size:.95rem;
+    }
+
+    .renders{
+      display:flex; flex-wrap:wrap; gap:14px;
+      margin-top:10px;
+    }
+    .renders img{
+      width:100%; border-radius:10px;
+    }
+
+    @media(max-width:880px){
+      .grid{ grid-template-columns:1fr; }
+    }
+  </style>
+</head>
+
+<body>
+<div class="page">
+
+<header>
+  <h1>Blender Project — Neuro-sama Fan Art</h1>
+  <div class="timestamp">2025-11-11 18:42</div>
+</header>
+
+<article class="card">
+
+  <div class="meta-row">
+
+    <div>
+      <div style="color:var(--muted); font-size:.92rem;">Tags</div>
+      <div class="meta">
+        <span class="tag">Blender-3D</span>
+        <span class="tag">Art</span>
+        <span class="tag">3D-Projects</span>
+        <span class="status">Complete</span>
+      </div>
+    </div>
+
+    <div class="author-block">
+      <div class="author-label">Author</div>
+      <div class="author-name">AriDeltaO</div>
+    </div>
+
+  </div>
+
+  <hr style="border:none;border-top:1px solid rgba(255,255,255,0.06);margin:18px 0">
+
+  <section class="grid">
+
+    <!-- LEFT COLUMN: INTRO -->
+    <div>
+      <h2>Intro</h2>
+      <p>
+        I have made several pieces of fan art based on the Vedalverse, but this one felt like a step up from everything I had done before. The idea came from the official music video Life. That video shows Neuro-sama as a humanoid robot with wires connected to her back. The visual style immediately caught my attention and I wanted to capture that feeling in my own way.
+      </p>
+
+      <div class="note">
+        This is the frame that inspired the overall direction of the project.
+      </div>
+
+      <img class="img" src="Orginal Image from Life.webp" alt="Original reference from Life">
+      <div class="caption">Reference from the music video Life.</div>
+    </div>
+
+    <!-- RIGHT COLUMN: CONCEPT BOARD -->
+    <div>
+      <h3>Concept Board</h3>
+      <p>
+        I started by planning a more complex setup that included different compartments for multiple versions of Neuro. Each one would have had its own HUD screens and GPU readouts. I eventually dropped this idea because it felt too crowded for the mood I wanted to create. The concept board helped me refine the focus toward a single presentation area with strong lighting and a cleaner background.
+      </p>
+
+      <img class="img" src="Concept Board.webp" alt="Concept board">
+      <div class="caption">A simple concept board to shape the scene.</div>
+    </div>
+
+    <!-- FULL WIDTH: INITIAL RENDERS -->
+    <div class="full">
+      <h3>Initial Renders</h3>
+      <p>
+        The first renders came together faster than I expected. The hard surface models were simple enough to block out, but finding the right look took longer. I tried different layouts, different screen positions, and several color combinations before settling on something that matched the feeling of the original inspiration. I also had to rework the lighting so the background did not overpower Neuro.
+      </p>
+
+      <img class="img" src="Initial Render.webp" alt="Initial test renders">
+      <div class="caption">Several early attempts before settling on the final direction.</div>
+    </div>
+
+  </section>
+
+  <hr style="border:none;border-top:1px solid rgba(255,255,255,0.06);margin:18px 0">
+
+  <!-- FINAL RENDERS -->
+  <section>
+    <h2>Final Renders</h2>
+    <p>
+      The final version came out nicely after a lot of adjustments. I added HUD graphics near the end of the process. They were finished quickly, but they still helped bring more life to the scene. The background image is actually a screenshot of my own Arch Linux setup. It blended into the final shot better than I expected.
+    </p>
+
+    <div class="renders">
+      <img src="Final renders.webp" alt="Final renders">
+    </div>
+
+    <p style="margin-top:18px;">
+      During post-processing I had to rethink the entire color grading because the scene leaned too far into blue tones. Adjusting the contrast and highlights made the metallic parts stand out more while keeping Neuro as the main focus.
+    </p>
+  </section>
+
+  <hr style="border:none;border-top:1px solid rgba(255,255,255,0.06);margin:18px 0">
+
+  <!-- REFERENCES -->
+  <section>
+    <h2>Reference</h2>
+    <p>
+      The main inspiration was Neuro-sama's appearance in the music video Life. The rest of the design choices came from my own ideas and previous experience with mechanical characters.
+    </p>
+  </section>
+
+</article>
+</div>
+</body>
+</html>
