@@ -63,5 +63,15 @@
       "Media/Project_5/PNGs/Render-thumb.webp",
       "Media/Project_5/PNGs/Clay-thumb.webp"
     ]
+  },
+  {
+    "id": "Project_6",
+    "title": "Project 6",
+    "tags": [],
+    "summary": "A stylized fan-art of the Neuro-sama Lava Lamp",
+    "images": [
+      "Media/Project_6/PNGs/1.webp",
+      "Media/Project_6/PNGs/2.webp"
+    ]
   }
 ]
