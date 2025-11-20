@@ -1,6 +1,5 @@
 /* ==========================================================================
-   script.js — Optimized Version
-   All original functionality preserved.
+   script.js — Optimized Version + Breakdown Support
    ========================================================================== */
 
 document.addEventListener("DOMContentLoaded", () => {
@@ -60,7 +59,6 @@ document.addEventListener("DOMContentLoaded", () => {
     nextImg.style.display = "none";
     lightbox.classList.add("show");
 
-    // fade-in
     requestAnimationFrame(() => {
       activeImg.style.opacity = "1";
       activeImg.style.transform = "scale(1)";
@@ -91,7 +89,6 @@ document.addEventListener("DOMContentLoaded", () => {
     nextImg.src = list[newIndex];
     nextImg.style.display = "block";
 
-    // Slide in from left or right
     const startOffset = direction > 0 ? "100%" : "-100%";
     const endOffset = direction > 0 ? "-100%" : "100%";
 
@@ -121,13 +118,36 @@ document.addEventListener("DOMContentLoaded", () => {
   lbNext.addEventListener("click", e => { e.stopPropagation(); slide(1); });
 
   /* ----------------------------------------------------
+     BREAKDOWN BUTTON HANDLER
+  ---------------------------------------------------- */
+  function attachBreakdownHandlers() {
+    document.querySelectorAll(".breakdown-btn").forEach(btn => {
+      btn.addEventListener("click", () => {
+        const projectName = btn.getAttribute("data-project");
+        const breakdownPath = `Media/${projectName}/Breakdown/Text.html`;
+
+        fetch(breakdownPath, { method: "HEAD" })
+          .then(res => {
+            if (res.ok) {
+              window.location.href = breakdownPath;
+            } else {
+              alert("This breakdown is still under construction.");
+            }
+          })
+          .catch(() => {
+            alert("This breakdown is still under construction.");
+          });
+      });
+    });
+  }
+
+  /* ----------------------------------------------------
      Build Project Cards
   ---------------------------------------------------- */
   function buildCard(project) {
     const card = document.createElement("article");
     card.className = "card";
 
-    /* Preload images on hover once */
     card.addEventListener("mouseenter", () => {
       if (!card.dataset.loaded) {
         project.images.forEach(src => new Image().src = src);
@@ -135,7 +155,6 @@ document.addEventListener("DOMContentLoaded", () => {
       }
     });
 
-    /* Tilt effect */
     card.addEventListener("mousemove", e => {
       const rect = card.getBoundingClientRect();
       const x = e.clientX - rect.left - rect.width / 2;
@@ -153,7 +172,6 @@ document.addEventListener("DOMContentLoaded", () => {
         "perspective(800px) rotateX(0deg) rotateY(0deg) scale(1)";
     });
 
-    /* Thumbnail */
     const thumb = document.createElement("img");
     thumb.className = "thumb";
     thumb.src = project.images[0] || "";
@@ -161,7 +179,6 @@ document.addEventListener("DOMContentLoaded", () => {
     thumb.loading = "lazy";
     thumb.addEventListener("click", () => showLightbox(project.images, 0));
 
-    /* Title / Meta / Summary */
     const title = document.createElement("h3");
     title.textContent = project.title;
 
@@ -173,22 +190,22 @@ document.addEventListener("DOMContentLoaded", () => {
     summary.className = "summary";
     summary.textContent = project.summary || "No summary available.";
 
-    /* Actions */
     const actions = document.createElement("div");
     actions.className = "actions";
 
+    /* OPEN BUTTON (unchanged) */
     const openBtn = document.createElement("button");
     openBtn.className = "btn";
     openBtn.textContent = "Open";
 
-    const imgBtn = document.createElement("button");
-    imgBtn.className = "btn ghost";
-    imgBtn.textContent = "View / Download Images";
-    imgBtn.addEventListener("click", () => showLightbox(project.images, 0));
+    /* NEW BREAKDOWN BUTTON */
+    const breakdownBtn = document.createElement("button");
+    breakdownBtn.className = "btn ghost breakdown-btn";
+    breakdownBtn.textContent = "Breakdown";
+    breakdownBtn.setAttribute("data-project", project.id);
 
-    actions.append(openBtn, imgBtn);
+    actions.append(openBtn, breakdownBtn);
 
-    /* Details Panel */
     const details = document.createElement("div");
     details.className = "details";
 
@@ -214,7 +231,6 @@ document.addEventListener("DOMContentLoaded", () => {
 
     details.append(textBlock, strip);
 
-    /* Assemble */
     card.append(thumb, title, meta, summary, actions, details);
     return card;
   }
@@ -259,6 +275,9 @@ document.addEventListener("DOMContentLoaded", () => {
     const frag = document.createDocumentFragment();
     list.forEach(p => frag.appendChild(buildCard(p)));
     container.appendChild(frag);
+
+    /* Activate new breakdown buttons */
+    attachBreakdownHandlers();
   }
 
   /* ----------------------------------------------------
