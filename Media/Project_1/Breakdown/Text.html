@@ -3,13 +3,13 @@
 <head>
   <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width,initial-scale=1" />
-  <title>Blender Project — Mech Robot Study</title>
+  <title>Blender Project — Mech Study</title>
 
   <style>
     :root{
       --bg:#0d0d0f; --surface:#121214; --muted:#9aa0a6;
       --accent:#ff4d4d; --accent-600:#cc3a3a;
-      --radius:12px; --text:#eaeaea; --container-w:980px;
+      --radius:12px; --text:#eaeaea; --container-w:900px;
     }
 
     body{
@@ -21,27 +21,27 @@
 
     .page{
       max-width:var(--container-w);
-      margin:40px auto; padding:24px;
+      margin:36px auto; padding:20px;
     }
 
     header{
       display:flex;
       justify-content:space-between;
       align-items:center;
-      margin-bottom:20px;
+      margin-bottom:16px;
     }
     header h1{
-      margin:0; color:var(--accent); font-size:1.4rem;
-      font-weight:700;
+      margin:0; color:var(--accent);
+      font-size:1.35rem; font-weight:700;
     }
-    .timestamp{ color:var(--muted); font-size:.92rem; text-align:right; }
+    .timestamp{ color:var(--muted); font-size:.9rem; text-align:right; }
 
     .card{
       background: linear-gradient(180deg, rgba(255,255,255,0.02), rgba(0,0,0,0.03));
       border:1px solid rgba(255,77,77,0.08);
       box-shadow:0 8px 30px rgba(0,0,0,0.55);
       border-radius:var(--radius);
-      padding:24px;
+      padding:22px;
     }
 
     .meta-row{
@@ -49,101 +49,93 @@
       justify-content:space-between;
       align-items:flex-start;
       flex-wrap:wrap;
-      gap:20px;
+      gap:18px;
     }
 
-    .meta{ display:flex; gap:.5rem; flex-wrap:wrap; margin-top:12px; }
+    .meta{ display:flex; gap:.45rem; flex-wrap:wrap; margin-top:10px; }
     .tag{
       background:rgba(255,77,77,0.08);
       border:1px solid rgba(255,77,77,0.28);
-      padding:.25rem .65rem;
+      padding:.22rem .6rem;
       border-radius:999px;
       color:var(--accent);
-      font-weight:700; font-size:.82rem;
+      font-weight:700; font-size:.8rem;
     }
     .status{
       background:rgba(0,255,150,0.05);
-      padding:.25rem .6rem;
+      padding:.22rem .6rem;
       border-radius:8px;
       font-weight:700; color:#c3fadc;
-      font-size:.85rem;
+      font-size:.8rem;
     }
 
     .author-block{
-      text-align:right;
-      min-width:140px;
+      text-align:right; min-width:140px;
     }
-    .author-label{ color:var(--muted); font-size:.85rem; }
-    .author-name{ font-weight:700; font-size:1rem; margin-top:2px; }
+    .author-label{ color:var(--muted); font-size:.83rem; }
+    .author-name{ font-weight:700; font-size:.95rem; margin-top:2px; }
 
-    h2{ margin-top:10px; color:#fff; font-size:1.35rem; }
-    h3{ margin-top:18px; color:#fff; }
+    h2{ margin-top:10px; color:#fff; font-size:1.3rem; }
+    h3{ margin-top:16px; color:#fff; }
 
-    .grid{
-      display:grid;
-      grid-template-columns: minmax(260px, 360px) 1fr;
-      gap:24px;
-      align-items:start;
-    }
-    .full{ grid-column:1 / -1; }
-
-    .img{
-      width:100%; border-radius:10px;
+    .section-img{
+      width:72%;
+      margin:12px auto;
+      display:block;
+      border-radius:10px;
       background:#111;
-      padding:6px;
+      padding:5px;
       border:1px solid rgba(255,255,255,0.04);
-      box-shadow:0 12px 30px rgba(0,0,0,0.55);
-      margin:12px 0;
+      box-shadow:0 10px 26px rgba(0,0,0,0.55);
     }
 
-    .caption{ color:var(--muted); font-size:.88rem; margin-bottom:20px; }
-
-    /* side-by-side small images */
-    .row-small{
+    .small-row{
       display:flex;
-      gap:14px;
-      margin:12px 0;
-      flex-wrap:wrap;
+      gap:10px;
+      margin:10px 0;
+      justify-content:center;
     }
-    .row-small img{
+    .small-row img{
       width:48%;
-      max-width:350px;
       border-radius:10px;
       background:#111;
-      padding:6px;
+      padding:4px;
       border:1px solid rgba(255,255,255,0.04);
-      box-shadow:0 8px 22px rgba(0,0,0,0.4);
+      box-shadow:0 8px 22px rgba(0,0,0,0.5);
     }
 
-    /* upper-body progression tiny row */
-    .row-progress{
+    .triple-row{
       display:flex;
-      gap:12px;
-      margin:14px 0;
+      gap:10px;
+      justify-content:center;
       flex-wrap:wrap;
+      margin:10px 0;
     }
-    .row-progress img{
+    .triple-row img{
       width:30%;
-      min-width:200px;
+      min-width:180px;
       border-radius:10px;
       background:#111;
-      padding:6px;
+      padding:4px;
       border:1px solid rgba(255,255,255,0.04);
-      box-shadow:0 8px 22px rgba(0,0,0,0.4);
+      box-shadow:0 8px 22px rgba(0,0,0,0.5);
     }
 
-    .renders{
-      display:flex; flex-wrap:wrap; gap:14px;
-      margin-top:10px;
-    }
-    .renders img{
-      width:100%; border-radius:10px;
+    .caption{
+      color:var(--muted);
+      text-align:center;
+      font-size:.86rem;
+      margin-bottom:16px;
     }
 
-    @media(max-width:880px){
-      .grid{ grid-template-columns:1fr; }
-      .row-small img{ width:100%; }
-      .row-progress img{ width:100%; }
+    .note{
+      border-left:4px solid var(--accent);
+      background:rgba(255,77,77,0.05);
+      padding:10px 14px;
+      border-radius:8px;
+      margin:14px 0;
+      color:#ffdcdc;
+      font-size:.93rem;
     }
   </style>
 </head>
@@ -152,19 +144,18 @@
 <div class="page">
 
 <header>
-  <h1>Blender Project — Mech Robot Study</h1>
-  <div class="timestamp">2025-11-XX</div>
+  <h1>Blender Project — Mech Study</h1>
+  <div class="timestamp">2025-11-11 18:42</div>
 </header>
 
 <article class="card">
 
   <div class="meta-row">
     <div>
-      <div style="color:var(--muted); font-size:.92rem;">Tags</div>
+      <div style="color:var(--muted); font-size:.9rem;">Tags</div>
       <div class="meta">
         <span class="tag">Blender-3D</span>
-        <span class="tag">Hard-Surface</span>
-        <span class="tag">Mech</span>
+        <span class="tag">Art</span>
         <span class="status">Complete</span>
       </div>
     </div>
@@ -175,78 +166,68 @@
     </div>
   </div>
 
-  <hr style="border:none;border-top:1px solid rgba(255,255,255,0.06);margin:18px 0">
+  <hr style="border:none;border-top:1px solid rgba(255,255,255,0.06);margin:14px 0">
 
-  <section class="grid">
+  <section>
+    <h2>Intro</h2>
+    <p>
+      This project is a mech robot study focused on clean hard surface modeling and believable mechanical joints. I wanted to practice building leg structures, cable routing, and the blockout for a functional upper body. The whole idea was to treat this like a technical sculpting exercise and see how far I could push the forms before committing to a final design.
+    </p>
 
-    <!-- INTRO -->
-    <div>
-      <h2>Intro</h2>
-      <p>
-        This mech project was created as a hard surface modeling study focused on mechanical joints, clean shapes, and believable structure. I started with the legs and slowly moved upward, making sure each joint looked like it could actually function. This project helped me understand how mechanical parts support weight and motion.
-      </p>
-
-      <h3>Leg Assembly</h3>
-      <p>
-        The first stage covered the legs. I generated the wires with the GeoCables addon, which gave the legs a more grounded and industrial look without taking too much time. Keeping the shapes simple early on made it easier to refine the overall silhouette later.
-      </p>
-
-      <!-- FIRST TWO IMAGES SMALL TOGETHER -->
-      <div class="row-small">
-        <img src="1.webp" alt="Leg model early stage">
-        <img src="2.webp" alt="GeoCables wiring on legs">
-      </div>
-
-      <div class="caption">Early leg work with GeoCables wiring.</div>
+    <div class="note">
+      The first stage was experimenting with the lower half and testing cable placement with the Geocables addon.
     </div>
 
-    <!-- PELVIS BLOCKOUT -->
-    <div>
-      <h3>Pelvis Blockout</h3>
-      <p>
-        After finishing the leg base I moved on to the pelvis. This part needed to connect the legs to the upper body in a way that felt stable. I experimented with different shapes before finding a design that supported the next stage without looking bulky.
-      </p>
-
-      <img class="img" src="3.webp" alt="Pelvis blockout">
-      <div class="caption">Starting the pelvis and central joint layout.</div>
+    <div class="small-row">
+      <img src="1.webp" alt="">
+      <img src="2.webp" alt="">
     </div>
+    <div class="caption">Early leg structure tests using Geocables for wiring.</div>
 
-    <!-- FULL WIDTH: UPPER BODY -->
-    <div class="full">
-      <h3>Upper Body Progression</h3>
-      <p>
-        The upper body took the most time because it determined the entire silhouette of the mech. I developed it in small steps, adding new plates and adjusting proportions until the chest and core felt balanced. Each pass increased the detail while keeping the shapes readable.
-      </p>
+    <p>
+      Once the legs felt stable and readable, I moved to the pelvis area. This part determines how the upper and lower halves connect, so I kept it simple and focused on function. 
+    </p>
 
-      <!-- SMALLER, CLOSER UPPER BODY PROGRESSION IMAGES -->
-      <div class="row-progress">
-        <img src="4.webp" alt="Upper body stage 1">
-        <img src="5.webp" alt="Upper body stage 2">
-        <img src="6.webp" alt="Upper body stage 3">
-      </div>
-
-      <img class="img" src="7.webp" alt="Full clay model">
-      <div class="caption">Full clay model before adding final details.</div>
-    </div>
-
+    <img class="section-img" src="3.webp" alt="">
+    <div class="caption">Blocking out pelvis connection points.</div>
   </section>
 
-  <hr style="border:none;border-top:1px solid rgba(255,255,255,0.06);margin:18px 0">
 
-  <!-- FINAL RENDERS -->
+  <section>
+    <h2>Upper Body Progression</h2>
+    <p>
+      Building the upper body was slower. I tried multiple shapes to find something that looked strong but still clean. Most of this stage was about testing silhouettes and refining the mechanical logic.
+    </p>
+
+    <div class="triple-row">
+      <img src="4.webp" alt="">
+      <img src="5.webp" alt="">
+      <img src="6.webp" alt="">
+    </div>
+    <div class="caption">Upper body development from rough blockouts to refined plates.</div>
+
+    <p>
+      After enough refinement, I combined everything into one clay model to check the overall proportions.
+    </p>
+
+    <img class="section-img" src="7.webp" alt="">
+    <div class="caption">Complete clay stage before materials.</div>
+  </section>
+
+
   <section>
     <h2>Final Renders</h2>
     <p>
-      The final renders show the mech fully assembled. I kept the materials simple so the focus stayed on the design and joint structure. The lighting setup highlights the shapes without hiding any of the mechanical elements.
+      The final version keeps the same rough structure from the clay pass but cleans up the surfacing. I softened some bevels, adjusted cable placement, and added more defined breaks between armor plates.
     </p>
 
-    <div class="renders">
-      <img src="Final1.webp" alt="Final render 1">
-      <img src="Final2.webp" alt="Final render 2">
-    </div>
+    <img class="section-img" src="Final1.webp" alt="">
+    <img class="section-img" src="Final2.webp" alt="">
+    <div class="caption">Final renders with lighting and polished materials.</div>
   </section>
 
 </article>
+
 </div>
 </body>
 </html>
