@@ -8,326 +8,8 @@
   <!-- Inter font -->
   <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;700&display=swap" rel="stylesheet">
 
-  <style>
-    :root{
-      --bg:#0d0d0f;
-      --card:#1a1a1d;
-      --muted:#9aa0a6;
-      --accent:#ff4d4d;
-      --radius:12px;
-      --shadow-color-1: rgba(255, 77, 77, 0.25);
-      --shadow-color-2: rgba(255, 77, 77, 0.15);
-      --shadow-color-3: rgba(255, 77, 77, 0.1);
-      --transition-speed: 0.45s;
-    }
-    html {
-      scroll-behavior: smooth;
-    }
-    *{box-sizing:border-box}
-    body{
-      margin:0;
-      font-family:'Inter',system-ui;
-      background:var(--bg);
-      color:#eee;
-      line-height:1.6;
-      font-size:16px;
-      -webkit-font-smoothing: antialiased;
-      -moz-osx-font-smoothing: grayscale;
-    }
-    /* HEADER */
-    header{
-      display:flex;
-      align-items:center;
-      justify-content:space-between;
-      padding:1.4rem 2.2rem;
-      background:#141416;
-      position:sticky;
-      top:0;
-      z-index:50;
-      box-shadow:0 2px 8px rgba(0,0,0,0.6);
-    }
-    header h1{margin:0;font-size:1.35rem;color:var(--accent);font-weight:700}
-    nav a{color:#ddd;text-decoration:none;margin-left:1.2rem;font-weight:600}
-    nav a:hover{color:#ff7777}
-    #themeToggle{
-      padding:.5rem .75rem;border-radius:10px;border:none;background:var(--accent);
-      color:white;font-weight:700;cursor:pointer;font-size:.9rem;
-      transition: background-color var(--transition-speed) ease, transform var(--transition-speed) ease;
-    }
-    #themeToggle:hover {
-      background-color: #cc3a3a;
-      transform: scale(1.05);
-    }
-    /* HERO */
-    .hero{
-      padding:5.5rem 1.25rem;
-      text-align:center;
-      background:linear-gradient(135deg,#ff4d4d,#b30000);
-      color:white;
-    }
-    .hero h2{font-size:2.7rem;margin:0 0 .6rem;font-weight:700}
-    .hero p{font-size:1.1rem;margin:0;opacity:0.95}
-    /* SECTIONS */
-    .section{max-width:980px;margin:0 auto;padding:3rem 1.25rem}
-    .section h2{font-size:1.55rem;margin-top:0;color:#eee}
-    body.light .section h2{color:#111}
-    /* PROJECTS HEADER */
-    .projects-header{display:flex;gap:1rem;flex-wrap:wrap;align-items:center;margin-bottom:1.3rem}
-    .search{flex:1;min-width:260px}
-    .search input{
-      width:100%;padding:.6rem .9rem;border-radius:10px;
-      border:1px solid rgba(255,255,255,0.08);background:transparent;color:inherit;
-      transition: border-color var(--transition-speed) ease;
-    }
-    .search input:focus{
-      border-color: var(--accent);
-      outline:none;
-    }
-    .filters{display:flex;gap:.55rem}
-    .filters button{
-      padding:.48rem .7rem;border-radius:10px;background:transparent;
-      border:1px solid rgba(255,255,255,0.12);color:inherit;font-weight:600;cursor:pointer;
-      font-size:.88rem;
-      transition: background-color var(--transition-speed) ease, border-color var(--transition-speed) ease;
-    }
-    .filters button.active{background:rgba(255,77,77,0.13);border-color:var(--accent)}
-    .filters button:hover:not(.active){
-      background:rgba(255,77,77,0.07);
-    }
-    /* GRID */
-    .projects{
-      display:grid;
-      grid-template-columns:repeat(auto-fit,minmax(260px,1fr));
-      gap:1.15rem;
-    }
-    /* COMPACT CARD */
-    .card{
-      background:var(--card);
-      border-radius:var(--radius);
-      padding:0.95rem 1rem;
-      border:1px solid rgba(255, 77, 77, 0.4);
-      outline: 1px solid transparent;
-      outline-offset: -1px;
-      display:flex;
-      flex-direction:column;
-      gap:.55rem;
-      transition: box-shadow var(--transition-speed) ease, transform 0.5s cubic-bezier(0.25, 1, 0.5, 1);
-      box-shadow:
-        0 2px 5px var(--shadow-color-1),
-        0 8px 15px var(--shadow-color-2),
-        0 15px 30px var(--shadow-color-3);
-      will-change: transform, box-shadow;
-      transform-style: preserve-3d;
-      backface-visibility: hidden;
-      -webkit-font-smoothing: antialiased;
-      -moz-osx-font-smoothing: grayscale;
-      transform: perspective(800px) rotateX(0deg) rotateY(0deg) scale(1);
-      transform: translateZ(0);
-    }
-    .card:hover{
-      box-shadow:
-        0 5px 10px rgba(255, 77, 77, 0.35),
-        0 12px 25px rgba(255, 77, 77, 0.25),
-        0 25px 50px rgba(255, 77, 77, 0.15);
-      transform: translateY(-6px) scale(1.03);
-    }
-    /* Titles */
-    .card h3{
-      margin:.1rem 0 .2rem;
-      font-size:1.25rem;
-      font-weight:700;
-      color:#fff;
-      letter-spacing:0.25px;
-      transform-style: preserve-3d;
-      backface-visibility: hidden;
-      -webkit-font-smoothing: antialiased;
-      -moz-osx-font-smoothing: grayscale;
-    }
-    body.light .card h3{color:#111}
-    .meta{font-size:.88rem;color:var(--muted);margin-bottom:0}
-    body.light .meta{color:#555}
-    .summary{font-size:.98rem;margin-top:.1rem;color:#e3e3e3}
-    body.light .summary{color:#333}
-    /* Thumbnails compact */
-    .thumb{
-      width:100%;
-      height:150px;
-      object-fit:cover;
-      border-radius:8px;
-      background:linear-gradient(#111,#222);
-      cursor:pointer;
-      transition: filter 0.3s ease;
-      box-shadow: 0 4px 12px rgba(0,0,0,0.3);
-      -webkit-font-smoothing: antialiased;
-      -moz-osx-font-smoothing: grayscale;
-    }
-    .thumb:hover {
-      filter: brightness(1.15);
-      box-shadow: 0 6px 18px var(--shadow-color-3);
-    }
-    body.light .thumb{background:#ececec}
-    .actions{
-      display:flex;
-      gap:.55rem;
-      margin-top:.25rem;
-    }
-    .btn{
-      padding:.45rem .65rem;border-radius:9px;border:none;background:var(--accent);
-      color:white;font-weight:700;font-size:.88rem;cursor:pointer;
-      transition: background-color 0.3s ease, transform 0.2s ease, box-shadow 0.2s ease;
-      -webkit-font-smoothing: antialiased;
-      -moz-osx-font-smoothing: grayscale;
-    }
-    .btn:hover {
-      background-color:#cc3a3a;
-      transform: scale(1.05);
-      box-shadow: 0 0 12px var(--accent);
-    }
-    .btn.ghost{
-      background:transparent;border:1px solid rgba(255,255,255,0.12);
-      color:inherit;
-      transition: border-color 0.3s ease, box-shadow 0.3s ease;
-      -webkit-font-smoothing: antialiased;
-      -moz-osx-font-smoothing: grayscale;
-    }
-    .btn.ghost:hover{
-      border-color:#ff4d4d;
-      box-shadow: 0 0 8px var(--accent);
-      color:#ff4d4d;
-    }
-    body.light .btn.ghost{border:1px solid #ccc;color:#222}
-    /* Details drop */
-    .details{
-      max-height: 0;
-      opacity: 0;
-      overflow: hidden;
-      flex-direction: column;
-      gap:.5rem;
-      margin-top:.5rem;
-      transition: max-height var(--transition-speed) ease, opacity var(--transition-speed) ease;
-    }
-    .details.open{
-      display:flex;
-      max-height: 650px;
-      opacity: 1;
-    }
-    .details .text{white-space:pre-wrap;font-size:.95rem;color:#e3e3e8}
-    body.light .details .text{color:#222}
-    .thumb-row{display:flex;gap:.45rem;overflow:auto;margin-top:.3rem}
-    .thumb-row img{
-      height:72px;object-fit:cover;border-radius:8px;cursor:pointer;
-      border:2px solid transparent;
-      transition: border-color 0.3s ease;
-      -webkit-font-smoothing: antialiased;
-      -moz-osx-font-smoothing: grayscale;
-    }
-    .thumb-row img.selected{border-color:var(--accent)}
-    body.light .thumb-row img.selected{border-color:#d00000}
-    /* Skeleton */
-    .skeleton{
-      background:linear-gradient(90deg,#222,#333,#222);
-      animation:shimmer 1.5s infinite;
-      border-radius:12px;
-      height:150px;
-      width:100%;
-    }
-    @keyframes shimmer{
-      0%{background-position:-200% 0}
-      100%{background-position:200% 0}
-    }
-    /* Lightbox */
-    #lightbox{
-      position:fixed;inset:0;display:none;align-items:center;
-      justify-content:center;background:rgba(0,0,0,0.92);z-index:9999;padding:2rem;
-      opacity: 0;
-      transition: opacity var(--transition-speed) ease;
-      overflow: hidden;
-    }
-    #lightbox.show {
-      display:flex;
-      opacity: 1;
-    }
-    #lightbox img {
-      position: absolute;
-      max-width:calc(100% - 160px);max-height:calc(100% - 160px);
-      border-radius:12px;
-      box-shadow:0 12px 40px var(--shadow-color-3);
-      opacity: 0;
-      transition: opacity 0.3s ease, transform 0.4s ease;
-      will-change: transform, opacity;
-    }
-    #lightbox img.visible {
-      opacity: 1;
-      transform: scale(1);
-    }
-    #lightbox img.slide-in-left {
-      transform: translateX(0);
-      opacity: 1;
-    }
-    #lightbox img.slide-in-right {
-      transform: translateX(0);
-      opacity: 1;
-    }
-    #lightbox img.slide-out-left {
-      transform: translateX(-100%);
-      opacity: 0;
-    }
-    #lightbox img.slide-out-right {
-      transform: translateX(100%);
-      opacity: 0;
-    }
-    .lb-btn{
-      padding:.5rem .8rem;border-radius:10px;background:rgba(255,255,255,0.07);
-      border:none;color:white;font-weight:700;cursor:pointer;
-      transition: background-color 0.3s ease;
-      -webkit-font-smoothing: antialiased;
-      -moz-osx-font-smoothing: grayscale;
-      z-index:10;
-      position: relative;
-    }
-    .lb-btn:hover {
-      background-color: rgba(255, 77, 77, 0.3);
-    }
-    #lightbox .controls{
-      position:absolute;bottom:2rem;left:50%;transform:translateX(-50%);
-      display:flex;gap:.7rem;
-      z-index:10;
-    }
-    /* CONTACT ICONS */
-    .contact-row{display:flex;flex-direction:column;gap:.65rem}
-    .icon-link{display:flex;align-items:center;gap:.6rem;color:inherit}
-    .icon-sprite{
-      width:22px;height:22px;fill:var(--accent);
-      flex:0 0 22px;
-    }
-    /* Footer center */
-    footer{
-      text-align:center;
-      padding:1.4rem 0;
-      opacity:0.75;
-      font-size:.95rem;
-      margin-top:2rem;
-      width:100%;
-    }
-    /* LIGHT THEME */
-    body.light{
-      background:#f5f5f7;
-      color:#111;
-    }
-    body.light header{
-      background:white;
-      box-shadow:0 2px 8px rgba(0,0,0,0.06);
-    }
-    body.light .card{
-      background:white;
-      color:#111;
-      border:1px solid #e6e6e6;
-      box-shadow:
-        0 2px 5px rgba(0,0,0,0.1),
-        0 8px 15px rgba(0,0,0,0.06),
-        0 15px 30px rgba(0,0,0,0.04);
-    }
-  </style>
+  <!-- External CSS -->
+  <link rel="stylesheet" href="style.css">
 </head>
 <body>
 
@@ -352,7 +34,7 @@
   <h2>About Me</h2>
   <p style="max-width:780px">
     My name is AriDeltaO. I am a 19-year-old male 3D artist and hobbyist developer.
-    I mainly work on hard-surface models and abstract/stylized fan-art.  
+    I mainly work on hard-surface models and abstract/stylized fan-art.<br>
     I am currently learning soft-surface modelling.
   </p>
 </section>
@@ -360,15 +42,18 @@
 <section id="projects" class="section">
   <div class="projects-header">
     <h2 style="margin:0 0.5rem 0 0">Projects</h2>
+
     <div class="search" style="max-width:420px;">
       <input id="projectSearch" placeholder="Search projects or descriptions..." autocomplete="off" />
     </div>
+
     <div class="filters" style="margin-left:auto">
       <button id="filterAll" class="active">All</button>
       <button id="filterWIP">WIP</button>
       <button id="sortAlpha">Sort A→Z</button>
     </div>
   </div>
+
   <div id="skeletons" class="projects">
     <div class="card"><div class="skeleton"></div></div>
     <div class="card"><div class="skeleton"></div></div>
@@ -376,30 +61,35 @@
     <div class="card"><div class="skeleton"></div></div>
     <div class="card"><div class="skeleton"></div></div>
   </div>
+
   <div id="projectsContainer" class="projects" style="display:none"></div>
 </section>
 
 <section id="contact" class="section">
   <h2>Contact</h2>
   <div class="contact-row">
+
     <div class="icon-link">
       <svg class="icon-sprite" viewBox="0 0 24 24">
         <path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm1 17.93c-2.83.48-5.44-.3-7.47-1.93-.39-.31-.48-.88-.21-1.3.27-.41.79-.54 1.22-.31 1.74 1 3.81 1.39 5.88.99 2.07-.4 3.9-1.62 5.12-3.39.26-.39.77-.53 1.2-.34.43.19.67.66.57 1.12-1.02 2.84-3.57 5.04-6.86 5.16v-.01z"/>
       </svg>
       <a href="#" style="text-decoration:none;color:inherit;font-weight:600">Discord: ari_69001</a>
     </div>
+
     <div class="icon-link">
       <svg class="icon-sprite" viewBox="0 0 24 24">
         <path d="M10 15l5.19-3L10 9v6zm12-3c0 5.52-4.48 10-10 10S2 17.52 2 12 6.48 2 12 2s10 4.48 10 10z"/>
       </svg>
       <a href="https://www.youtube.com/@AriDeltaO" target="_blank" style="text-decoration:none;color:inherit;font-weight:600">YouTube</a>
     </div>
+
     <div class="icon-link">
       <svg class="icon-sprite" viewBox="0 0 24 24">
         <path d="M22.46 6c-.77.35-1.6.58-2.46.69a4.3 4.3 0 001.88-2.37 8.59 8.59 0 01-2.72 1.04A4.28 4.28 0 0016.11 4c-2.37 0-4.29 1.92-4.29 4.29 0 .34.04.67.11.98-3.57-.18-6.74-1.89-8.86-4.49a4.28 4.28 0 00-.58 2.16c0 1.49.76 2.8 1.92 3.57a4.23 4.23 0 01-1.94-.54v.05c0 2.08 1.48 3.82 3.44 4.22-.36.1-.74.15-1.13.15-.28 0-.55-.03-.82-.08.55 1.72 2.15 2.97 4.06 3a8.6 8.6 0 01-5.32 1.84c-.35 0-.69-.02-1.03-.06A12.14 12.14 0 008.29 21c7.88 0 12.2-6.53 12.2-12.2l-.01-.56A8.63 8.63 0 0022.46 6z"/>
       </svg>
       <a href="https://x.com/AriDeltaO" target="_blank" style="text-decoration:none;color:inherit;font-weight:600">Twitter / X</a>
     </div>
+
   </div>
 </section>
 
@@ -416,326 +106,8 @@
   </div>
 </div>
 
-<script>
-document.addEventListener("DOMContentLoaded", () => {
-  // Theme toggle
-  const themeToggle = document.getElementById('themeToggle');
-  if(localStorage.getItem('theme')==="light"){
-    document.body.classList.add("light");
-    themeToggle.textContent="☀️";
-  }
-  themeToggle.addEventListener('click',()=>{
-    document.body.classList.toggle("light");
-    const isLight = document.body.classList.contains("light");
-    themeToggle.textContent = isLight ? "☀️" : "🌙";
-    localStorage.setItem("theme", isLight ? "light" : "dark");
-  });
-
-  const container = document.getElementById('projectsContainer');
-  const skeletons = document.getElementById('skeletons');
-  const lightbox = document.getElementById('lightbox');
-  const img1 = document.getElementById('lightboxImg1');
-  const img2 = document.getElementById('lightboxImg2');
-  const lbClose = document.getElementById('lbClose');
-  const lbPrev = document.getElementById('lbPrev');
-  const lbNext = document.getElementById('lbNext');
-
-  let CURRENT = { list: [], index: 0 };
-  let activeImg = img1;
-  let nextImg = img2;
-  let isSliding = false;
-
-  // Lightbox functions
-  function showLightbox(list, index) {
-    CURRENT = { list: [...list], index };
-    activeImg.src = list[index];
-    activeImg.style.display = 'block';
-    activeImg.style.opacity = '0';
-    activeImg.style.transform = 'scale(0.8)';
-    nextImg.style.display = 'none';
-    lightbox.classList.add('show');
-    setTimeout(() => {
-      activeImg.style.opacity = '1';
-      activeImg.style.transform = 'scale(1)';
-    }, 50);
-  }
-
-  function closeLightbox() {
-    activeImg.style.opacity = '0';
-    activeImg.style.transform = 'scale(0.8)';
-    setTimeout(() => {
-      lightbox.classList.remove('show');
-      activeImg.style.display = 'none';
-      activeImg.src = '';
-      nextImg.style.display = 'none';
-    }, 300);
-  }
-
-  function slide(direction) {
-    if (isSliding) return;
-    isSliding = true;
-
-    const len = CURRENT.list.length;
-    const newIndex = (CURRENT.index + direction + len) % len;
-    nextImg.src = CURRENT.list[newIndex];
-    nextImg.style.display = 'block';
-
-    activeImg.style.transition = 'transform 0.4s ease, opacity 0.4s ease';
-    nextImg.style.transition = 'transform 0.4s ease, opacity 0.4s ease';
-
-    if (direction > 0) {
-      nextImg.style.transform = 'translateX(100%) scale(1)';
-      nextImg.style.opacity = '1';
-      void nextImg.offsetWidth;
-      activeImg.style.transform = 'translateX(-100%) scale(1)';
-      activeImg.style.opacity = '0';
-      nextImg.style.transform = 'translateX(0) scale(1)';
-    } else {
-      nextImg.style.transform = 'translateX(-100%) scale(1)';
-      nextImg.style.opacity = '1';
-      void nextImg.offsetWidth;
-      activeImg.style.transform = 'translateX(100%) scale(1)';
-      activeImg.style.opacity = '0';
-      nextImg.style.transform = 'translateX(0) scale(1)';
-    }
-
-    setTimeout(() => {
-      activeImg.style.transition = '';
-      activeImg.style.opacity = '0';
-      activeImg.style.transform = 'scale(0.8)';
-      activeImg.style.display = 'none';
-
-      [activeImg, nextImg] = [nextImg, activeImg]; // Swap references
-
-      CURRENT.index = newIndex;
-      isSliding = false;
-    }, 400);
-  }
-
-  lbClose.addEventListener('click', closeLightbox);
-  lightbox.addEventListener('click', (e) => {
-    if (e.target === lightbox) closeLightbox();
-  });
-  lbPrev.addEventListener('click', (e) => {
-    e.stopPropagation();
-    slide(-1);
-  });
-  lbNext.addEventListener('click', (e) => {
-    e.stopPropagation();
-    slide(1);
-  });
-
-  // Build project card
-  function buildCard(project) {
-    const card = document.createElement('article');
-    card.className = 'card';
-
-    card.addEventListener('mouseenter', () => {
-      if (!card.dataset.preloaded) {
-        project.images.forEach(src => {
-          const img = new Image();
-          img.src = src;
-        });
-        card.dataset.preloaded = 'true';
-      }
-    });
-
-    card.addEventListener('mousemove', (e) => {
-      if (card._animationFrame) cancelAnimationFrame(card._animationFrame);
-      card._animationFrame = requestAnimationFrame(() => {
-        const rect = card.getBoundingClientRect();
-        const x = e.clientX - rect.left;
-        const y = e.clientY - rect.top;
-        const centerX = rect.width / 2;
-        const centerY = rect.height / 2;
-        const rotateX = ((y - centerY) / centerY) * 3;
-        const rotateY = ((x - centerX) / centerX) * 3;
-        card.style.transform = `perspective(800px) rotateX(${-rotateX}deg) rotateY(${rotateY}deg) scale(1.03) translateZ(0)`;
-        card.style.willChange = 'transform';
-        card.style.transition = 'transform 0.12s cubic-bezier(0.25, 1, 0.5, 1)';
-        card.style.backfaceVisibility = 'hidden';
-        card.style.webkitFontSmoothing = 'antialiased';
-        card.style.mozOsxFontSmoothing = 'grayscale';
-      });
-    });
-
-    card.addEventListener('mouseleave', () => {
-      if (card._animationFrame) cancelAnimationFrame(card._animationFrame);
-      card._animationFrame = requestAnimationFrame(() => {
-        card.style.transform = 'perspective(800px) rotateX(0deg) rotateY(0deg) scale(1) translateZ(0)';
-        card.style.transition = 'transform 0.5s ease-out';
-        card.style.backfaceVisibility = 'hidden';
-        card.style.webkitFontSmoothing = 'antialiased';
-        card.style.mozOsxFontSmoothing = 'grayscale';
-      });
-    });
-
-    const thumb = document.createElement('img');
-    thumb.className = 'thumb';
-    thumb.src = project.images[0] || '';
-    thumb.alt = project.title + ' thumbnail';
-    thumb.loading = 'lazy';
-    thumb.addEventListener('click', () => project.images.length > 0 && showLightbox(project.images, 0));
-
-    const title = document.createElement('h3');
-    title.textContent = project.title;
-
-    const meta = document.createElement('div');
-    meta.className = 'meta';
-    meta.textContent = project.id;
-
-    const summary = document.createElement('div');
-    summary.className = 'summary';
-    summary.textContent = project.summary || 'No summary available.';
-
-    const actions = document.createElement('div');
-    actions.className = 'actions';
-
-    const openBtn = document.createElement('button');
-    openBtn.className = 'btn';
-    openBtn.textContent = 'Open';
-
-    const imgBtn = document.createElement('button');
-    imgBtn.className = 'btn ghost';
-    imgBtn.textContent = 'View / Download Images';
-    imgBtn.addEventListener('click', () => {
-      if (project.images.length === 0) {
-        alert('No images found.');
-        return;
-      }
-      showLightbox(project.images, 0);
-    });
-
-    actions.append(openBtn, imgBtn);
-
-    const details = document.createElement('div');
-    details.className = 'details';
-
-    const text = document.createElement('div');
-    text.className = 'text';
-    text.style.display = 'none';
-
-    const strip = document.createElement('div');
-    strip.className = 'thumb-row';
-
-    project.images.forEach((src, i) => {
-      const t = document.createElement('img');
-      t.src = src;
-      t.alt = project.title + ' image ' + (i + 1);
-      t.loading = 'lazy';
-      t.addEventListener('click', () => showLightbox(project.images, i));
-      if (i === 0) t.classList.add('selected');
-      strip.appendChild(t);
-    });
-
-    details.append(text, strip);
-
-    openBtn.addEventListener('click', () => details.classList.toggle('open'));
-
-    card.append(thumb, title, meta, summary, actions, details);
-
-    return card;
-  }
-
-  // State variables for filtering and sorting
-  let projectsGlobal = [];
-  let currentFilter = 'all'; // 'all' or 'wip'
-  let searchTerm = '';
-  let sortAlpha = false;
-
-  // Filtering, searching, and sorting projects
-  function filterAndSortProjects() {
-    let filtered = [...projectsGlobal];
-
-    // Filter by tag
-    if (currentFilter === 'wip') {
-      filtered = filtered.filter(p => p.tags.includes('wip'));
-    }
-
-    // Search by title, summary, id, tags
-    if (searchTerm.trim() !== '') {
-      const term = searchTerm.toLowerCase();
-      filtered = filtered.filter(p => {
-        return p.title.toLowerCase().includes(term) ||
-               (p.summary && p.summary.toLowerCase().includes(term)) ||
-               p.id.toLowerCase().includes(term) ||
-               (p.tags && p.tags.some(tag => tag.toLowerCase().includes(term)));
-      });
-    }
-
-    // Sort alphabetically by title if enabled
-    if (sortAlpha) {
-      filtered.sort((a, b) => a.title.localeCompare(b.title));
-    } else {
-      // Sort with WIP first, similar to your previous manual sort
-      filtered.sort((a, b) => a.id === 'WIP' ? -1 : b.id === 'WIP' ? 1 : 0);
-    }
-
-    renderProjects(filtered);
-  }
-
-  // Render projects in container
-  function renderProjects(list) {
-    skeletons.style.display = 'none';
-    container.style.display = 'grid';
-    container.innerHTML = '';
-    const frag = document.createDocumentFragment();
-    list.forEach(p => frag.appendChild(buildCard(p)));
-    container.appendChild(frag);
-  }
-
-  // Load manifest and initialize
-  async function generateProjects() {
-    try {
-      const resp = await fetch('Media/manifest.json');
-      if (!resp.ok) {
-        console.error('Could not load manifest.json');
-        return;
-      }
-      const manifest = await resp.json();
-
-      projectsGlobal = manifest;
-      filterAndSortProjects();
-    } catch (e) {
-      console.error('Error fetching projects manifest:', e);
-    }
-  }
-
-  // UI elements for filter and sort
-  const filterAllBtn = document.getElementById('filterAll');
-  const filterWIPBtn = document.getElementById('filterWIP');
-  const sortAlphaBtn = document.getElementById('sortAlpha');
-  const searchInput = document.getElementById('projectSearch');
-
-  filterAllBtn.addEventListener('click', () => {
-    currentFilter = 'all';
-    filterAllBtn.classList.add('active');
-    filterWIPBtn.classList.remove('active');
-    filterAndSortProjects();
-  });
-
-  filterWIPBtn.addEventListener('click', () => {
-    currentFilter = 'wip';
-    filterWIPBtn.classList.add('active');
-    filterAllBtn.classList.remove('active');
-    filterAndSortProjects();
-  });
-
-  sortAlphaBtn.addEventListener('click', () => {
-    sortAlpha = !sortAlpha;
-    sortAlphaBtn.textContent = sortAlpha ? 'Sort Normal' : 'Sort A→Z';
-    filterAndSortProjects();
-  });
-
-  searchInput.addEventListener('input', (e) => {
-    searchTerm = e.target.value;
-    filterAndSortProjects();
-  });
-
-  generateProjects();
-
-});
-</script>
+<!-- External JS -->
+<script src="script.js"></script>
 
 </body>
 </html>
