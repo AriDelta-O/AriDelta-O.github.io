@@ -1,0 +1,243 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <title>Blender Project — Neuro-Sama Lamp</title>
+
+  <style>
+    :root{
+      --bg:#0d0d0f; --surface:#121214; --muted:#9aa0a6;
+      --accent:#ff4d4d; --accent-600:#cc3a3a;
+      --radius:12px; --text:#eaeaea; --container-w:980px;
+    }
+
+    body{
+      margin:0; background:var(--bg); color:var(--text);
+      font-family:Inter,system-ui;
+      line-height:1.6;
+      -webkit-font-smoothing:antialiased;
+    }
+
+    .page{
+      max-width:var(--container-w);
+      margin:40px auto; padding:24px;
+    }
+
+    header{
+      display:flex;
+      justify-content:space-between;
+      align-items:center;
+      margin-bottom:20px;
+    }
+    header h1{
+      margin:0; color:var(--accent); font-size:1.4rem;
+      font-weight:700;
+    }
+    .timestamp{ color:var(--muted); font-size:.92rem; text-align:right; }
+
+    .card{
+      background: linear-gradient(180deg, rgba(255,255,255,0.02), rgba(0,0,0,0.03));
+      border:1px solid rgba(255,77,77,0.08);
+      box-shadow:0 8px 30px rgba(0,0,0,0.55);
+      border-radius:var(--radius);
+      padding:24px;
+    }
+
+    .meta-row{
+      display:flex;
+      justify-content:space-between;
+      align-items:flex-start;
+      flex-wrap:wrap;
+      gap:20px;
+    }
+
+    .meta{ display:flex; gap:.5rem; flex-wrap:wrap; margin-top:12px; }
+    .tag{
+      background:rgba(255,77,77,0.08);
+      border:1px solid rgba(255,77,77,0.28);
+      padding:.25rem .65rem;
+      border-radius:999px;
+      color:var(--accent);
+      font-weight:700; font-size:.82rem;
+    }
+    .status{
+      background:rgba(0,255,150,0.05);
+      padding:.25rem .6rem;
+      border-radius:8px;
+      font-weight:700; color:#c3fadc;
+      font-size:.85rem;
+    }
+
+    .author-block{
+      text-align:right;
+      min-width:140px;
+    }
+    .author-label{ color:var(--muted); font-size:.85rem; }
+    .author-name{ font-weight:700; font-size:1rem; margin-top:2px; }
+
+    h2{ margin-top:10px; color:#fff; font-size:1.35rem; }
+    h3{ margin-top:18px; color:#fff; }
+
+    .grid{
+      display:grid;
+      grid-template-columns: minmax(260px, 360px) 1fr;
+      gap:24px;
+      align-items:start;
+    }
+    .full{ grid-column:1 / -1; }
+
+    /* ↓↓↓ Smaller images (85% width) ↓↓↓ */
+    .img{
+      width:85%;
+      margin:12px auto;
+      display:block;
+      border-radius:10px;
+      background:#111;
+      padding:6px;
+      border:1px solid rgba(255,255,255,0.04);
+      box-shadow:0 12px 30px rgba(0,0,0,0.55);
+    }
+
+    .renders img{
+      width:85%;
+      margin:12px auto;
+      display:block;
+      border-radius:10px;
+    }
+
+    .caption{ color:var(--muted); font-size:.88rem; margin-bottom:20px; text-align:center; }
+
+    .note{
+      border-left:4px solid var(--accent);
+      background:rgba(255,77,77,0.05);
+      padding:10px 14px;
+      border-radius:8px;
+      margin:14px 0;
+      color:#ffdcdc;
+      font-size:.95rem;
+    }
+
+    @media(max-width:880px){
+      .grid{ grid-template-columns:1fr; }
+    }
+  </style>
+</head>
+
+<body>
+<div class="page">
+
+<header>
+  <h1>Blender Project — Neuro-Sama Lamp</h1>
+  <div class="timestamp">2025-11-20 19:19</div>
+</header>
+
+<article class="card">
+
+  <div class="meta-row">
+
+    <div>
+      <div style="color:var(--muted); font-size:.92rem;">Tags</div>
+      <div class="meta">
+        <span class="tag">Blender-3D</span>
+        <span class="tag">Art</span>
+        <span class="tag">3D-Projects</span>
+        <span class="status">New</span>
+      </div>
+    </div>
+
+    <div class="author-block">
+      <div class="author-label">Author</div>
+      <div class="author-name">AriDeltaO</div>
+    </div>
+
+  </div>
+
+  <hr style="border:none;border-top:1px solid rgba(255,255,255,0.06);margin:18px 0">
+
+  <section class="grid">
+
+    <!-- Intro Section -->
+    <div>
+      <h2>Intro</h2>
+      <p>
+        The idea for this project came from a fan art piece by <b>Nyawame</b> that I found on the Neuro-sama Discord server. The artwork showed Neuro inside a lava lamp. It was a fun idea, and I wanted to recreate it in Blender.
+      </p>
+
+      <div class="note">
+        This is the original artwork that inspired the project.
+      </div>
+
+      <img class="img" src="Orginal Art.webp" alt="Original Art">
+      <div class="caption">Fan art by Nyawame.</div>
+    </div>
+
+    <!-- Concept Board -->
+    <div>
+      <h3>Concept Board</h3>
+      <p>
+        Most of the references came from a single website. The base of the lamp was easy to model since it was mainly a circular form with simple bevels and clean edges.
+      </p>
+
+      <img class="img" src="Concept Board.webp" alt="Concept Board">
+      <div class="caption">Reference board for proportion and shapes.</div>
+    </div>
+
+    <!-- Modeling Notes -->
+    <div class="full">
+      <h3>Notes on Modeling</h3>
+
+      <p>
+        Getting the proportions right mattered more than the complexity. I imported one of the references as a plane and resized the model until it followed the silhouette closely.
+      </p>
+
+      <p>
+        Texturing was not a priority. I used simple cutouts from the references. Since the final scene depended on strong lighting and solid colors, detailed textures would have broken the look.
+      </p>
+
+      <p>
+        For the glass material, I set the IOR to <b>1.333</b>. This value is close to water and helped reduce distortion so Neuro would stay visible inside the lamp.
+      </p>
+
+      <p>
+        The lava effect uses metaballs with a soft volumetric emission shader. I moved them slightly until the shapes floated in a natural way.
+      </p>
+
+      <p>
+        The red fading background is a single plane with a diffuse shader scaled behind the setup.
+      </p>
+    </div>
+
+  </section>
+
+  <hr style="border:none;border-top:1px solid rgba(255,255,255,0.06);margin:18px 0">
+
+  <!-- Initial Renders -->
+  <section>
+    <h2>Initial Renders</h2>
+    <p>
+      These were early lighting tests. I played with the colors until the lamp, background and character blended well.
+    </p>
+
+    <img class="img" src="initial Renders.webp" alt="Initial Renders">
+    <div class="caption">Early lighting adjustments.</div>
+  </section>
+
+  <hr style="border:none;border-top:1px solid rgba(255,255,255,0.06);margin:18px 0">
+
+  <!-- Final Renders -->
+  <section>
+    <h2>Final Renders</h2>
+    <p>
+      The final scene includes the Neuro-sama logo and a simple base created in Canva. The lighting and colors were refined to give the lamp a strong glowing look.
+    </p>
+
+    <div class="renders">
+      <img src="Final Renders.webp" alt="Final Renders">
+    </div>
+  </section>
+
+</article>
+</div>
+</body>
+</html>
