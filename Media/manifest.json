@@ -73,5 +73,17 @@
       "Media/Project_6/PNGs/1.webp",
       "Media/Project_6/PNGs/2.webp"
     ]
+  },
+  {
+    "id": "Project_7",
+    "title": "Project 7",
+    "tags": [],
+    "summary": "A basic interior design project.",
+    "images": [
+      "Media/Project_7/PNGs/blender-06.webp",
+      "Media/Project_7/PNGs/blender-02.webp",
+      "Media/Project_7/PNGs/blender-01.webp"
+    ]
   }
 ]
+
