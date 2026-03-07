@@ -93,5 +93,16 @@
       "Media/Project_8/PNGs/4-thumb.webp",
       "Media/Project_8/PNGs/5-thumb.webp"
     ]
+  },
+  {
+    "id": "Project_9",
+    "title": "Space Megastructure",
+    "tags": [],
+    "summary": "A Sci-Fi space mega-structure. Original concept.",
+    "images": [
+      "Media/Project_9/PNGs/blender-01.png",
+      "Media/Project_9/PNGs/Blender-02.png",
+      "Media/Project_9/PNGs/Blender-03.png"
+    ]
   }
 ]
