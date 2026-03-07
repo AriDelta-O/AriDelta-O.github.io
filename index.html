@@ -57,6 +57,11 @@
       <a href="#contact" class="btn ghost hero-btn">Get in touch</a>
     </div>
   </div>
+  <!-- Scroll indicator -->
+  <a href="#main-content" class="hero-scroll" aria-label="Scroll down">
+    <span class="hero-scroll-line"></span>
+    <svg viewBox="0 0 16 16" fill="none" aria-hidden="true"><path d="M8 3v10M3 8l5 5 5-5" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg>
+  </a>
 </section>
 
 <main id="main-content">
@@ -72,7 +77,10 @@
 
 <section id="projects" class="section">
   <div class="projects-header">
-    <h2 style="margin:0 0.5rem 0 0">Projects</h2>
+    <div style="display:flex;align-items:baseline;gap:.6rem;margin:0 0.5rem 0 0">
+      <h2 style="margin:0">Projects</h2>
+      <span id="projectCount" class="project-count"></span>
+    </div>
 
     <div class="search" style="max-width:420px;">
       <input id="projectSearch" placeholder="Search projects or descriptions…" autocomplete="off" aria-label="Search projects" />
@@ -84,6 +92,9 @@
       <button id="sortAlpha">Sort A→Z</button>
     </div>
   </div>
+
+  <!-- Category filter chips — populated by JS -->
+  <div id="categoryFilters" class="category-chips" role="group" aria-label="Filter by category"></div>
 
   <div id="skeletons" class="projects" aria-hidden="true">
     <div class="card"><div class="skeleton"></div></div>
@@ -135,9 +146,15 @@
   <img id="lightboxImg2" src="" alt="Project preview" style="display:none;" />
   <div class="controls">
     <button id="lbPrev" class="lb-btn" aria-label="Previous image">← Prev</button>
+    <span id="lbCounter" class="lb-counter" aria-live="polite"></span>
     <button id="lbNext" class="lb-btn" aria-label="Next image">Next →</button>
   </div>
 </div>
+
+<!-- SCROLL TO TOP -->
+<button id="scrollTop" class="scroll-top" aria-label="Scroll to top" title="Back to top">
+  <svg viewBox="0 0 16 16" fill="none" aria-hidden="true"><path d="M8 13V3M3 8l5-5 5 5" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg>
+</button>
 
 <script src="script.js"></script>
 

@@ -89,6 +89,8 @@ nav a{
   margin-left: 1.2rem;
   font-weight:600;
   transition: color var(--transition);
+  position: relative;
+  overflow: visible;
 }
 nav a:hover{ color: #ff7777; }
 nav a:focus-visible{ outline: 2px solid var(--accent); outline-offset: 3px; border-radius: 3px; }
@@ -610,3 +612,166 @@ body.light .hero-sub{ color: rgba(0,0,0,0.6); }
 
 a[target="_blank"]{ text-decoration:underline; }
 /* End of file */
+
+/* --------------------------
+   Hero scroll indicator
+   -------------------------- */
+.hero-scroll{
+  position: absolute;
+  bottom: 2rem;
+  left: 50%;
+  transform: translateX(-50%);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: .35rem;
+  color: rgba(255,255,255,0.45);
+  text-decoration: none;
+  animation: scrollBob 2.2s ease-in-out infinite;
+  transition: color .25s;
+}
+.hero-scroll:hover{ color: rgba(255,255,255,0.8); }
+.hero-scroll-line{
+  width: 1px;
+  height: 28px;
+  background: currentColor;
+  display: block;
+}
+.hero-scroll svg{ width: 16px; height: 16px; }
+@keyframes scrollBob{
+  0%, 100%{ transform: translateX(-50%) translateY(0); opacity: .45; }
+  50%{ transform: translateX(-50%) translateY(6px); opacity: .8; }
+}
+
+/* --------------------------
+   Project count badge
+   -------------------------- */
+.project-count{
+  font-size: .82rem;
+  font-weight: 600;
+  color: var(--muted);
+  background: rgba(255,255,255,0.05);
+  border: 1px solid var(--neutral-border);
+  border-radius: 999px;
+  padding: .15rem .6rem;
+  letter-spacing: .04em;
+  transition: opacity .25s;
+}
+body.light .project-count{
+  background: rgba(0,0,0,0.04);
+  border-color: rgba(0,0,0,0.09);
+  color: #666;
+}
+
+/* --------------------------
+   Category filter chips
+   -------------------------- */
+.category-chips{
+  display: flex;
+  flex-wrap: wrap;
+  gap: .45rem;
+  margin-bottom: 1rem;
+}
+.chip{
+  padding: .3rem .75rem;
+  border-radius: 999px;
+  background: transparent;
+  border: 1px solid var(--neutral-border);
+  color: var(--muted);
+  font-weight: 600;
+  font-size: .8rem;
+  cursor: pointer;
+  transition: background-color .2s, border-color .2s, color .2s;
+  letter-spacing: .03em;
+}
+.chip:hover:not(.active){ background: var(--neutral-hover); color: #eee; }
+.chip.active{
+  background: var(--accent-dim);
+  border-color: var(--accent);
+  color: var(--accent);
+}
+.chip:focus-visible{ outline: 2px solid var(--accent); outline-offset: 3px; }
+
+body.light .chip{ border-color: rgba(0,0,0,0.1); color: #555; }
+body.light .chip:hover:not(.active){ background: rgba(0,0,0,0.04); color: #111; }
+body.light .chip.active{ background: rgba(255,77,77,0.08); border-color: var(--accent); color: var(--accent); }
+
+/* --------------------------
+   Card entrance animation
+   Use .card-entering class added/removed by JS so the
+   animation never fights the JS tilt transform.
+   -------------------------- */
+@keyframes cardIn{
+  from{ opacity: 0; transform: translateY(22px) scale(0.97); }
+  to{   opacity: 1; transform: translateY(0)    scale(1); }
+}
+.card.card-entering{
+  animation: cardIn .42s cubic-bezier(.22,.9,.36,1) both;
+  animation-delay: calc(var(--i, 0) * 55ms);
+}
+
+/* --------------------------
+   Active nav link
+   -------------------------- */
+nav a.nav-active{ color: var(--accent); }
+nav a.nav-active::after{
+  content: '';
+  position: absolute;
+  bottom: -4px;
+  left: 0; right: 0;
+  height: 2px;
+  background: var(--accent);
+  border-radius: 2px;
+  transform-origin: left center;
+  animation: navUnderline .25s cubic-bezier(.22,.9,.36,1) forwards;
+}
+@keyframes navUnderline{
+  from{ transform: scaleX(0); opacity: 0; }
+  to{   transform: scaleX(1); opacity: 1; }
+}
+
+/* --------------------------
+   Lightbox counter
+   -------------------------- */
+.lb-counter{
+  font-size: .88rem;
+  font-weight: 600;
+  color: rgba(255,255,255,0.6);
+  min-width: 3rem;
+  text-align: center;
+  letter-spacing: .06em;
+  align-self: center;
+}
+
+/* --------------------------
+   Scroll-to-top button
+   -------------------------- */
+.scroll-top{
+  position: fixed;
+  bottom: 2rem;
+  right: 2rem;
+  width: 42px;
+  height: 42px;
+  border-radius: 50%;
+  background: var(--accent);
+  border: none;
+  color: #fff;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  box-shadow: 0 4px 16px rgba(255,77,77,0.4);
+  opacity: 0;
+  pointer-events: none;
+  transform: translateY(12px);
+  transition: opacity .3s, transform .3s, background-color .2s;
+  z-index: 200;
+}
+.scroll-top.visible{
+  opacity: 1;
+  pointer-events: auto;
+  transform: translateY(0);
+}
+.scroll-top:hover{ background: var(--accent-600); }
+.scroll-top:focus-visible{ outline: 2px solid #fff; outline-offset: 3px; }
+.scroll-top svg{ width: 18px; height: 18px; }
