@@ -4,15 +4,11 @@
     "title": "WIP",
     "tags": ["wip"],
     "summary": "Current works-in-progress showing my latest modeling studies.",
-    "images": [
-      "Media/WIP/PNGs/1-thumb.webp",
-      "Media/WIP/PNGs/2-thumb.webp",
-      "Media/WIP/PNGs/3-thumb.webp"
-    ]
+    "images": []
   },
   {
     "id": "Project_1",
-    "title": "Project 1",
+    "title": "Mechanical Joints",
     "tags": [],
     "summary": "Hard-surface modeling study, focused on mechanical joints.",
     "images": [
@@ -23,7 +19,7 @@
   },
   {
     "id": "Project_2",
-    "title": "Project 2",
+    "title": "Medieval Contest",
     "tags": [],
     "summary": "A medieval based render I made for a contest. References taken completely from my head :)",
     "images": [
@@ -33,7 +29,7 @@
   },
   {
     "id": "Project_3",
-    "title": "Project 3",
+    "title": "Sci-Fi Shop",
     "tags": [],
     "summary": "A Sci-Fi shop, forever WIP.",
     "images": [
@@ -43,7 +39,7 @@
   },
   {
     "id": "Project_4",
-    "title": "Project 4",
+    "title": "Vedal Mech Suit",
     "tags": [],
     "summary": "A mech bot based on Vedal987, design taken from a 2D fan-art.",
     "images": [
@@ -56,9 +52,9 @@
   },
   {
     "id": "Project_5",
-    "title": "Project 5",
+    "title": "Neuro-sama",
     "tags": [],
-    "summary": "A fan-art of Neuro-sama, original designa and concept. Model taken from Setch-Fab.",
+    "summary": "A fan-art of Neuro-sama, original design and concept. Model taken from Setch-Fab.",
     "images": [
       "Media/Project_5/PNGs/Render-thumb.webp",
       "Media/Project_5/PNGs/Clay-thumb.webp"
@@ -66,9 +62,9 @@
   },
   {
     "id": "Project_6",
-    "title": "Project 6",
+    "title": "Lava Lamp",
     "tags": [],
-    "summary": "A stylized fan-art of the Neuro-sama Lava Lamp",
+    "summary": "A stylized fan-art of the Neuro-sama Lava Lamp.",
     "images": [
       "Media/Project_6/PNGs/1.webp",
       "Media/Project_6/PNGs/2.webp"
@@ -76,7 +72,7 @@
   },
   {
     "id": "Project_7",
-    "title": "Project 7",
+    "title": "Interior",
     "tags": [],
     "summary": "A basic interior design project.",
     "images": [
@@ -84,6 +80,18 @@
       "Media/Project_7/PNGs/blender-02.webp",
       "Media/Project_7/PNGs/blender-01.webp"
     ]
+  },
+  {
+    "id": "Project_8",
+    "title": "Humanoid",
+    "tags": [],
+    "summary": "A humanoid design. Original concept.",
+    "images": [
+      "Media/Project_8/PNGs/1-thumb.webp",
+      "Media/Project_8/PNGs/2-thumb.webp",
+      "Media/Project_8/PNGs/3-thumb.webp",
+      "Media/Project_8/PNGs/4-thumb.webp",
+      "Media/Project_8/PNGs/5-thumb.webp"
+    ]
   }
 ]
-
