@@ -5,30 +5,61 @@
   <meta name="viewport" content="width=device-width,initial-scale=1" />
   <title>AriDeltaO — Portfolio</title>
 
-  <!-- Inter font -->
-  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;700&display=swap" rel="stylesheet">
+  <!-- SEO & OG -->
+  <meta name="description" content="AriDeltaO — 3D artist & hobbyist developer specialising in hard-surface models and stylised fan-art." />
+  <meta property="og:title" content="AriDeltaO — Portfolio" />
+  <meta property="og:description" content="3D artist & hobbyist developer. Hard-surface modelling, abstract and stylised fan-art." />
+  <meta property="og:type" content="website" />
+  <meta property="og:url" content="https://arideltao.github.io/" />
+  <!-- Swap the content value below for a real preview image once you have one -->
+  <meta property="og:image" content="https://arideltao.github.io/Media/Project_4/PNGs/blender-01-thumb.webp" />
+  <meta name="twitter:card" content="summary_large_image" />
+  <meta name="twitter:site" content="@AriDeltaO" />
+  <meta name="twitter:title" content="AriDeltaO — Portfolio" />
+  <meta name="twitter:description" content="3D artist & hobbyist developer. Hard-surface modelling, abstract and stylised fan-art." />
+  <meta name="twitter:image" content="https://arideltao.github.io/Media/Project_4/PNGs/blender-01-thumb.webp" />
 
-  <!-- External CSS -->
+  <!-- Fonts: DM Sans for body, Syne for display headings -->
+  <link href="https://fonts.googleapis.com/css2?family=DM+Sans:opsz,wght@9..40,300;9..40,400;9..40,500;9..40,600&family=Syne:wght@600;700;800&display=swap" rel="stylesheet">
+
   <link rel="stylesheet" href="style.css">
 </head>
 <body>
 
+<a href="#main-content" class="skip-link">Skip to main content</a>
+
 <header>
   <h1>AriDeltaO</h1>
   <div style="display:flex;align-items:center;gap:1rem">
-    <nav>
+    <nav aria-label="Primary navigation">
       <a href="#about">About</a>
       <a href="#projects">Projects</a>
       <a href="#contact">Contact</a>
     </nav>
-    <button id="themeToggle">🌙</button>
+    <button id="themeToggle" aria-label="Toggle light/dark theme">🌙</button>
   </div>
 </header>
 
-<section class="hero">
-  <h2>Hello, I'm AriDeltaO</h2>
-  <p>A developer & 3D artist — I build clean, modern visual experiences.</p>
+<!-- ── HERO ──────────────────────────────────────────────── -->
+<section class="hero" aria-label="Introduction">
+  <div class="hero-bg" aria-hidden="true">
+    <div class="hero-orb hero-orb--1"></div>
+    <div class="hero-orb hero-orb--2"></div>
+    <div class="hero-orb hero-orb--3"></div>
+    <div class="hero-grain"></div>
+  </div>
+  <div class="hero-content">
+    <p class="hero-eyebrow">3D Artist &amp; Hobbyist Developer</p>
+    <h2 class="hero-title">Hello, I'm&nbsp;<span class="hero-name">AriDeltaO</span></h2>
+    <p class="hero-sub">I build clean, modern visual experiences — hard-surface models, stylised fan-art, and the occasional creative dev experiment.</p>
+    <div class="hero-cta">
+      <a href="#projects" class="btn hero-btn">View Projects</a>
+      <a href="#contact" class="btn ghost hero-btn">Get in touch</a>
+    </div>
+  </div>
 </section>
+
+<main id="main-content">
 
 <section id="about" class="section">
   <h2>About Me</h2>
@@ -44,17 +75,17 @@
     <h2 style="margin:0 0.5rem 0 0">Projects</h2>
 
     <div class="search" style="max-width:420px;">
-      <input id="projectSearch" placeholder="Search projects or descriptions..." autocomplete="off" />
+      <input id="projectSearch" placeholder="Search projects or descriptions…" autocomplete="off" aria-label="Search projects" />
     </div>
 
     <div class="filters" style="margin-left:auto">
-      <button id="filterAll" class="active">All</button>
-      <button id="filterWIP">WIP</button>
+      <button id="filterAll" class="active" aria-pressed="true">All</button>
+      <button id="filterWIP" aria-pressed="false">WIP</button>
       <button id="sortAlpha">Sort A→Z</button>
     </div>
   </div>
 
-  <div id="skeletons" class="projects">
+  <div id="skeletons" class="projects" aria-hidden="true">
     <div class="card"><div class="skeleton"></div></div>
     <div class="card"><div class="skeleton"></div></div>
     <div class="card"><div class="skeleton"></div></div>
@@ -62,7 +93,7 @@
     <div class="card"><div class="skeleton"></div></div>
   </div>
 
-  <div id="projectsContainer" class="projects" style="display:none"></div>
+  <div id="projectsContainer" class="projects" style="display:none" role="list" aria-live="polite" aria-label="Projects grid"></div>
 </section>
 
 <section id="contact" class="section">
@@ -70,43 +101,44 @@
   <div class="contact-row">
 
     <div class="icon-link">
-      <svg class="icon-sprite" viewBox="0 0 24 24">
+      <svg class="icon-sprite" viewBox="0 0 24 24" aria-hidden="true" focusable="false">
         <path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm1 17.93c-2.83.48-5.44-.3-7.47-1.93-.39-.31-.48-.88-.21-1.3.27-.41.79-.54 1.22-.31 1.74 1 3.81 1.39 5.88.99 2.07-.4 3.9-1.62 5.12-3.39.26-.39.77-.53 1.2-.34.43.19.67.66.57 1.12-1.02 2.84-3.57 5.04-6.86 5.16v-.01z"/>
       </svg>
-      <a href="#" style="text-decoration:none;color:inherit;font-weight:600">Discord: ari_69001</a>
+      <span style="font-weight:600">Discord: ari_69001</span>
     </div>
 
     <div class="icon-link">
-      <svg class="icon-sprite" viewBox="0 0 24 24">
+      <svg class="icon-sprite" viewBox="0 0 24 24" aria-hidden="true" focusable="false">
         <path d="M10 15l5.19-3L10 9v6zm12-3c0 5.52-4.48 10-10 10S2 17.52 2 12 6.48 2 12 2s10 4.48 10 10z"/>
       </svg>
-      <a href="https://www.youtube.com/@AriDeltaO" target="_blank" style="text-decoration:none;color:inherit;font-weight:600">YouTube</a>
+      <a href="https://www.youtube.com/@AriDeltaO" target="_blank" rel="noopener noreferrer" style="text-decoration:none;color:inherit;font-weight:600">YouTube</a>
     </div>
 
     <div class="icon-link">
-      <svg class="icon-sprite" viewBox="0 0 24 24">
+      <svg class="icon-sprite" viewBox="0 0 24 24" aria-hidden="true" focusable="false">
         <path d="M22.46 6c-.77.35-1.6.58-2.46.69a4.3 4.3 0 001.88-2.37 8.59 8.59 0 01-2.72 1.04A4.28 4.28 0 0016.11 4c-2.37 0-4.29 1.92-4.29 4.29 0 .34.04.67.11.98-3.57-.18-6.74-1.89-8.86-4.49a4.28 4.28 0 00-.58 2.16c0 1.49.76 2.8 1.92 3.57a4.23 4.23 0 01-1.94-.54v.05c0 2.08 1.48 3.82 3.44 4.22-.36.1-.74.15-1.13.15-.28 0-.55-.03-.82-.08.55 1.72 2.15 2.97 4.06 3a8.6 8.6 0 01-5.32 1.84c-.35 0-.69-.02-1.03-.06A12.14 12.14 0 008.29 21c7.88 0 12.2-6.53 12.2-12.2l-.01-.56A8.63 8.63 0 0022.46 6z"/>
       </svg>
-      <a href="https://x.com/AriDeltaO" target="_blank" style="text-decoration:none;color:inherit;font-weight:600">Twitter / X</a>
+      <a href="https://x.com/AriDeltaO" target="_blank" rel="noopener noreferrer" style="text-decoration:none;color:inherit;font-weight:600">Twitter / X</a>
     </div>
 
   </div>
 </section>
 
+</main>
+
 <footer>© 2025 AriDeltaO — hosted via GitHub Pages</footer>
 
 <!-- LIGHTBOX -->
-<div id="lightbox" aria-hidden="true">
-  <button id="lbClose" class="lb-btn" style="position:absolute;top:2rem;right:2rem">Close</button>
-  <img id="lightboxImg1" src="" alt="Preview" />
-  <img id="lightboxImg2" src="" alt="Preview" style="display:none;" />
+<div id="lightbox" role="dialog" aria-modal="true" aria-label="Image lightbox" aria-hidden="true">
+  <button id="lbClose" class="lb-btn" style="position:absolute;top:2rem;right:2rem" aria-label="Close lightbox">✕ Close</button>
+  <img id="lightboxImg1" src="" alt="Project preview" />
+  <img id="lightboxImg2" src="" alt="Project preview" style="display:none;" />
   <div class="controls">
-    <button id="lbPrev" class="lb-btn">Prev</button>
-    <button id="lbNext" class="lb-btn">Next</button>
+    <button id="lbPrev" class="lb-btn" aria-label="Previous image">← Prev</button>
+    <button id="lbNext" class="lb-btn" aria-label="Next image">Next →</button>
   </div>
 </div>
 
-<!-- External JS -->
 <script src="script.js"></script>
 
 </body>

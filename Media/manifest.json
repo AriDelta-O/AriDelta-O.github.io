@@ -3,14 +3,18 @@
     "id": "WIP",
     "title": "WIP",
     "tags": ["wip"],
+    "category": "Work in Progress",
     "summary": "Current works-in-progress showing my latest modeling studies.",
+    "hasBreakdown": false,
     "images": []
   },
   {
     "id": "Project_1",
     "title": "Mechanical Joints",
     "tags": [],
+    "category": "Hard Surface",
     "summary": "Hard-surface modeling study, focused on mechanical joints.",
+    "hasBreakdown": true,
     "images": [
       "Media/Project_1/PNGs/Final-thumb.webp",
       "Media/Project_1/PNGs/Leg-thumb.webp",
@@ -21,7 +25,9 @@
     "id": "Project_2",
     "title": "Medieval Contest",
     "tags": [],
+    "category": "Hard Surface",
     "summary": "A medieval based render I made for a contest. References taken completely from my head :)",
+    "hasBreakdown": false,
     "images": [
       "Media/Project_2/PNGs/Final-thumb.webp",
       "Media/Project_2/PNGs/Clay-thumb.webp"
@@ -31,7 +37,9 @@
     "id": "Project_3",
     "title": "Sci-Fi Shop",
     "tags": [],
+    "category": "Environment",
     "summary": "A Sci-Fi shop, forever WIP.",
+    "hasBreakdown": false,
     "images": [
       "Media/Project_3/PNGs/Final-thumb.webp",
       "Media/Project_3/PNGs/Clay-thumb.webp"
@@ -41,7 +49,9 @@
     "id": "Project_4",
     "title": "Vedal Mech Suit",
     "tags": [],
+    "category": "Fan Art",
     "summary": "A mech bot based on Vedal987, design taken from a 2D fan-art.",
+    "hasBreakdown": true,
     "images": [
       "Media/Project_4/PNGs/blender-01-thumb.webp",
       "Media/Project_4/PNGs/blender-02-thumb.webp",
@@ -54,7 +64,9 @@
     "id": "Project_5",
     "title": "Neuro-sama",
     "tags": [],
+    "category": "Fan Art",
     "summary": "A fan-art of Neuro-sama, original design and concept. Model taken from Setch-Fab.",
+    "hasBreakdown": true,
     "images": [
       "Media/Project_5/PNGs/Render-thumb.webp",
       "Media/Project_5/PNGs/Clay-thumb.webp"
@@ -64,7 +76,9 @@
     "id": "Project_6",
     "title": "Lava Lamp",
     "tags": [],
+    "category": "Stylised",
     "summary": "A stylized fan-art of the Neuro-sama Lava Lamp.",
+    "hasBreakdown": true,
     "images": [
       "Media/Project_6/PNGs/1.webp",
       "Media/Project_6/PNGs/2.webp"
@@ -74,7 +88,9 @@
     "id": "Project_7",
     "title": "Interior",
     "tags": [],
+    "category": "Environment",
     "summary": "A basic interior design project.",
+    "hasBreakdown": false,
     "images": [
       "Media/Project_7/PNGs/blender-06.webp",
       "Media/Project_7/PNGs/blender-02.webp",
@@ -85,7 +101,9 @@
     "id": "Project_8",
     "title": "Humanoid",
     "tags": [],
+    "category": "Character",
     "summary": "A humanoid design. Original concept.",
+    "hasBreakdown": false,
     "images": [
       "Media/Project_8/PNGs/1-thumb.webp",
       "Media/Project_8/PNGs/2-thumb.webp",
@@ -98,7 +116,9 @@
     "id": "Project_9",
     "title": "Space Megastructure",
     "tags": [],
+    "category": "Sci-Fi",
     "summary": "A Sci-Fi space mega-structure. Original concept.",
+    "hasBreakdown": false,
     "images": [
       "Media/Project_9/PNGs/blender-01.png",
       "Media/Project_9/PNGs/Blender-02.png",
