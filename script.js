@@ -345,6 +345,7 @@ document.addEventListener("DOMContentLoaded", () => {
     openBtn.addEventListener("click", () => {
       const isOpen = details.classList.toggle("open");
       openBtn.setAttribute("aria-expanded", String(isOpen));
+      openBtn.textContent = isOpen ? "Close" : "Open";
     });
 
     details.append(textBlock, strip);
@@ -367,25 +368,36 @@ document.addEventListener("DOMContentLoaded", () => {
 
     categoryFilters.innerHTML = "";
 
+    // "All" chip always first
+    const allChip = document.createElement("button");
+    allChip.className   = "chip chip-all active";
+    allChip.textContent = "All";
+    allChip.setAttribute("aria-pressed", "true");
+    allChip.addEventListener("click", () => {
+      activeCategory = null;
+      categoryFilters.querySelectorAll(".chip").forEach(c => {
+        c.classList.remove("active");
+        c.setAttribute("aria-pressed", "false");
+      });
+      allChip.classList.add("active");
+      allChip.setAttribute("aria-pressed", "true");
+      applyFilters();
+    });
+    categoryFilters.appendChild(allChip);
+
     categories.forEach(cat => {
       const chip = document.createElement("button");
       chip.className   = "chip";
       chip.textContent = cat;
       chip.setAttribute("aria-pressed", "false");
       chip.addEventListener("click", () => {
-        if (activeCategory === cat) {
-          activeCategory = null;
-          chip.classList.remove("active");
-          chip.setAttribute("aria-pressed", "false");
-        } else {
-          activeCategory = cat;
-          categoryFilters.querySelectorAll(".chip").forEach(c => {
-            c.classList.remove("active");
-            c.setAttribute("aria-pressed", "false");
-          });
-          chip.classList.add("active");
-          chip.setAttribute("aria-pressed", "true");
-        }
+        activeCategory = cat;
+        categoryFilters.querySelectorAll(".chip").forEach(c => {
+          c.classList.remove("active");
+          c.setAttribute("aria-pressed", "false");
+        });
+        chip.classList.add("active");
+        chip.setAttribute("aria-pressed", "true");
         applyFilters();
       });
       categoryFilters.appendChild(chip);
@@ -435,6 +447,37 @@ document.addEventListener("DOMContentLoaded", () => {
     skeletons.style.display  = "none";
     container.style.display  = "grid";
     container.innerHTML      = "";
+
+    if (list.length === 0) {
+      container.innerHTML = `
+        <div class="no-results" style="grid-column:1/-1">
+          <svg viewBox="0 0 48 48" fill="none" aria-hidden="true">
+            <circle cx="24" cy="24" r="20" stroke="currentColor" stroke-width="2" stroke-dasharray="5 4"/>
+            <path d="M16 24h16M24 16v16" stroke="currentColor" stroke-width="2" stroke-linecap="round" transform="rotate(45 24 24)"/>
+          </svg>
+          <p>No projects match your search.</p>
+          <button class="btn ghost" id="clearSearch">Clear filters</button>
+        </div>`;
+      document.getElementById("clearSearch").addEventListener("click", () => {
+        searchInput.value = "";
+        searchTerm = "";
+        activeCategory = null;
+        currentFilter = "all";
+        filterAllBtn.classList.add("active");
+        filterAllBtn.setAttribute("aria-pressed", "true");
+        filterWIPBtn.classList.remove("active");
+        filterWIPBtn.setAttribute("aria-pressed", "false");
+        categoryFilters.querySelectorAll(".chip").forEach(c => {
+          c.classList.remove("active");
+          c.setAttribute("aria-pressed", "false");
+        });
+        // Reset "All" chip
+        const allChip = categoryFilters.querySelector(".chip-all");
+        if (allChip) { allChip.classList.add("active"); allChip.setAttribute("aria-pressed", "true"); }
+        applyFilters();
+      });
+      return;
+    }
 
     const frag = document.createDocumentFragment();
     list.forEach((p, i) => frag.appendChild(buildCard(p, i)));
@@ -492,6 +535,10 @@ document.addEventListener("DOMContentLoaded", () => {
       container.innerHTML     = `<p style="color:var(--muted);grid-column:1/-1">Could not load projects. Please try refreshing.</p>`;
     }
   }
+
+  // Footer year
+  const footerYear = document.getElementById('footerYear');
+  if (footerYear) footerYear.textContent = new Date().getFullYear();
 
   loadProjects();
 });
