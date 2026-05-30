@@ -1,0 +1,233 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <title>AriDeltaO — Portfolio</title>
+
+  <!-- SEO & OG -->
+  <meta name="description" content="AriDeltaO — 3D artist & hobbyist developer specialising in hard-surface models and stylised fan-art." />
+  <meta property="og:title" content="AriDeltaO — Portfolio" />
+  <meta property="og:description" content="3D artist & hobbyist developer. Hard-surface modelling, abstract and stylised fan-art." />
+  <meta property="og:type" content="website" />
+  <meta property="og:url" content="https://arideltao.github.io/" />
+  <!-- Swap the content value below for a real preview image once you have one -->
+  <meta property="og:image" content="https://arideltao.github.io/Media/Mech/PNGs/final-thumb.webp" />
+  <meta name="twitter:card" content="summary_large_image" />
+  <meta name="twitter:site" content="@AriDeltaO" />
+  <meta name="twitter:title" content="AriDeltaO — Portfolio" />
+  <meta name="twitter:description" content="3D artist & hobbyist developer. Hard-surface modelling, abstract and stylised fan-art." />
+  <meta name="twitter:image" content="https://arideltao.github.io/Media/Mech/PNGs/final-thumb.webp" />
+
+  <!-- Fonts: DM Sans for body, Syne for display headings -->
+  <link href="https://fonts.googleapis.com/css2?family=DM+Sans:opsz,wght@9..40,300;9..40,400;9..40,500;9..40,600&family=Syne:wght@600;700;800&display=swap" rel="stylesheet">
+
+  <!-- Favicon -->
+  <link rel="icon" type="image/svg+xml" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'%3E%3Crect width='32' height='32' rx='7' fill='%230d0d0f'/%3E%3Cpolygon points='16,5 29,26 3,26' fill='none' stroke='%23ff4d4d' stroke-width='2.2' stroke-linejoin='round'/%3E%3Cline x1='9' y1='26' x2='23' y2='26' stroke='%23ff4d4d' stroke-width='2.2' stroke-linecap='round'/%3E%3C/svg%3E">
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+<a href="#main-content" class="skip-link">Skip to main content</a>
+
+<header>
+  <h1>AriDeltaO</h1>
+  <div style="display:flex;align-items:center;gap:1rem">
+    <nav aria-label="Primary navigation">
+      <a href="#about">About</a>
+      <a href="#pro-work">Pro Work</a>
+      <a href="#hobby-projects">Hobby Projects</a>
+      <a href="#contact">Contact</a>
+    </nav>
+    <button id="themeToggle" aria-label="Toggle light/dark theme">🌙</button>
+  </div>
+</header>
+
+<!-- ── HERO ──────────────────────────────────────────────── -->
+<section class="hero" aria-label="Introduction">
+  <div class="hero-bg" aria-hidden="true">
+    <div class="hero-orb hero-orb--1"></div>
+    <div class="hero-orb hero-orb--2"></div>
+    <div class="hero-orb hero-orb--3"></div>
+    <div class="hero-grain"></div>
+  </div>
+  <div class="hero-content">
+    <p class="hero-eyebrow">3D Artist &amp; Hobbyist Developer</p>
+    <h2 class="hero-title">Hello, I'm&nbsp;<span class="hero-name">AriDeltaO</span></h2>
+    <p class="hero-sub">I build clean, modern visual experiences — hard-surface models, stylised fan-art, and the occasional creative dev experiment.</p>
+    <div class="hero-cta">
+      <a href="#pro-work" class="btn hero-btn">View Projects</a>
+      <a href="#contact" class="btn ghost hero-btn">Get in touch</a>
+    </div>
+  </div>
+  <!-- Scroll indicator -->
+  <a href="#main-content" class="hero-scroll" aria-label="Scroll down">
+    <span class="hero-scroll-line"></span>
+    <svg viewBox="0 0 16 16" fill="none" aria-hidden="true"><path d="M8 3v10M3 8l5 5 5-5" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg>
+  </a>
+</section>
+
+<main id="main-content">
+
+<section id="about" class="section reveal">
+  <h2>About Me</h2>
+  <div class="about-layout">
+    <div class="about-text">
+      <p>
+        Hey, I'm <strong>AriDeltaO</strong>. I'm a high school student and a hobbyist 3D artist who mainly does hard-surface models, stylised fan-art, and whatever else seems interesting at 2am.
+      </p>
+      <p>
+        I run <strong>Blender</strong> on a genuinely terrible low-end laptop, so every render here is a small miracle of patience and crashes. I actually started learning 3D about a year before generative AI blew up, and when it went mainstream I kind of lost motivation for a while. It's hard not to feel like "what's the point."
+      </p>
+      <p>
+        But around a year and some months ago I started getting back into the community, and that gave me the kick to pick things up again. I'm at that point now where I can finally look at my work and go "okay, this actually doesn't suck." Still a long way to go, but it's nice to feel like I'm getting somewhere.
+      </p>
+    </div>
+
+    <div class="about-skills">
+      <h3>Tools &amp; Skills</h3>
+      <div class="skills-grid">
+        <div class="skill-item">
+          <svg viewBox="0 0 24 24" fill="none" aria-hidden="true"><path d="M12 2L2 7l10 5 10-5-10-5zM2 17l10 5 10-5M2 12l10 5 10-5" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/></svg>
+          Blender
+        </div>
+        <div class="skill-item">
+          <svg viewBox="0 0 24 24" fill="none" aria-hidden="true"><path d="M4 17l6-6-6-6M12 19h8" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/></svg>
+          Substance Painter
+        </div>
+        <div class="skill-item learning">
+          <svg viewBox="0 0 24 24" fill="none" aria-hidden="true"><circle cx="12" cy="12" r="9" stroke="currentColor" stroke-width="1.8"/><path d="M12 8v5l3 2" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"/></svg>
+          ZBrush (learning)
+        </div>
+        <div class="skill-item">
+          <svg viewBox="0 0 24 24" fill="none" aria-hidden="true"><path d="M12 2L2 7l10 5 10-5-10-5zM2 17l10 5 10-5M2 12l10 5 10-5" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/></svg>
+          UV Mapping
+        </div>
+        <div class="skill-item">
+          <svg viewBox="0 0 24 24" fill="none" aria-hidden="true"><rect x="3" y="3" width="18" height="18" rx="2" stroke="currentColor" stroke-width="1.8"/><path d="M9 8h6M9 12h6M9 16h4" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"/></svg>
+          HTML / CSS / JS
+        </div>
+        <div class="skill-item">
+          <svg viewBox="0 0 24 24" fill="none" aria-hidden="true"><path d="M20.84 4.61a5.5 5.5 0 00-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 00-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 000-7.78z" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/></svg>
+          Git / GitHub
+        </div>
+        <div class="skill-item">
+          <svg viewBox="0 0 24 24" fill="none" aria-hidden="true"><rect x="2" y="3" width="20" height="14" rx="2" stroke="currentColor" stroke-width="1.8"/><path d="M8 21h8M12 17v4" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"/></svg>
+          Arch Linux
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section id="pro-work" class="section reveal">
+  <div class="projects-header">
+    <div style="display:flex;align-items:baseline;gap:.6rem;margin:0 0.5rem 0 0">
+      <h2 style="margin:0">Pro Work</h2>
+      <span id="proProjectCount" class="project-count"></span>
+    </div>
+
+    <div class="search" style="max-width:420px;">
+      <input id="proSearch" placeholder="Search projects or descriptions…" autocomplete="off" aria-label="Search pro projects" />
+    </div>
+
+    <div class="filters" style="margin-left:auto">
+      <button id="proFilterAll" class="active" aria-pressed="true">All</button>
+      <button id="proFilterWIP" aria-pressed="false">WIP</button>
+      <button id="proSortAlpha">Sort A→Z</button>
+    </div>
+  </div>
+
+  <div id="proCategoryFilters" class="category-chips" role="group" aria-label="Filter by category"></div>
+
+  <div id="proSkeletons" class="projects" aria-hidden="true">
+    <div class="card"><div class="skeleton"></div></div>
+  </div>
+  <div id="proContainer" class="projects" style="display:none" role="list" aria-live="polite" aria-label="Pro projects grid"></div>
+</section>
+
+<section id="hobby-projects" class="section reveal">
+  <div class="projects-header">
+    <div style="display:flex;align-items:baseline;gap:.6rem;margin:0 0.5rem 0 0">
+      <h2 style="margin:0">Hobby Projects</h2>
+      <span id="hobbyProjectCount" class="project-count"></span>
+    </div>
+
+    <div class="search" style="max-width:420px;">
+      <input id="hobbySearch" placeholder="Search projects or descriptions…" autocomplete="off" aria-label="Search hobby projects" />
+    </div>
+
+    <div class="filters" style="margin-left:auto">
+      <button id="hobbyFilterAll" class="active" aria-pressed="true">All</button>
+      <button id="hobbyFilterWIP" aria-pressed="false">WIP</button>
+      <button id="hobbySortAlpha">Sort A→Z</button>
+    </div>
+  </div>
+
+  <!-- Category filter chips — populated by JS -->
+  <div id="hobbyCategoryFilters" class="category-chips" role="group" aria-label="Filter by category"></div>
+
+  <div id="hobbySkeletons" class="projects" aria-hidden="true">
+    <div class="card"><div class="skeleton"></div></div>
+    <div class="card"><div class="skeleton"></div></div>
+    <div class="card"><div class="skeleton"></div></div>
+    <div class="card"><div class="skeleton"></div></div>
+    <div class="card"><div class="skeleton"></div></div>
+  </div>
+
+  <div id="hobbyContainer" class="projects" style="display:none" role="list" aria-live="polite" aria-label="Hobby projects grid"></div>
+</section>
+
+<section id="contact" class="section reveal">
+  <h2>Contact</h2>
+  <div class="contact-row">
+
+    <div class="icon-link">
+      <svg class="icon-sprite" viewBox="0 0 24 24" aria-hidden="true" focusable="false">
+        <path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm1 17.93c-2.83.48-5.44-.3-7.47-1.93-.39-.31-.48-.88-.21-1.3.27-.41.79-.54 1.22-.31 1.74 1 3.81 1.39 5.88.99 2.07-.4 3.9-1.62 5.12-3.39.26-.39.77-.53 1.2-.34.43.19.67.66.57 1.12-1.02 2.84-3.57 5.04-6.86 5.16v-.01z"/>
+      </svg>
+      <span style="font-weight:600">Discord: ari_69001</span>
+    </div>
+
+    <div class="icon-link">
+      <svg class="icon-sprite" viewBox="0 0 24 24" aria-hidden="true" focusable="false">
+        <path d="M10 15l5.19-3L10 9v6zm12-3c0 5.52-4.48 10-10 10S2 17.52 2 12 6.48 2 12 2s10 4.48 10 10z"/>
+      </svg>
+      <a href="https://www.youtube.com/@AriDeltaO" target="_blank" rel="noopener noreferrer" style="text-decoration:none;color:inherit;font-weight:600">YouTube</a>
+    </div>
+
+    <div class="icon-link">
+      <svg class="icon-sprite" viewBox="0 0 24 24" aria-hidden="true" focusable="false">
+        <path d="M22.46 6c-.77.35-1.6.58-2.46.69a4.3 4.3 0 001.88-2.37 8.59 8.59 0 01-2.72 1.04A4.28 4.28 0 0016.11 4c-2.37 0-4.29 1.92-4.29 4.29 0 .34.04.67.11.98-3.57-.18-6.74-1.89-8.86-4.49a4.28 4.28 0 00-.58 2.16c0 1.49.76 2.8 1.92 3.57a4.23 4.23 0 01-1.94-.54v.05c0 2.08 1.48 3.82 3.44 4.22-.36.1-.74.15-1.13.15-.28 0-.55-.03-.82-.08.55 1.72 2.15 2.97 4.06 3a8.6 8.6 0 01-5.32 1.84c-.35 0-.69-.02-1.03-.06A12.14 12.14 0 008.29 21c7.88 0 12.2-6.53 12.2-12.2l-.01-.56A8.63 8.63 0 0022.46 6z"/>
+      </svg>
+      <a href="https://x.com/AriDeltaO" target="_blank" rel="noopener noreferrer" style="text-decoration:none;color:inherit;font-weight:600">Twitter / X</a>
+    </div>
+
+  </div>
+</section>
+
+</main>
+
+<footer>© <span id="footerYear">2025</span> AriDeltaO — hosted via GitHub Pages</footer>
+
+<!-- LIGHTBOX -->
+<div id="lightbox" role="dialog" aria-modal="true" aria-label="Image lightbox" aria-hidden="true">
+  <button id="lbClose" class="lb-btn" style="position:absolute;top:2rem;right:2rem" aria-label="Close lightbox">✕ Close</button>
+  <img id="lightboxImg1" src="" alt="Project preview" />
+  <img id="lightboxImg2" src="" alt="Project preview" style="display:none;" />
+  <div class="controls">
+    <button id="lbPrev" class="lb-btn" aria-label="Previous image">← Prev</button>
+    <span id="lbCounter" class="lb-counter" aria-live="polite"></span>
+    <button id="lbNext" class="lb-btn" aria-label="Next image">Next →</button>
+  </div>
+</div>
+
+<!-- SCROLL TO TOP -->
+<button id="scrollTop" class="scroll-top" aria-label="Scroll to top" title="Back to top">
+  <svg viewBox="0 0 16 16" fill="none" aria-hidden="true"><path d="M8 13V3M3 8l5-5 5 5" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg>
+</button>
+
+<script src="script.js"></script>
+
+</body>
+</html>

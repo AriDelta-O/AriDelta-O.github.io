@@ -1,0 +1,271 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <title>Mech Redesign — Breakdown</title>
+
+  <style>
+    :root{
+      --bg:#0d0d0f; --surface:#121214; --muted:#9aa0a6;
+      --accent:#ff4d4d; --accent-600:#cc3a3a;
+      --radius:12px; --text:#eaeaea; --container-w:900px;
+    }
+
+    body{
+      margin:0; background:var(--bg); color:var(--text);
+      font-family:Inter,system-ui;
+      line-height:1.6;
+      -webkit-font-smoothing:antialiased;
+    }
+
+    .page{
+      max-width:var(--container-w);
+      margin:36px auto; padding:20px;
+    }
+
+    header{
+      display:flex;
+      justify-content:space-between;
+      align-items:center;
+      margin-bottom:16px;
+    }
+    header h1{
+      margin:0; color:var(--accent);
+      font-size:1.35rem; font-weight:700;
+    }
+    .timestamp{ color:var(--muted); font-size:.9rem; text-align:right; }
+
+    .card{
+      background: linear-gradient(180deg, rgba(255,255,255,0.02), rgba(0,0,0,0.03));
+      border:1px solid rgba(255,77,77,0.08);
+      box-shadow:0 8px 30px rgba(0,0,0,0.55);
+      border-radius:var(--radius);
+      padding:22px;
+    }
+
+    .meta-row{
+      display:flex;
+      justify-content:space-between;
+      align-items:flex-start;
+      flex-wrap:wrap;
+      gap:18px;
+    }
+
+    .meta{ display:flex; gap:.45rem; flex-wrap:wrap; margin-top:10px; }
+    .tag{
+      background:rgba(255,77,77,0.08);
+      border:1px solid rgba(255,77,77,0.28);
+      padding:.22rem .6rem;
+      border-radius:999px;
+      color:var(--accent);
+      font-weight:700; font-size:.8rem;
+    }
+    .status{
+      background:rgba(0,255,150,0.05);
+      padding:.22rem .6rem;
+      border-radius:8px;
+      font-weight:700; color:#c3fadc;
+      font-size:.8rem;
+    }
+
+    .author-block{
+      text-align:right; min-width:140px;
+    }
+    .author-label{ color:var(--muted); font-size:.83rem; }
+    .author-name{ font-weight:700; font-size:.95rem; margin-top:2px; }
+
+    h2{ margin-top:10px; color:#fff; font-size:1.3rem; }
+    h3{ margin-top:16px; color:#fff; }
+
+    .section-img{
+      width:72%;
+      margin:12px auto;
+      display:block;
+      border-radius:10px;
+      background:#111;
+      padding:5px;
+      border:1px solid rgba(255,255,255,0.04);
+      box-shadow:0 10px 26px rgba(0,0,0,0.55);
+    }
+
+    .section-img-wide{
+      width:92%;
+      margin:12px auto;
+      display:block;
+      border-radius:10px;
+      background:#111;
+      padding:5px;
+      border:1px solid rgba(255,255,255,0.04);
+      box-shadow:0 10px 26px rgba(0,0,0,0.55);
+    }
+
+    .small-row{
+      display:flex;
+      gap:10px;
+      margin:10px 0;
+      justify-content:center;
+    }
+    .small-row img{
+      width:48%;
+      border-radius:10px;
+      background:#111;
+      padding:4px;
+      border:1px solid rgba(255,255,255,0.04);
+      box-shadow:0 8px 22px rgba(0,0,0,0.5);
+    }
+
+    .triple-row{
+      display:flex;
+      gap:10px;
+      justify-content:center;
+      flex-wrap:wrap;
+      margin:10px 0;
+    }
+    .triple-row img{
+      width:30%;
+      min-width:180px;
+      border-radius:10px;
+      background:#111;
+      padding:4px;
+      border:1px solid rgba(255,255,255,0.04);
+      box-shadow:0 8px 22px rgba(0,0,0,0.5);
+    }
+
+    .caption{
+      color:var(--muted);
+      text-align:center;
+      font-size:.86rem;
+      margin-bottom:16px;
+    }
+
+    .note{
+      border-left:4px solid var(--accent);
+      background:rgba(255,77,77,0.05);
+      padding:10px 14px;
+      border-radius:8px;
+      margin:14px 0;
+      color:#ffdcdc;
+      font-size:.93rem;
+    }
+  </style>
+</head>
+
+<body>
+<div class="page">
+
+<header>
+  <h1>Mech Redesign — Full Breakdown</h1>
+  <div class="timestamp">2026-05-30</div>
+</header>
+
+<article class="card">
+
+  <div class="meta-row">
+    <div>
+      <div style="color:var(--muted); font-size:.9rem;">Tags</div>
+      <div class="meta">
+        <span class="tag">Blender-3D</span>
+        <span class="tag">Hard-Surface</span>
+        <span class="tag">Mech</span>
+        <span class="status">Complete</span>
+      </div>
+    </div>
+
+    <div class="author-block">
+      <div class="author-label">Author</div>
+      <div class="author-name">AriDeltaO</div>
+    </div>
+  </div>
+
+  <hr style="border:none;border-top:1px solid rgba(255,255,255,0.06);margin:14px 0">
+
+  <section>
+    <h2>Introduction</h2>
+    <p>
+      I've dabbled around a bit with mech modelling, trying to play around with mechanical joints and believable movement logic.
+      My first attempt at this was fairly workable — a decent design — but I ended up using very few references and not focusing enough on the joint mechanics. Instead, I went ahead to focus purely on form.
+    </p>
+    <p>
+      For this redesign, the goal was simple: create a pretty form with proper topology and focus on proper joint logic. I wanted the final result to look like it could actually <em>function</em>, not just look cool in a still render.
+    </p>
+  </section>
+
+  <section>
+    <h2>Concept Phase</h2>
+    <p>
+      Before diving into Blender, I put together a concept board to nail down the silhouette and mechanical language. I wanted something that felt grounded — industrial, angular, with clear separation between armor plates.
+    </p>
+
+    <img class="section-img-wide" src="concept-board.webp" alt="Concept board showing design references and sketches">
+    <div class="caption">Concept board — mechanical references, silhouette studies, and material inspiration.</div>
+
+    <div class="note">
+      The concept phase was crucial for this project. Having a clear visual target meant I spent less time iterating in 3D and more time executing.
+    </div>
+  </section>
+
+  <section>
+    <h2>Early Blockouts — First Test</h2>
+    <p>
+      The first pass was rough. I focused on getting the proportions right and experimenting with the leg structure. The joint placement needed to look like it could actually support weight and translate motion.
+    </p>
+
+    <div class="small-row">
+      <img src="1st-test-render.webp" alt="First test render of the mech">
+      <img src="2nd-test-render.webp" alt="Second test render of the mech">
+    </div>
+    <div class="caption">Early test renders — blockout stage. Leg structure and basic joint placement.</div>
+
+    <p>
+      The first test was blocky and the proportions were still being figured out. The second test shows slightly more refinement — the legs started reading better as mechanical limbs rather than abstract shapes.
+    </p>
+  </section>
+
+  <section>
+    <h2>Progression — Mid-Point Render</h2>
+    <p>
+      By the third render, the silhouette was mostly locked in. I had started adding more detail to the torso and refining the joint connections. The arms and shoulder assembly went through several iterations before landing on something that felt balanced.
+    </p>
+
+    <img class="section-img" src="3rd-render.webp" alt="Third render showing more detail">
+    <div class="caption">Mid-point render — torso and shoulder detail coming together. Arm joints being tested.</div>
+
+    <p>
+      This stage was all about refining topology and making sure the hard-surface edges were clean. I spent a lot of time on the bevel workflow and making sure the form held up from every angle.
+    </p>
+  </section>
+
+  <section>
+    <h2>Pre-Final Polish</h2>
+    <p>
+      Before the final render, I did a pre-final pass to check materials, lighting, and surface imperfections. This is where the mech started feeling real — the materials gave the model weight, and the lighting brought out the forms.
+    </p>
+
+    <img class="section-img" src="prefinal.webp" alt="Pre-final render with materials applied">
+    <div class="caption">Pre-final render — materials and lighting test.</div>
+
+    <p>
+      I adjusted the roughness on the armor panels, added some subtle wear in the joints, and tweaked the rim lights to separate the silhouette from the background more clearly.
+    </p>
+  </section>
+
+  <section>
+    <h2>Final Render</h2>
+    <p>
+      The final render brings everything together. The topology is clean, the joints read as functional, and the overall form is cohesive. Compared to my earlier mech work, this feels like a real step forward — both in terms of technical execution and design maturity.
+    </p>
+
+    <img class="section-img-wide" src="final.webp" alt="Final mech render">
+    <div class="caption">Final render — the completed mech redesign.</div>
+
+    <div class="note">
+      Looking at where I started vs where this ended up, the biggest improvement is in the joint logic. Each connection point now has a clear mechanical purpose, and the overall silhouette is much stronger. This project taught me that starting with good reference and planning beats brute-force iteration every time.
+    </div>
+  </section>
+
+</article>
+
+</div>
+</body>
+</html>

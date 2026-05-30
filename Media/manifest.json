@@ -1,0 +1,17 @@
+[
+  {
+    "id": "Mech",
+    "title": "Mech Redesign",
+    "tags": [],
+    "category": "Hard Surface",
+    "tools": ["Blender"],
+    "summary": "A hard-surface mech redesign focused on proper joint logic, clean topology, and believable mechanical form. Full breakdown available.",
+    "hasBreakdown": true,
+    "thumb": "Media/Mech/PNGs/final-thumb.webp",
+    "images": [
+      "Media/Mech/Breakdown/final.webp",
+      "Media/Mech/Breakdown/prefinal.webp",
+      "Media/Mech/Breakdown/3rd-render.webp"
+    ]
+  }
+]
