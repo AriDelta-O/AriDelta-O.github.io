@@ -1,0 +1,256 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <title>Mech Recon Unit — Breakdown</title>
+
+  <style>
+    :root{
+      --bg:#0d0d0f; --surface:#121214; --muted:#9aa0a6;
+      --accent:#ff4d4d; --accent-600:#cc3a3a;
+      --radius:12px; --text:#eaeaea; --container-w:900px;
+    }
+
+    body{
+      margin:0; background:var(--bg); color:var(--text);
+      font-family:Inter,system-ui;
+      line-height:1.6;
+      -webkit-font-smoothing:antialiased;
+    }
+
+    .page{
+      max-width:var(--container-w);
+      margin:36px auto; padding:20px;
+    }
+
+    header{
+      display:flex;
+      justify-content:space-between;
+      align-items:center;
+      margin-bottom:16px;
+    }
+    header h1{
+      margin:0; color:var(--accent);
+      font-size:1.35rem; font-weight:700;
+    }
+    .timestamp{ color:var(--muted); font-size:.9rem; text-align:right; }
+
+    .card{
+      background: linear-gradient(180deg, rgba(255,255,255,0.02), rgba(0,0,0,0.03));
+      border:1px solid rgba(255,77,77,0.08);
+      box-shadow:0 8px 30px rgba(0,0,0,0.55);
+      border-radius:var(--radius);
+      padding:22px;
+    }
+
+    .meta-row{
+      display:flex;
+      justify-content:space-between;
+      align-items:flex-start;
+      flex-wrap:wrap;
+      gap:18px;
+    }
+
+    .meta{ display:flex; gap:.45rem; flex-wrap:wrap; margin-top:10px; }
+    .tag{
+      background:rgba(255,77,77,0.08);
+      border:1px solid rgba(255,77,77,0.28);
+      padding:.22rem .6rem;
+      border-radius:999px;
+      color:var(--accent);
+      font-weight:700; font-size:.8rem;
+    }
+    .status{
+      background:rgba(0,255,150,0.05);
+      padding:.22rem .6rem;
+      border-radius:8px;
+      font-weight:700; color:#c3fadc;
+      font-size:.8rem;
+    }
+
+    .author-block{
+      text-align:right; min-width:140px;
+    }
+    .author-label{ color:var(--muted); font-size:.83rem; }
+    .author-name{ font-weight:700; font-size:.95rem; margin-top:2px; }
+
+    h2{ margin-top:10px; color:#fff; font-size:1.3rem; }
+    h3{ margin-top:16px; color:#fff; }
+
+    .section-img{
+      width:72%;
+      margin:12px auto;
+      display:block;
+      border-radius:10px;
+      background:#111;
+      padding:5px;
+      border:1px solid rgba(255,255,255,0.04);
+      box-shadow:0 10px 26px rgba(0,0,0,0.55);
+    }
+
+    .section-img-wide{
+      width:92%;
+      margin:12px auto;
+      display:block;
+      border-radius:10px;
+      background:#111;
+      padding:5px;
+      border:1px solid rgba(255,255,255,0.04);
+      box-shadow:0 10px 26px rgba(0,0,0,0.55);
+    }
+
+    .small-row{
+      display:flex;
+      gap:10px;
+      margin:10px 0;
+      justify-content:center;
+    }
+    .small-row img{
+      width:48%;
+      border-radius:10px;
+      background:#111;
+      padding:4px;
+      border:1px solid rgba(255,255,255,0.04);
+      box-shadow:0 8px 22px rgba(0,0,0,0.5);
+    }
+
+    .triple-row{
+      display:flex;
+      gap:10px;
+      justify-content:center;
+      flex-wrap:wrap;
+      margin:10px 0;
+    }
+    .triple-row img{
+      width:30%;
+      min-width:180px;
+      border-radius:10px;
+      background:#111;
+      padding:4px;
+      border:1px solid rgba(255,255,255,0.04);
+      box-shadow:0 8px 22px rgba(0,0,0,0.5);
+    }
+
+    .caption{
+      color:var(--muted);
+      text-align:center;
+      font-size:.86rem;
+      margin-bottom:16px;
+    }
+
+    .note{
+      border-left:4px solid var(--accent);
+      background:rgba(255,77,77,0.05);
+      padding:10px 14px;
+      border-radius:8px;
+      margin:14px 0;
+      color:#ffdcdc;
+      font-size:.93rem;
+    }
+  </style>
+</head>
+
+<body>
+<div class="page">
+
+<header>
+  <h1>Mech Recon Unit — Full Breakdown</h1>
+  <div class="timestamp">2026-05-31</div>
+</header>
+
+<article class="card">
+
+  <div class="meta-row">
+    <div>
+      <div style="color:var(--muted); font-size:.9rem;">Tags</div>
+      <div class="meta">
+        <span class="tag">Blender-3D</span>
+        <span class="tag">Hard-Surface</span>
+        <span class="tag">Mech</span>
+        <span class="tag">Delta-Forge</span>
+        <span class="status">Complete</span>
+      </div>
+    </div>
+
+    <div class="author-block">
+      <div class="author-label">Author</div>
+      <div class="author-name">AriDeltaO</div>
+    </div>
+  </div>
+
+  <hr style="border:none;border-top:1px solid rgba(255,255,255,0.06);margin:14px 0">
+
+  <section>
+    <h2>Introduction</h2>
+    <p>
+      After finishing the Mech Redesign I really wanted to keep the momentum going. That was one of my favourite projects, not just because of the model itself but the whole process of building a story around the mech. So I decided to expand the Delta-Forge lineup and build out the world more.
+    </p>
+    <p>
+      The Recon unit is a big 4 legged mech with triangular front feet. I wanted it to feel fast and purpose-built for scouting. The colour palette is deep space recon type, with a lot of deep blues.
+    </p>
+    <p>
+      I had the hard surface basics from the previous project and I also added the ND-Tools addon which made my workflow faster and more complex.
+    </p>
+  </section>
+
+  <section>
+    <h2>Concept Phase</h2>
+    <p>
+      The concept board focused on agile silhouettes and lightweight structures. I wanted to avoid the bulky tank look and aim for something that could actually run.
+    </p>
+
+    <img class="section-img-wide" src="Recon Mech concept board.webp" alt="Concept board for the mech recon unit">
+    <div class="caption">Concept board showing agile mech refs and leg structure studies.</div>
+
+    <div class="note">
+      Key constraint I set for myself: keep the poly-count as low as possible and only use SubD for topology checks. This forced me to think about every edge loop.
+    </div>
+  </section>
+
+  <section>
+    <h2>Material and Lighting Tests</h2>
+    <p>
+      Renders 1 and 2 are test renders with materials applied. I used them to see what secondary details looked right and what lighting fits the scene. I spent a while experimenting with the deep blue palette here.
+    </p>
+
+    <div class="small-row">
+      <img src="1.webp" alt="Test render 1">
+      <img src="2.webp" alt="Test render 2">
+    </div>
+    <div class="caption">Early test renders trying out materials and lighting.</div>
+  </section>
+
+  <section>
+    <h2>Adding the Scene</h2>
+    <p>
+      Renders 3 to 5 are about adding props from SetchFab to give the mech some context. I dropped in background fuel tanks, some drones, and a yellow soldier for scale. The background is just a planet image I found on the internet.
+    </p>
+
+    <div class="triple-row">
+      <img src="3.webp" alt="Scene render 3">
+      <img src="4.webp" alt="Scene render 4">
+      <img src="5.webp" alt="Scene render 5">
+    </div>
+    <div class="caption">Adding SetchFab props and background planet image to build the scene.</div>
+  </section>
+
+  <section>
+    <h2>Final Render</h2>
+    <p>
+      The final render brings it all together. Compared to the original Mech Redesign this feels like a real evolution. The Delta-Forge lineup now has two members with very different roles and that contrast makes the world feel more real.
+    </p>
+
+    <img class="section-img-wide" src="final.webp" alt="Final render of the mech recon unit">
+    <div class="caption">Final render of the Mech Recon Unit, ready for the Delta-Forge lineup.</div>
+
+    <div class="note">
+      This project taught me that constraints like keeping poly-count low actually push creativity. Having fewer resources forces better decisions. The Delta-Forge series will keep going and each new member will bring something different.
+    </div>
+  </section>
+
+</article>
+
+</div>
+</body>
+</html>

@@ -13,5 +13,65 @@
       "Media/Mech/Breakdown/prefinal.webp",
       "Media/Mech/Breakdown/3rd-render.webp"
     ]
+  },
+  {
+    "id": "ReconMech",
+    "title": "Mech Recon Unit",
+    "tags": [],
+    "category": "Hard Surface",
+    "tools": ["Blender"],
+    "summary": "A lightweight recon mech for the Delta-Forge lineup — focused on agility, low poly-count, and clean topology.",
+    "hasBreakdown": true,
+    "thumb": "Media/ReconMech/PNGs/final.webp",
+    "images": [
+      "Media/ReconMech/Breakdown/final.webp",
+      "Media/ReconMech/Breakdown/1.webp",
+      "Media/ReconMech/Breakdown/3.webp",
+      "Media/ReconMech/Breakdown/5.webp"
+    ]
+  },
+  {
+    "id": "SciFiPipe",
+    "title": "Sci-Fi Pipe System",
+    "tags": [],
+    "category": "Hard Surface",
+    "tools": ["Blender"],
+    "summary": "A topology-focused hard-surface exercise building an interconnected sci-fi pipe system with strategic detail distribution.",
+    "hasBreakdown": true,
+    "thumb": "Media/SciFiPipe/PNGs/final.webp",
+    "images": [
+      "Media/SciFiPipe/Breakdown/final.webp",
+      "Media/SciFiPipe/Breakdown/1.webp",
+      "Media/SciFiPipe/Breakdown/4.webp",
+      "Media/SciFiPipe/Breakdown/7.webp"
+    ]
+  },
+  {
+    "id": "TrainStation",
+    "title": "Train Station",
+    "tags": [],
+    "category": "Environment",
+    "tools": ["Blender"],
+    "summary": "A large-scale hard-surface environment based on a Pinterest reference. Architectural modelling at scale with detailed mechanical elements.",
+    "hasBreakdown": true,
+    "thumb": "Media/TrainStation/PNGs/final.webp",
+    "images": [
+      "Media/TrainStation/Breakdown/final.webp",
+      "Media/TrainStation/Breakdown/MiniBot.webp"
+    ]
+  },
+  {
+    "id": "Planet",
+    "title": "Procedural Planet",
+    "tags": [],
+    "category": "Procedural",
+    "tools": ["Blender"],
+    "summary": "A fully procedural planet created with noise textures and volume shaders — no image textures used, just Blender nodes.",
+    "hasBreakdown": true,
+    "thumb": "Media/Planet/PNGs/final.webp",
+    "images": [
+      "Media/Planet/Breakdown/final.webp",
+      "Media/Planet/Breakdown/1.webp"
+    ]
   }
 ]

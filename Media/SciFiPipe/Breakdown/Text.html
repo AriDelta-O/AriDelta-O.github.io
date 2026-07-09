@@ -1,0 +1,279 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <title>Sci-Fi Pipe System — Breakdown</title>
+
+  <style>
+    :root{
+      --bg:#0d0d0f; --surface:#121214; --muted:#9aa0a6;
+      --accent:#ff4d4d; --accent-600:#cc3a3a;
+      --radius:12px; --text:#eaeaea; --container-w:900px;
+    }
+
+    body{
+      margin:0; background:var(--bg); color:var(--text);
+      font-family:Inter,system-ui;
+      line-height:1.6;
+      -webkit-font-smoothing:antialiased;
+    }
+
+    .page{
+      max-width:var(--container-w);
+      margin:36px auto; padding:20px;
+    }
+
+    header{
+      display:flex;
+      justify-content:space-between;
+      align-items:center;
+      margin-bottom:16px;
+    }
+    header h1{
+      margin:0; color:var(--accent);
+      font-size:1.35rem; font-weight:700;
+    }
+    .timestamp{ color:var(--muted); font-size:.9rem; text-align:right; }
+
+    .card{
+      background: linear-gradient(180deg, rgba(255,255,255,0.02), rgba(0,0,0,0.03));
+      border:1px solid rgba(255,77,77,0.08);
+      box-shadow:0 8px 30px rgba(0,0,0,0.55);
+      border-radius:var(--radius);
+      padding:22px;
+    }
+
+    .meta-row{
+      display:flex;
+      justify-content:space-between;
+      align-items:flex-start;
+      flex-wrap:wrap;
+      gap:18px;
+    }
+
+    .meta{ display:flex; gap:.45rem; flex-wrap:wrap; margin-top:10px; }
+    .tag{
+      background:rgba(255,77,77,0.08);
+      border:1px solid rgba(255,77,77,0.28);
+      padding:.22rem .6rem;
+      border-radius:999px;
+      color:var(--accent);
+      font-weight:700; font-size:.8rem;
+    }
+    .status{
+      background:rgba(0,255,150,0.05);
+      padding:.22rem .6rem;
+      border-radius:8px;
+      font-weight:700; color:#c3fadc;
+      font-size:.8rem;
+    }
+
+    .author-block{
+      text-align:right; min-width:140px;
+    }
+    .author-label{ color:var(--muted); font-size:.83rem; }
+    .author-name{ font-weight:700; font-size:.95rem; margin-top:2px; }
+
+    h2{ margin-top:10px; color:#fff; font-size:1.3rem; }
+    h3{ margin-top:16px; color:#fff; }
+
+    .section-img{
+      width:72%;
+      margin:12px auto;
+      display:block;
+      border-radius:10px;
+      background:#111;
+      padding:5px;
+      border:1px solid rgba(255,255,255,0.04);
+      box-shadow:0 10px 26px rgba(0,0,0,0.55);
+    }
+
+    .section-img-wide{
+      width:92%;
+      margin:12px auto;
+      display:block;
+      border-radius:10px;
+      background:#111;
+      padding:5px;
+      border:1px solid rgba(255,255,255,0.04);
+      box-shadow:0 10px 26px rgba(0,0,0,0.55);
+    }
+
+    .small-row{
+      display:flex;
+      gap:10px;
+      margin:10px 0;
+      justify-content:center;
+    }
+    .small-row img{
+      width:48%;
+      border-radius:10px;
+      background:#111;
+      padding:4px;
+      border:1px solid rgba(255,255,255,0.04);
+      box-shadow:0 8px 22px rgba(0,0,0,0.5);
+    }
+
+    .triple-row{
+      display:flex;
+      gap:10px;
+      justify-content:center;
+      flex-wrap:wrap;
+      margin:10px 0;
+    }
+    .triple-row img{
+      width:30%;
+      min-width:180px;
+      border-radius:10px;
+      background:#111;
+      padding:4px;
+      border:1px solid rgba(255,255,255,0.04);
+      box-shadow:0 8px 22px rgba(0,0,0,0.5);
+    }
+
+    .quad-row{
+      display:flex;
+      gap:10px;
+      justify-content:center;
+      flex-wrap:wrap;
+      margin:10px 0;
+    }
+    .quad-row img{
+      width:23%;
+      min-width:140px;
+      border-radius:10px;
+      background:#111;
+      padding:4px;
+      border:1px solid rgba(255,255,255,0.04);
+      box-shadow:0 8px 22px rgba(0,0,0,0.5);
+    }
+
+    .caption{
+      color:var(--muted);
+      text-align:center;
+      font-size:.86rem;
+      margin-bottom:16px;
+    }
+
+    .note{
+      border-left:4px solid var(--accent);
+      background:rgba(255,77,77,0.05);
+      padding:10px 14px;
+      border-radius:8px;
+      margin:14px 0;
+      color:#ffdcdc;
+      font-size:.93rem;
+    }
+  </style>
+</head>
+
+<body>
+<div class="page">
+
+<header>
+  <h1>Sci-Fi Pipe System — Full Breakdown</h1>
+  <div class="timestamp">2026-05-16</div>
+</header>
+
+<article class="card">
+
+  <div class="meta-row">
+    <div>
+      <div style="color:var(--muted); font-size:.9rem;">Tags</div>
+      <div class="meta">
+        <span class="tag">Blender-3D</span>
+        <span class="tag">Hard-Surface</span>
+        <span class="tag">Topology</span>
+        <span class="status">Complete</span>
+      </div>
+    </div>
+
+    <div class="author-block">
+      <div class="author-label">Author</div>
+      <div class="author-name">AriDeltaO</div>
+    </div>
+  </div>
+
+  <hr style="border:none;border-top:1px solid rgba(255,255,255,0.06);margin:14px 0">
+
+  <section>
+    <h2>Introduction</h2>
+    <p>
+      This project was a focused exercise where I wanted to improve my topology workflow and figure out how to distribute detailing across a hard surface model. The idea was a retro futuristic looking greenish reactor fluid holder type pipe system with a screen and an analog looking control panel.
+    </p>
+    <p>
+      The screen is just a temp-pressure curve image I got from the internet. Nothing fancy but it sells the look. This was also the project where I started learning more about bevel masks and material layering which was a big step for me.
+    </p>
+  </section>
+
+  <section>
+    <h2>Concept Phase</h2>
+    <p>
+      I put together a concept board to establish the visual direction. I wanted something industrial but futuristic with clean hard edges and exposed piping.
+    </p>
+
+    <img class="section-img-wide" src="Pipe concept board.webp" alt="Concept board for the sci-fi pipe system">
+    <div class="caption">Concept board with reference images and layout ideas.</div>
+
+    <div class="note">
+      The concept phase was pretty lightweight here. I knew I wanted to focus on the technical side so the board was more of a mood anchor than a strict plan.
+    </div>
+  </section>
+
+  <section>
+    <h2>Early Blockouts</h2>
+    <p>
+      The first few renders show the initial blockout. I started with simple cylindrical forms and basic junctions to test how the pipes would interconnect. At this stage it was all about proportion and spacing.
+    </p>
+
+    <div class="quad-row">
+      <img src="1.webp" alt="Early blockout render 1">
+      <img src="2.webp" alt="Early blockout render 2">
+      <img src="3.webp" alt="Early blockout render 3">
+      <img src="4.webp" alt="Early blockout render 4">
+    </div>
+    <div class="caption">Testing pipe layouts, joint placement and overall composition.</div>
+
+    <p>
+      Renders 1 through 4 show the progression from basic cylinders to a more structured system. I experimented with different branching angles and connection points to find a rhythm that felt right.
+    </p>
+  </section>
+
+  <section>
+    <h2>Detail Pass</h2>
+    <p>
+      Once the base layout was solid I moved into the detail phase. This is where the bevel masks and material layering came in. I started playing with different material blends to separate the pipe sections from the joints and the control panel area.
+    </p>
+
+    <div class="triple-row">
+      <img src="5.webp" alt="Detail pass render 5">
+      <img src="6.webp" alt="Detail pass render 6">
+      <img src="7.webp" alt="Detail pass render 7">
+    </div>
+    <div class="caption">Adding detail and working on material layering and bevel masks.</div>
+
+    <p>
+      This was the most time consuming part. Getting the bevels right across curved surfaces while keeping the mesh clean took a lot of back and forth. But learning bevel masks during this project was a game changer for my hard surface workflow.
+    </p>
+  </section>
+
+  <section>
+    <h2>Final Render</h2>
+    <p>
+      The final render brings the whole system together. The greenish reactor pipes, the analog control panel with the screen graphic, and the material layers all reading the way I wanted. Compared to where I started this project gave me a much better understanding of how to layer materials and use bevel masks effectively.
+    </p>
+
+    <img class="section-img-wide" src="final.webp" alt="Final render of the sci-fi pipe system">
+    <div class="caption">Final render of the completed sci-fi pipe system.</div>
+
+    <div class="note">
+      The biggest takeaway was learning bevel masks and material layering. Placing detail strategically and using masks to control material blending is something I use in almost every project now.
+    </div>
+  </section>
+
+</article>
+
+</div>
+</body>
+</html>

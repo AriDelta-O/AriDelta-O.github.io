@@ -1,0 +1,228 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <title>Procedural Planet — Breakdown</title>
+
+  <style>
+    :root{
+      --bg:#0d0d0f; --surface:#121214; --muted:#9aa0a6;
+      --accent:#ff4d4d; --accent-600:#cc3a3a;
+      --radius:12px; --text:#eaeaea; --container-w:900px;
+    }
+
+    body{
+      margin:0; background:var(--bg); color:var(--text);
+      font-family:Inter,system-ui;
+      line-height:1.6;
+      -webkit-font-smoothing:antialiased;
+    }
+
+    .page{
+      max-width:var(--container-w);
+      margin:36px auto; padding:20px;
+    }
+
+    header{
+      display:flex;
+      justify-content:space-between;
+      align-items:center;
+      margin-bottom:16px;
+    }
+    header h1{
+      margin:0; color:var(--accent);
+      font-size:1.35rem; font-weight:700;
+    }
+    .timestamp{ color:var(--muted); font-size:.9rem; text-align:right; }
+
+    .card{
+      background: linear-gradient(180deg, rgba(255,255,255,0.02), rgba(0,0,0,0.03));
+      border:1px solid rgba(255,77,77,0.08);
+      box-shadow:0 8px 30px rgba(0,0,0,0.55);
+      border-radius:var(--radius);
+      padding:22px;
+    }
+
+    .meta-row{
+      display:flex;
+      justify-content:space-between;
+      align-items:flex-start;
+      flex-wrap:wrap;
+      gap:18px;
+    }
+
+    .meta{ display:flex; gap:.45rem; flex-wrap:wrap; margin-top:10px; }
+    .tag{
+      background:rgba(255,77,77,0.08);
+      border:1px solid rgba(255,77,77,0.28);
+      padding:.22rem .6rem;
+      border-radius:999px;
+      color:var(--accent);
+      font-weight:700; font-size:.8rem;
+    }
+    .status{
+      background:rgba(0,255,150,0.05);
+      padding:.22rem .6rem;
+      border-radius:8px;
+      font-weight:700; color:#c3fadc;
+      font-size:.8rem;
+    }
+
+    .author-block{
+      text-align:right; min-width:140px;
+    }
+    .author-label{ color:var(--muted); font-size:.83rem; }
+    .author-name{ font-weight:700; font-size:.95rem; margin-top:2px; }
+
+    h2{ margin-top:10px; color:#fff; font-size:1.3rem; }
+    h3{ margin-top:16px; color:#fff; }
+
+    .section-img{
+      width:72%;
+      margin:12px auto;
+      display:block;
+      border-radius:10px;
+      background:#111;
+      padding:5px;
+      border:1px solid rgba(255,255,255,0.04);
+      box-shadow:0 10px 26px rgba(0,0,0,0.55);
+    }
+
+    .section-img-wide{
+      width:92%;
+      margin:12px auto;
+      display:block;
+      border-radius:10px;
+      background:#111;
+      padding:5px;
+      border:1px solid rgba(255,255,255,0.04);
+      box-shadow:0 10px 26px rgba(0,0,0,0.55);
+    }
+
+    .small-row{
+      display:flex;
+      gap:10px;
+      margin:10px 0;
+      justify-content:center;
+    }
+    .small-row img{
+      width:48%;
+      border-radius:10px;
+      background:#111;
+      padding:4px;
+      border:1px solid rgba(255,255,255,0.04);
+      box-shadow:0 8px 22px rgba(0,0,0,0.5);
+    }
+
+    .caption{
+      color:var(--muted);
+      text-align:center;
+      font-size:.86rem;
+      margin-bottom:16px;
+    }
+
+    .note{
+      border-left:4px solid var(--accent);
+      background:rgba(255,77,77,0.05);
+      padding:10px 14px;
+      border-radius:8px;
+      margin:14px 0;
+      color:#ffdcdc;
+      font-size:.93rem;
+    }
+  </style>
+</head>
+
+<body>
+<div class="page">
+
+<header>
+  <h1>Procedural Planet — Breakdown</h1>
+  <div class="timestamp">2026-07-09</div>
+</header>
+
+<article class="card">
+
+  <div class="meta-row">
+    <div>
+      <div style="color:var(--muted); font-size:.9rem;">Tags</div>
+      <div class="meta">
+        <span class="tag">Blender-3D</span>
+        <span class="tag">Procedural</span>
+        <span class="tag">Shader</span>
+        <span class="status">Complete</span>
+      </div>
+    </div>
+
+    <div class="author-block">
+      <div class="author-label">Author</div>
+      <div class="author-name">AriDeltaO</div>
+    </div>
+  </div>
+
+  <hr style="border:none;border-top:1px solid rgba(255,255,255,0.06);margin:14px 0">
+
+  <section>
+    <h2>Introduction</h2>
+    <p>
+      This was a quick procedural study where I wanted to make a reddish and green planet using nothing but shader nodes. No image textures at all. Everything you see is built from noise texture combinations and volume shaders. The goal was to see how far I could push Blender's procedural materials to create convincing planetary surfaces.
+    </p>
+    <p>
+      The whole scene is just 3 large spheres. One for the base planet surface, one for the cloud volume, and one for the atmospheric glow.
+    </p>
+  </section>
+
+  <section>
+    <h2>Base Planet Surface</h2>
+    <p>
+      For the main surface I used multiple noise texture combinations layered together to get terrain-like generation. Musgrave and voronoi patterns blended with colour ramps to create the landmass shapes and the red-green colour mix.
+    </p>
+  </section>
+
+  <section>
+    <h2>Cloud Volume</h2>
+    <p>
+      The cloud sphere uses noise textures too but I combined them with map-range nodes and maths nodes to get more prominent cloud shapes. It took some tweaking to get the density right so it looked like actual clouds rather than just noise.
+    </p>
+  </section>
+
+  <section>
+    <h2>Atmospheric Glow</h2>
+    <p>
+      For the emissive atmospheric effect I used a simple gradient texture along with a reddish emission material. It gives the planet that soft edge glow and makes it feel like it has an atmosphere even though it is all procedural.
+    </p>
+  </section>
+
+  <section>
+    <h2>Progression</h2>
+    <p>
+      The first render shows the early shader test where I was figuring out the noise scale and colour ramps. The final render is the result after dialling in the volume scattering and tweaking the noise distortion.
+    </p>
+
+    <div class="small-row">
+      <img src="1.webp" alt="Early shader test">
+      <img src="final.webp" alt="Final planet render">
+    </div>
+    <div class="caption">Left is the early shader test dialling in noise colour blends. Right is the final render with volume scattering and refined distortion.</div>
+  </section>
+
+  <section>
+    <h2>Final Render</h2>
+    <p>
+      The final result is a fully procedural planet with red and green colours, a soft atmospheric glow, and decent surface variation. No image textures at all, just pure nodes and math.
+    </p>
+
+    <img class="section-img-wide" src="final.webp" alt="Final procedural planet render">
+    <div class="caption">Final render of the fully procedural planet using noise textures and volume shaders.</div>
+
+    <div class="note">
+      This project showed me how powerful procedural workflows can be. No UV mapping, no texture painting, just nodes. It is something I want to explore a lot more in future projects.
+    </div>
+  </section>
+
+</article>
+
+</div>
+</body>
+</html>

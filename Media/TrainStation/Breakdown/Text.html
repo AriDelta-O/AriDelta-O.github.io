@@ -1,0 +1,298 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <title>Train Station — Breakdown</title>
+
+  <style>
+    :root{
+      --bg:#0d0d0f; --surface:#121214; --muted:#9aa0a6;
+      --accent:#ff4d4d; --accent-600:#cc3a3a;
+      --radius:12px; --text:#eaeaea; --container-w:900px;
+    }
+
+    body{
+      margin:0; background:var(--bg); color:var(--text);
+      font-family:Inter,system-ui;
+      line-height:1.6;
+      -webkit-font-smoothing:antialiased;
+    }
+
+    .page{
+      max-width:var(--container-w);
+      margin:36px auto; padding:20px;
+    }
+
+    header{
+      display:flex;
+      justify-content:space-between;
+      align-items:center;
+      margin-bottom:16px;
+    }
+    header h1{
+      margin:0; color:var(--accent);
+      font-size:1.35rem; font-weight:700;
+    }
+    .timestamp{ color:var(--muted); font-size:.9rem; text-align:right; }
+
+    .card{
+      background: linear-gradient(180deg, rgba(255,255,255,0.02), rgba(0,0,0,0.03));
+      border:1px solid rgba(255,77,77,0.08);
+      box-shadow:0 8px 30px rgba(0,0,0,0.55);
+      border-radius:var(--radius);
+      padding:22px;
+    }
+
+    .meta-row{
+      display:flex;
+      justify-content:space-between;
+      align-items:flex-start;
+      flex-wrap:wrap;
+      gap:18px;
+    }
+
+    .meta{ display:flex; gap:.45rem; flex-wrap:wrap; margin-top:10px; }
+    .tag{
+      background:rgba(255,77,77,0.08);
+      border:1px solid rgba(255,77,77,0.28);
+      padding:.22rem .6rem;
+      border-radius:999px;
+      color:var(--accent);
+      font-weight:700; font-size:.8rem;
+    }
+    .status{
+      background:rgba(0,255,150,0.05);
+      padding:.22rem .6rem;
+      border-radius:8px;
+      font-weight:700; color:#c3fadc;
+      font-size:.8rem;
+    }
+
+    .author-block{
+      text-align:right; min-width:140px;
+    }
+    .author-label{ color:var(--muted); font-size:.83rem; }
+    .author-name{ font-weight:700; font-size:.95rem; margin-top:2px; }
+
+    h2{ margin-top:10px; color:#fff; font-size:1.3rem; }
+    h3{ margin-top:16px; color:#fff; }
+
+    .section-img{
+      width:72%;
+      margin:12px auto;
+      display:block;
+      border-radius:10px;
+      background:#111;
+      padding:5px;
+      border:1px solid rgba(255,255,255,0.04);
+      box-shadow:0 10px 26px rgba(0,0,0,0.55);
+    }
+
+    .section-img-wide{
+      width:92%;
+      margin:12px auto;
+      display:block;
+      border-radius:10px;
+      background:#111;
+      padding:5px;
+      border:1px solid rgba(255,255,255,0.04);
+      box-shadow:0 10px 26px rgba(0,0,0,0.55);
+    }
+
+    .small-row{
+      display:flex;
+      gap:10px;
+      margin:10px 0;
+      justify-content:center;
+    }
+    .small-row img{
+      width:48%;
+      border-radius:10px;
+      background:#111;
+      padding:4px;
+      border:1px solid rgba(255,255,255,0.04);
+      box-shadow:0 8px 22px rgba(0,0,0,0.5);
+    }
+
+    .triple-row{
+      display:flex;
+      gap:10px;
+      justify-content:center;
+      flex-wrap:wrap;
+      margin:10px 0;
+    }
+    .triple-row img{
+      width:30%;
+      min-width:180px;
+      border-radius:10px;
+      background:#111;
+      padding:4px;
+      border:1px solid rgba(255,255,255,0.04);
+      box-shadow:0 8px 22px rgba(0,0,0,0.5);
+    }
+
+    .quad-row{
+      display:flex;
+      gap:10px;
+      justify-content:center;
+      flex-wrap:wrap;
+      margin:10px 0;
+    }
+    .quad-row img{
+      width:23%;
+      min-width:140px;
+      border-radius:10px;
+      background:#111;
+      padding:4px;
+      border:1px solid rgba(255,255,255,0.04);
+      box-shadow:0 8px 22px rgba(0,0,0,0.5);
+    }
+
+    .caption{
+      color:var(--muted);
+      text-align:center;
+      font-size:.86rem;
+      margin-bottom:16px;
+    }
+
+    .note{
+      border-left:4px solid var(--accent);
+      background:rgba(255,77,77,0.05);
+      padding:10px 14px;
+      border-radius:8px;
+      margin:14px 0;
+      color:#ffdcdc;
+      font-size:.93rem;
+    }
+  </style>
+</head>
+
+<body>
+<div class="page">
+
+<header>
+  <h1>Train Station — Full Breakdown</h1>
+  <div class="timestamp">2026-07-05</div>
+</header>
+
+<article class="card">
+
+  <div class="meta-row">
+    <div>
+      <div style="color:var(--muted); font-size:.9rem;">Tags</div>
+      <div class="meta">
+        <span class="tag">Blender-3D</span>
+        <span class="tag">Hard-Surface</span>
+        <span class="tag">Environment</span>
+        <span class="status">Complete</span>
+      </div>
+    </div>
+
+    <div class="author-block">
+      <div class="author-label">Author</div>
+      <div class="author-name">AriDeltaO</div>
+    </div>
+  </div>
+
+  <hr style="border:none;border-top:1px solid rgba(255,255,255,0.06);margin:14px 0">
+
+  <section>
+    <h2>Introduction</h2>
+    <p>
+      The concept for this project started with a simple picture I found on Pinterest. I have worked with individual models and stylized fan art before but I felt like I needed to really polish my environment creation skills. So this was a practice where I built hard surface models at a larger scale rather than a landscape.
+    </p>
+    <p>
+      The scene is a grey-brown environment with a low pass camera angle. I used a train model from SetchFab placed on the left side and a yellow soldier from SetchFab for scale. This was also a project where I practised material layering quite a bit.
+    </p>
+  </section>
+
+  <section>
+    <h2>Concept Phase</h2>
+    <p>
+      The concept board pulled together reference images of industrial architecture and train stations. I wanted the final scene to feel grounded like a place that could actually exist.
+    </p>
+
+    <img class="section-img-wide" src="Train station concept board.webp" alt="Concept board for the train station">
+    <div class="caption">Concept board with architectural references and mood inspiration.</div>
+
+    <div class="note">
+      Having a Pinterest reference as the starting point made the early stages much faster. I was interpreting a 2D image into 3D space rather than designing from scratch.
+    </div>
+  </section>
+
+  <section>
+    <h2>Laying the Foundation</h2>
+    <p>
+      The first renders show the initial structural blockout. I started with the track layout and platform positioning then built the support columns and overhead canopy. The scale was tricky and I had to keep checking that the proportions felt right.
+    </p>
+
+    <div class="quad-row">
+      <img src="1.webp" alt="Blockout render 1">
+      <img src="2.webp" alt="Blockout render 2">
+      <img src="3.webp" alt="Blockout render 3">
+      <img src="4.webp" alt="Blockout render 4">
+    </div>
+    <div class="caption">Early blockout showing track layout, platform structure and canopy framework.</div>
+  </section>
+
+  <section>
+    <h2>Structural Refinement</h2>
+    <p>
+      With the base layout locked I moved into refining the structural elements. The columns got more definition and the canopy gained paneling. This is where I started working on material layering to separate the different surfaces.
+    </p>
+
+    <div class="triple-row">
+      <img src="5.webp" alt="Refinement render 5">
+      <img src="6.webp" alt="Refinement render 6">
+      <img src="7.webp" alt="Refinement render 7">
+    </div>
+    <div class="caption">Refining the architecture and working on material layering.</div>
+
+    <p>
+      Renders 5 through 7 show the station gaining density. The space started feeling more enclosed and industrial which was the direction I wanted.
+    </p>
+  </section>
+
+  <section>
+    <h2>Detailing and Polish</h2>
+    <p>
+      The final stretch was about polish. I added railings, signal equipment, warning stripes and smaller mechanical elements. This is where the scene went from a blockout to something that actually looks like a render.
+    </p>
+
+    <div class="quad-row">
+      <img src="8.webp" alt="Polish render 8">
+      <img src="9.webp" alt="Polish render 9">
+      <img src="10.webp" alt="Polish render 10">
+      <img src="11.webp" alt="Polish render 11">
+    </div>
+    <div class="caption">Final detailing pass with railings, signals and warning markings.</div>
+  </section>
+
+  <section>
+    <h2>Final Render</h2>
+    <p>
+      The final render captures the full station scene. The grey-brown palette, the low camera angle, the train on the left and the yellow soldier for scale all come together. The material layering work I did here really helped sell the different surfaces.
+    </p>
+
+    <img class="section-img-wide" src="final.webp" alt="Final render of the train station">
+    <div class="caption">Final render of the completed train station environment.</div>
+
+    <h3>MiniBot</h3>
+    <p>
+      The MiniBot prop is something I created in under 2 hours just for this scene. It is a small robot character to add a bit of life to the environment.
+    </p>
+
+    <img class="section-img" src="MiniBot.webp" alt="MiniBot character render">
+    <div class="caption">MiniBot made in under 2 hours to add life to the scene.</div>
+
+    <div class="note">
+      This project was a good step for my environment work. Learning to think at architectural scale where every beam and panel contributes to the whole is a very different skill from modelling single props. The MiniBot was a fun quick bonus on top.
+    </div>
+  </section>
+
+</article>
+
+</div>
+</body>
+</html>
