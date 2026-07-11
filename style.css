@@ -292,7 +292,6 @@ body.light .section h2{ color:#111; }
     0 8px 15px var(--shadow-2),
     0 15px 30px var(--shadow-3);
   transform: translateZ(0);
-  will-change: transform, box-shadow;
   overflow: hidden;
 }
 .card:hover{
@@ -413,8 +412,9 @@ body.light .section h2{ color:#111; }
   margin-top:.5rem;
   transition: max-height var(--transition), opacity var(--transition);
 }
-.details.open{ max-height: 650px; opacity:1; }
+.details.open{ max-height: 650px; opacity:1; overflow: auto; }
 .details .text{ white-space: pre-wrap; font-size:.95rem; color:#e3e3e8; display:block; }
+body.light .details .text{ color: #333; }
 
 .thumb-row{ display:flex; gap:.45rem; overflow:auto; margin-top:.3rem; padding-bottom:.25rem; }
 .thumb-row img{
@@ -486,6 +486,7 @@ body.light .section h2{ color:#111; }
 }
 .lb-btn:hover{ background: rgba(255,77,77,0.3); }
 .lb-btn:focus-visible{ outline: 2px solid var(--accent); outline-offset: 3px; }
+.lb-close{ position:absolute; top:2rem; right:2rem; }
 
 #lightbox .controls{
   position: absolute;
@@ -611,7 +612,6 @@ body.light .hero-sub{ color: rgba(0,0,0,0.6); }
 }
 
 a[target="_blank"]{ text-decoration:underline; }
-/* End of file */
 
 /* --------------------------
    Hero scroll indicator
@@ -918,4 +918,55 @@ body.light .tool-badge{
 .reveal.visible{
   opacity: 1;
   transform: translateY(0);
+}
+
+/* --------------------------
+   Projects header helpers
+   -------------------------- */
+.section-title-group{
+  display:flex;
+  align-items:baseline;
+  gap:.6rem;
+  margin:0 0.5rem 0 0;
+}
+.section-title-group h2{ margin:0; }
+.search-capped{ max-width:420px; }
+.filters-push{ margin-left:auto; }
+.hidden{ display:none; }
+.header-right{ display:flex; align-items:center; gap:1rem; }
+
+/* Contact row helpers */
+.contact-cta{
+  color:var(--muted);
+  margin:-.5rem 0 1.5rem;
+}
+.icon-link-label{
+  font-weight:600;
+}
+.icon-link a{
+  text-decoration:none;
+  color:inherit;
+  font-weight:600;
+}
+.contact-row .icon-link{
+  transition: opacity .2s;
+}
+.contact-row .icon-link:hover{
+  opacity:.7;
+}
+
+/* --------------------------
+   Reduced motion
+   -------------------------- */
+@media (prefers-reduced-motion: reduce){
+  *, *::before, *::after{
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+  }
+  .hero-orb{ animation: none !important; }
+  .hero-scroll{ animation: none !important; }
+  .card.card-entering{ animation: none !important; opacity: 1; }
+  nav a.nav-active::after{ animation: none !important; transform: scaleX(1); }
+  .reveal{ opacity: 1; transform: none; transition: none; }
 }

@@ -90,6 +90,7 @@ document.addEventListener("DOMContentLoaded", () => {
     CURRENT = { list: [...list], index };
 
     activeImg.src = list[index];
+    activeImg.alt = `Image ${index + 1} of ${list.length}`;
     activeImg.style.display = "block";
     activeImg.style.opacity = "0";
     activeImg.style.transform = "scale(.8)";
@@ -98,6 +99,8 @@ document.addEventListener("DOMContentLoaded", () => {
     lightbox.classList.add("show");
     lightbox.setAttribute("aria-hidden", "false");
     document.body.style.overflow = "hidden";
+    document.querySelector("main").setAttribute("inert", "");
+    document.querySelector("header").setAttribute("inert", "");
     updateCounter();
 
     requestAnimationFrame(() => {
@@ -111,6 +114,8 @@ document.addEventListener("DOMContentLoaded", () => {
     activeImg.style.opacity = "0";
     activeImg.style.transform = "scale(.8)";
     document.body.style.overflow = "";
+    document.querySelector("main").removeAttribute("inert");
+    document.querySelector("header").removeAttribute("inert");
     setTimeout(() => {
       lightbox.classList.remove("show");
       lightbox.setAttribute("aria-hidden", "true");
@@ -148,6 +153,7 @@ document.addEventListener("DOMContentLoaded", () => {
       activeImg.style.transform = "scale(.8)";
       activeImg.style.opacity   = "0";
       [activeImg, nextImg] = [nextImg, activeImg];
+      activeImg.alt = `Image ${CURRENT.index + 1} of ${list.length}`;
       CURRENT.index = newIndex;
       updateCounter();
       sliding = false;
@@ -353,7 +359,6 @@ document.addEventListener("DOMContentLoaded", () => {
       skeletonsId,
       searchId,
       filterAllId,
-      filterWIPId,
       sortAlphaId,
       categoryFiltersId,
       projectCountId
@@ -363,7 +368,6 @@ document.addEventListener("DOMContentLoaded", () => {
     const skeletons        = document.getElementById(skeletonsId);
     const searchInput      = searchId ? document.getElementById(searchId) : null;
     const filterAllBtn     = filterAllId ? document.getElementById(filterAllId) : null;
-    const filterWIPBtn     = filterWIPId ? document.getElementById(filterWIPId) : null;
     const sortAlphaBtn     = sortAlphaId ? document.getElementById(sortAlphaId) : null;
     const projectCount     = projectCountId ? document.getElementById(projectCountId) : null;
     const categoryFilters  = categoryFiltersId ? document.getElementById(categoryFiltersId) : null;
@@ -423,9 +427,6 @@ document.addEventListener("DOMContentLoaded", () => {
     function applyFilters() {
       let list = [...projects];
 
-      if (currentFilter === "wip")
-        list = list.filter(p => p.tags.includes("wip"));
-
       if (activeCategory)
         list = list.filter(p => p.category === activeCategory);
 
@@ -441,12 +442,9 @@ document.addEventListener("DOMContentLoaded", () => {
 
       if (sortAlpha)
         list.sort((a, b) => a.title.localeCompare(b.title));
-      else
-        list.sort((a, b) => a.id === "WIP" ? -1 : b.id === "WIP" ? 1 : 0);
 
       if (projectCount) {
-        const countable = list.filter(p => !p.tags.includes("wip"));
-        projectCount.textContent = `${countable.length} project${countable.length !== 1 ? "s" : ""}`;
+        projectCount.textContent = `${list.length} project${list.length !== 1 ? "s" : ""}`;
       }
 
       renderProjects(list);
@@ -454,6 +452,7 @@ document.addEventListener("DOMContentLoaded", () => {
 
     function renderProjects(list) {
       skeletons.style.display  = "none";
+      container.classList.remove("hidden");
       container.style.display  = "grid";
       container.innerHTML      = "";
 
@@ -473,7 +472,6 @@ document.addEventListener("DOMContentLoaded", () => {
           activeCategory = null;
           currentFilter = "all";
           if (filterAllBtn) { filterAllBtn.classList.add("active"); filterAllBtn.setAttribute("aria-pressed", "true"); }
-          if (filterWIPBtn) { filterWIPBtn.classList.remove("active"); filterWIPBtn.setAttribute("aria-pressed", "false"); }
           if (categoryFilters) {
             categoryFilters.querySelectorAll(".chip").forEach(c => {
               c.classList.remove("active");
@@ -500,17 +498,6 @@ document.addEventListener("DOMContentLoaded", () => {
         currentFilter = "all";
         filterAllBtn.classList.add("active");
         filterAllBtn.setAttribute("aria-pressed", "true");
-        if (filterWIPBtn) { filterWIPBtn.classList.remove("active"); filterWIPBtn.setAttribute("aria-pressed", "false"); }
-        applyFilters();
-      });
-    }
-
-    if (filterWIPBtn) {
-      filterWIPBtn.addEventListener("click", () => {
-        currentFilter = "wip";
-        filterWIPBtn.classList.add("active");
-        filterWIPBtn.setAttribute("aria-pressed", "true");
-        if (filterAllBtn) { filterAllBtn.classList.remove("active"); filterAllBtn.setAttribute("aria-pressed", "false"); }
         applyFilters();
       });
     }
@@ -541,6 +528,7 @@ document.addEventListener("DOMContentLoaded", () => {
       } catch (err) {
         console.error(`Failed to load ${manifestPath}:`, err);
         skeletons.style.display = "none";
+        container.classList.remove("hidden");
         container.style.display = "grid";
         container.innerHTML     = `<p style="color:var(--muted);grid-column:1/-1">Could not load projects. Please try refreshing.</p>`;
       }
@@ -560,7 +548,6 @@ document.addEventListener("DOMContentLoaded", () => {
     skeletonsId: "proSkeletons",
     searchId: "proSearch",
     filterAllId: "proFilterAll",
-    filterWIPId: "proFilterWIP",
     sortAlphaId: "proSortAlpha",
     categoryFiltersId: "proCategoryFilters",
     projectCountId: "proProjectCount"
@@ -573,7 +560,6 @@ document.addEventListener("DOMContentLoaded", () => {
     skeletonsId: "hobbySkeletons",
     searchId: "hobbySearch",
     filterAllId: "hobbyFilterAll",
-    filterWIPId: "hobbyFilterWIP",
     sortAlphaId: "hobbySortAlpha",
     categoryFiltersId: "hobbyCategoryFilters",
     projectCountId: "hobbyProjectCount"

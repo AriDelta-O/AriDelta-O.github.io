@@ -5,6 +5,10 @@
   <meta name="viewport" content="width=device-width,initial-scale=1" />
   <title>Train Station — Breakdown</title>
 
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700&display=swap" rel="stylesheet">
+
   <style>
     :root{
       --bg:#0d0d0f; --surface:#121214; --muted:#9aa0a6;
@@ -165,11 +169,29 @@
       color:#ffdcdc;
       font-size:.93rem;
     }
+    /* Light theme */
+    body.light{ background:#f2f2f4; color:#111; }
+    body.light h2, body.light h3{ color:#111; }
+    body.light .card{ background:#fff; border-color:rgba(0,0,0,0.08); box-shadow:0 4px 20px rgba(0,0,0,0.08); }
+    body.light .note{ background:rgba(255,77,77,0.05); color:#5a2020; border-color:var(--accent); }
+    body.light .caption{ color:#666; }
+    body.light .tag{ background:rgba(255,77,77,0.08); border-color:rgba(255,77,77,0.28); color:var(--accent); }
+    body.light .status{ background:rgba(0,200,120,0.08); color:#1a7a4a; }
+    body.light .section-img, body.light .section-img-wide{ background:#e8e8eb; border-color:rgba(0,0,0,0.06); }
+    body.light .small-row img, body.light .triple-row img{ background:#e8e8eb; border-color:rgba(0,0,0,0.06); }
+    body.light hr{ border-color:rgba(0,0,0,0.08); }
+    body.light a{ color:var(--accent); }
+    .theme-toggle{ position:fixed; top:1rem; right:1rem; background:rgba(255,255,255,0.08); border:1px solid rgba(255,255,255,0.12); border-radius:999px; width:38px; height:38px; font-size:1.1rem; cursor:pointer; display:flex; align-items:center; justify-content:center; z-index:100; transition:background .2s; }
+    .theme-toggle:hover{ background:rgba(255,255,255,0.15); }
+    body.light .theme-toggle{ background:rgba(0,0,0,0.05); border-color:rgba(0,0,0,0.1); }
+    body.light .theme-toggle:hover{ background:rgba(0,0,0,0.1); }
   </style>
 </head>
 
 <body>
 <div class="page">
+
+<a href="../../../index.html" style="display:inline-flex;align-items:center;gap:.4rem;color:var(--accent);text-decoration:none;font-weight:600;font-size:.9rem;margin-bottom:1rem;transition:opacity .2s" onmouseover="this.style.opacity='.7'" onmouseout="this.style.opacity='1'">&#8592; Back to Portfolio</a>
 
 <header>
   <h1>Train Station — Full Breakdown</h1>
@@ -270,6 +292,28 @@
   </section>
 
   <section>
+    <h2>Topology &amp; Wireframe</h2>
+    <p>
+      With an environment this big, keeping topology clean across hundreds of objects is genuinely hard. The wireframe shows the overall structure and how the main architectural pieces are put together.
+    </p>
+
+    <img class="section-img-wide" src="Trainstation1.webp" alt="Wireframe of the train station environment">
+    <div class="caption">Full scene wireframe showing the architectural structure and object layout.</div>
+
+    <h3>MiniBot Wireframe</h3>
+    <p>
+      The MiniBot was a quick 2-hour build but I still kept the topology intentional. Clean quads, proper edge flow on the limbs, no wasted geometry.
+    </p>
+
+    <img class="section-img" src="MiniBotWireframe.webp" alt="Wireframe of the MiniBot character">
+    <div class="caption">MiniBot wireframe. Even quick builds get proper topology.</div>
+
+    <div class="note">
+      Environments are a different kind of topology challenge. Every beam, every panel, every railing adds up and all of it needs to hold up under close inspection.
+    </div>
+  </section>
+
+  <section>
     <h2>Final Render</h2>
     <p>
       The final render captures the full station scene. The grey-brown palette, the low camera angle, the train on the left and the yellow soldier for scale all come together. The material layering work I did here really helped sell the different surfaces.
@@ -294,5 +338,18 @@
 </article>
 
 </div>
+<button class="theme-toggle" id="themeToggle" aria-label="Toggle light/dark theme">🌙</button>
+<script>
+(function(){
+  var t=document.getElementById('themeToggle');
+  if(localStorage.getItem('theme')==='light'){document.body.classList.add('light');t.textContent='☀️';t.setAttribute('aria-label','Switch to dark theme');}
+  t.addEventListener('click',function(){
+    var l=document.body.classList.toggle('light');
+    localStorage.setItem('theme',l?'light':'dark');
+    t.textContent=l?'☀️':'🌙';
+    t.setAttribute('aria-label',l?'Switch to dark theme':'Switch to light theme');
+  });
+})();
+</script>
 </body>
 </html>

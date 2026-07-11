@@ -1,20 +1,11 @@
 [
   {
-    "id": "WIP",
-    "title": "WIP",
-    "tags": ["wip"],
-    "category": "Work in Progress",
-    "summary": "Current works-in-progress showing my latest modeling studies.",
-    "hasBreakdown": false,
-    "images": []
-  },
-  {
     "id": "Project_1",
     "title": "Mechanical Joints",
     "tags": [],
     "category": "Hard Surface",
     "tools": ["Blender"],
-    "summary": "Hard-surface modeling study, focused on mechanical joints.",
+    "summary": "Hard-surface study focused on getting mechanical joints and movement logic right.",
     "hasBreakdown": true,
     "images": [
       "Media/Project_1/PNGs/Final-thumb.webp",
@@ -23,38 +14,12 @@
     ]
   },
   {
-    "id": "Project_2",
-    "title": "Medieval Contest",
-    "tags": [],
-    "category": "Hard Surface",
-    "tools": ["Blender"],
-    "summary": "A medieval based render I made for a contest. References taken completely from my head :)",
-    "hasBreakdown": false,
-    "images": [
-      "Media/Project_2/PNGs/Final-thumb.webp",
-      "Media/Project_2/PNGs/Clay-thumb.webp"
-    ]
-  },
-  {
-    "id": "Project_3",
-    "title": "Sci-Fi Shop",
-    "tags": [],
-    "category": "Environment",
-    "tools": ["Blender"],
-    "summary": "A Sci-Fi shop, forever WIP.",
-    "hasBreakdown": false,
-    "images": [
-      "Media/Project_3/PNGs/Final-thumb.webp",
-      "Media/Project_3/PNGs/Clay-thumb.webp"
-    ]
-  },
-  {
     "id": "Project_4",
     "title": "Vedal Mech Suit",
     "tags": [],
     "category": "Fan Art",
     "tools": ["Blender"],
-    "summary": "A mech bot based on Vedal987, design taken from a 2D fan-art.",
+    "summary": "A mech bot based on Vedal987. Took a 2D fan-art concept and turned it into a full 3D model.",
     "hasBreakdown": true,
     "images": [
       "Media/Project_4/PNGs/blender-01-thumb.webp",
@@ -70,7 +35,7 @@
     "tags": [],
     "category": "Fan Art",
     "tools": ["Blender"],
-    "summary": "A fan-art of Neuro-sama, original design and concept. Model taken from Setch-Fab.",
+    "summary": "Fan-art of Neuro-sama with my own design direction. Base model by Setch-Fab that I customised and retextured.",
     "hasBreakdown": true,
     "images": [
       "Media/Project_5/PNGs/Render-thumb.webp",
@@ -83,25 +48,11 @@
     "tags": [],
     "category": "Stylised",
     "tools": ["Blender"],
-    "summary": "A stylized fan-art of the Neuro-sama Lava Lamp.",
+    "summary": "A stylised fan-art of the Neuro-sama Lava Lamp. Mostly a material and form study.",
     "hasBreakdown": true,
     "images": [
       "Media/Project_6/PNGs/1.webp",
       "Media/Project_6/PNGs/2.webp"
-    ]
-  },
-  {
-    "id": "Project_7",
-    "title": "Interior",
-    "tags": [],
-    "category": "Environment",
-    "tools": ["Blender"],
-    "summary": "A basic interior design project.",
-    "hasBreakdown": false,
-    "images": [
-      "Media/Project_7/PNGs/blender-06.webp",
-      "Media/Project_7/PNGs/blender-02.webp",
-      "Media/Project_7/PNGs/blender-01.webp"
     ]
   },
   {
@@ -110,7 +61,7 @@
     "tags": [],
     "category": "Character",
     "tools": ["Blender"],
-    "summary": "A humanoid design. Original concept.",
+    "summary": "An original humanoid character design. Playing around with form, proportion, and silhouette.",
     "hasBreakdown": false,
     "images": [
       "Media/Project_8/PNGs/1-thumb.webp",
@@ -118,20 +69,6 @@
       "Media/Project_8/PNGs/3-thumb.webp",
       "Media/Project_8/PNGs/4-thumb.webp",
       "Media/Project_8/PNGs/5-thumb.webp"
-    ]
-  },
-  {
-    "id": "Project_9",
-    "title": "Space Megastructure",
-    "tags": [],
-    "category": "Sci-Fi",
-    "tools": ["Blender"],
-    "summary": "A Sci-Fi space mega-structure. Original concept.",
-    "hasBreakdown": false,
-    "images": [
-      "Media/Project_9/PNGs/blender-01.webp",
-      "Media/Project_9/PNGs/Blender-02.webp",
-      "Media/Project_9/PNGs/Blender-03.webp"
     ]
   }
 ]

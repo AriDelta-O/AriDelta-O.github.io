@@ -5,7 +5,7 @@
     "tags": [],
     "category": "Hard Surface",
     "tools": ["Blender"],
-    "summary": "A hard-surface mech redesign focused on proper joint logic, clean topology, and believable mechanical form. Full breakdown available.",
+    "summary": "A hard-surface mech redesign where I focused on getting the joint logic right and making the topology clean. Full breakdown from concept to final with wireframes.",
     "hasBreakdown": true,
     "thumb": "Media/Mech/PNGs/final-thumb.webp",
     "images": [
@@ -20,7 +20,7 @@
     "tags": [],
     "category": "Hard Surface",
     "tools": ["Blender"],
-    "summary": "A lightweight recon mech for the Delta-Forge lineup — focused on agility, low poly-count, and clean topology.",
+    "summary": "A lightweight 4-legged recon mech for the Delta-Forge lineup. Kept the poly-count low on purpose, used ND-Tools, and went with a deep-space colour palette.",
     "hasBreakdown": true,
     "thumb": "Media/ReconMech/PNGs/final.webp",
     "images": [
@@ -36,7 +36,7 @@
     "tags": [],
     "category": "Hard Surface",
     "tools": ["Blender"],
-    "summary": "A topology-focused hard-surface exercise building an interconnected sci-fi pipe system with strategic detail distribution.",
+    "summary": "A topology exercise where I built an interconnected sci-fi pipe system. This is where I learned bevel masks and material layering, which I use in basically every project now.",
     "hasBreakdown": true,
     "thumb": "Media/SciFiPipe/PNGs/final.webp",
     "images": [
@@ -52,7 +52,7 @@
     "tags": [],
     "category": "Environment",
     "tools": ["Blender"],
-    "summary": "A large-scale hard-surface environment based on a Pinterest reference. Architectural modelling at scale with detailed mechanical elements.",
+    "summary": "A big environment scene I built from a Pinterest reference. Lots of architectural modelling at scale, material layering practice, and a quick MiniBot prop I made in under 2 hours.",
     "hasBreakdown": true,
     "thumb": "Media/TrainStation/PNGs/final.webp",
     "images": [
@@ -66,7 +66,7 @@
     "tags": [],
     "category": "Procedural",
     "tools": ["Blender"],
-    "summary": "A fully procedural planet created with noise textures and volume shaders — no image textures used, just Blender nodes.",
+    "summary": "A fully procedural planet made entirely with noise textures and volume shaders. No image textures at all, just Blender nodes for the surface, clouds, and atmosphere.",
     "hasBreakdown": true,
     "thumb": "Media/Planet/PNGs/final.webp",
     "images": [
