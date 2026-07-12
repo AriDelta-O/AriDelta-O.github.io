@@ -152,6 +152,25 @@
       color:#ffdcdc;
       font-size:.93rem;
     }
+    .poly-stats{
+      display:flex; gap:6px; flex-wrap:wrap;
+      margin:10px 0 18px; padding:10px 14px;
+      background:rgba(255,77,77,0.04);
+      border:1px solid rgba(255,77,77,0.1);
+      border-radius:8px;
+    }
+    .poly-stat{
+      display:flex; align-items:center; gap:6px;
+      padding:4px 10px; border-radius:6px;
+      background:rgba(255,255,255,0.03);
+      border:1px solid rgba(255,255,255,0.06);
+    }
+    .poly-stat .label{ color:var(--muted); font-size:.75rem; text-transform:uppercase; letter-spacing:.04em; }
+    .poly-stat .value{ color:var(--accent); font-weight:700; font-size:.85rem; font-variant-numeric:tabular-nums; }
+    body.light .poly-stats{ background:rgba(255,77,77,0.04); border-color:rgba(255,77,77,0.12); }
+    body.light .poly-stat{ background:rgba(0,0,0,0.02); border-color:rgba(0,0,0,0.06); }
+    body.light .poly-stat .label{ color:#888; }
+    body.light .poly-stat .value{ color:var(--accent); }
     /* Light theme */
     body.light{ background:#f2f2f4; color:#111; }
     body.light h2, body.light h3{ color:#111; }
@@ -202,6 +221,14 @@
   </div>
 
   <hr style="border:none;border-top:1px solid rgba(255,255,255,0.06);margin:14px 0">
+
+  <div class="poly-stats">
+    <div class="poly-stat"><span class="label">Objects</span><span class="value">192</span></div>
+    <div class="poly-stat"><span class="label">Vertices</span><span class="value">324,991</span></div>
+    <div class="poly-stat"><span class="label">Edges</span><span class="value">653,045</span></div>
+    <div class="poly-stat"><span class="label">Faces</span><span class="value">328,766</span></div>
+    <div class="poly-stat"><span class="label">Tris</span><span class="value">632,903</span></div>
+  </div>
 
   <section>
     <h2>Introduction</h2>
